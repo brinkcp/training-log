@@ -150,15 +150,25 @@ numbers itself.
 Finishing a session can commit it to a **private** repo instead of downloading a file.
 Open **Set up saving to GitHub** at the bottom of the page and fill in three fields.
 
-You need:
+**Do these in order — it matters.**
 
-1. A private repo for the sessions — e.g. `training-data`. It must not be this repo;
-   this one is public.
-2. A **fine-grained personal access token**
+1. **Create the private repo first**, e.g. `training-data`. Not this repo; this one is
+   public. **Tick "Add a README"** so it has a default branch to commit against.
+
+2. **Then create a fine-grained token**
    ([github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)):
    - *Repository access* → **Only select repositories** → your sessions repo
    - *Permissions* → *Repository permissions* → **Contents: Read and write**
+     (this is separate from repository access — granting one doesn't grant the other)
    - Set an expiry you're happy to renew
+
+**Why the order matters:** a fine-grained token only reaches repositories chosen when
+it was created. Make the token first and the repo won't be in its list, and GitHub
+answers with a **404, not a permission error** — it won't confirm the repo exists to a
+token that can't see it. It looks exactly like a typo in the repo name.
+
+If you hit that, you don't need a new token: edit the existing one's *Repository
+access* to add the repo. The token value doesn't change, so nothing needs re-pasting.
 
 **Save and test** writes a real file to prove write access, and only stores the token
 if that succeeds. Sessions land in `sessions/YYYY-MM-DD-w<week>-<day>.json`.
@@ -173,11 +183,26 @@ your unlocked phone could extract it, which is why it's scoped narrowly.
 **Forget token** removes it from the device. Finishing a session then goes back to
 downloading a file.
 
-### No signal at the gym
+### When an upload fails
 
-Finishing a session records it locally first, then tries to upload. If the upload
-fails the session is queued, not lost, and a **Retry upload** button appears. Your
-"last time" reference updates either way.
+Finishing a session records it locally *first*, then tries to upload. A failed upload
+queues the session rather than losing it, and your "last time" reference updates
+either way.
+
+Queued sessions upload **automatically** the next time you open the page with a
+working connection — there's nothing to remember. A **Retry upload** button also
+appears if you want to force it.
+
+The message tells you which kind of problem you have, because the fix is different:
+
+- **No connection** — nothing to do. It goes up next time you open the page.
+- **Token expired or wrong** — retrying won't help. Fix the token in the settings,
+  and the backlog uploads the moment it works.
+
+### When the token expires
+
+Nothing is lost. Sessions keep queuing safely. Create a new token, paste it into the
+settings, and **Save and test** uploads the whole backlog straight away.
 
 ## Not built yet
 
