@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "block": "Foundation Season",
+  "week": 1,
+  "sessions": [
+    {
+      "day": "Saturday",
+      "title": "Calibration",
+      "notes": "First session of the block. Leave 2-3 reps in reserve on everything — this is a baseline, not a test.",
+      "exercises": [
+        {
+          "name": "Trap Bar Deadlift",
+          "target": "4 × 5 @ RPE 7",
+          "sets": 4,
+          "notes": "Stop the set if bracing slips."
+        },
+        {
+          "name": "Goblet Squat",
+          "target": "3 × 8",
+          "sets": 3
+        },
+        {
+          "name": "DB Bench Press",
+          "target": "3 × 8",
+          "sets": 3
+        },
+        {
+          "name": "Farmer Carry",
+          "target": "4 × 30 m",
+          "sets": 4,
+          "notes": "Log the weight per hand."
+        }
+      ]
+    }
+  ]
+}
