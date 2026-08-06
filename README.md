@@ -145,10 +145,43 @@ numbers itself.
 
 ---
 
+## Saving straight to GitHub
+
+Finishing a session can commit it to a **private** repo instead of downloading a file.
+Open **Set up saving to GitHub** at the bottom of the page and fill in three fields.
+
+You need:
+
+1. A private repo for the sessions — e.g. `training-data`. It must not be this repo;
+   this one is public.
+2. A **fine-grained personal access token**
+   ([github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)):
+   - *Repository access* → **Only select repositories** → your sessions repo
+   - *Permissions* → *Repository permissions* → **Contents: Read and write**
+   - Set an expiry you're happy to renew
+
+**Save and test** writes a real file to prove write access, and only stores the token
+if that succeeds. Sessions land in `sessions/YYYY-MM-DD-w<week>-<day>.json`.
+
+### About the token
+
+It lives in this browser's local storage on that device only. It's never written into
+this repo and never sent anywhere but GitHub. It grants access to the one repo you
+scope it to and nothing else — revoke it from GitHub settings any time. Anyone with
+your unlocked phone could extract it, which is why it's scoped narrowly.
+
+**Forget token** removes it from the device. Finishing a session then goes back to
+downloading a file.
+
+### No signal at the gym
+
+Finishing a session records it locally first, then tries to upload. If the upload
+fails the session is queued, not lost, and a **Retry upload** button appears. Your
+"last time" reference updates either way.
+
 ## Not built yet
 
-- **Pushing sessions to a repo automatically.** Right now finishing a session
-  downloads a file and you file it yourself. A one-tap push to a private repo is a
-  contained change to one function when you want it.
 - **Trends.** Sessions are archived with enough structure to chart later, but there's
   no history view yet.
+- **Reading history back from the repo.** "Last time" comes from this device's local
+  storage, so it only carries over if you log on the same device each week.

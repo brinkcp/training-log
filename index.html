@@ -97,6 +97,16 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px soli
 .status{font-size:.78rem; color:var(--muted); text-align:center; min-height:1.2em}
 .status.good{color:var(--logged)}
 
+.sync{padding:14px 16px}
+.sync summary{
+  font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted);
+  font-weight:600; cursor:pointer; list-style:none; min-height:24px; display:flex; align-items:center; gap:8px;
+}
+.sync summary::-webkit-details-marker{display:none}
+.sync summary::before{content:"▸"; color:var(--accent); font-size:.9rem}
+.sync[open] summary::before{content:"▾"}
+.sync .actions{margin-top:4px}
+
 .problem{border-color:var(--warn)}
 .problem h2{color:var(--warn)}
 .problem code{
@@ -121,6 +131,8 @@ const PROGRAM_URL = "program.json";
 const CACHE_KEY   = "trainingLog:program:v1";
 const STATE_KEY   = "trainingLog:state:v1";
 const HISTORY_KEY = "trainingLog:history:v1";
+const SYNC_KEY    = "trainingLog:sync:v1";   // { owner, repo, token }
+const QUEUE_KEY   = "trainingLog:queue:v1";  // sessions saved but not yet pushed
 
 const READINESS = [
   { key:"sleep",  label:"Sleep" },
@@ -138,6 +150,184 @@ const el = (tag, cls, text) => {
 const readJSON = key => {
   try { return JSON.parse(localStorage.getItem(key)) || null; } catch { return null; }
 };
+
+/* ---------- GitHub sync ----------
+   Sessions are committed to a private repo through the contents API. The token
+   is a fine-grained PAT scoped to that one repo and lives only in this device's
+   localStorage — it is never written into the page or the public repo.
+
+   Pushing is queued rather than fire-and-forget: the gym has no signal, so a
+   finished session must survive a failed upload and go up later. */
+
+const sync = {
+  get config(){ return readJSON(SYNC_KEY); },
+  set config(v){
+    if(v) localStorage.setItem(SYNC_KEY, JSON.stringify(v));
+    else  localStorage.removeItem(SYNC_KEY);
+  },
+  get queue(){ return readJSON(QUEUE_KEY) || []; },
+  set queue(v){ localStorage.setItem(QUEUE_KEY, JSON.stringify(v)); }
+};
+
+// btoa() is byte-oriented; the data contains × and — so encode UTF-8 first.
+function toBase64(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => { bin += String.fromCharCode(b); });
+  return btoa(bin);
+}
+
+async function ghRequest(cfg, path, options){
+  return fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}`, {
+    ...options,
+    headers: {
+      "Authorization": `Bearer ${cfg.token}`,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...(options && options.headers)
+    }
+  });
+}
+
+function ghError(status){
+  if(status === 401) return "Token rejected (401). It may be expired or mistyped.";
+  if(status === 403) return "Forbidden (403). The token lacks Contents write permission.";
+  if(status === 404) return "Repo not found (404). Check the owner/name, and that the token grants access to it.";
+  if(status === 409) return "Conflict (409). The repo may be empty — try again.";
+  return `GitHub returned ${status}.`;
+}
+
+async function pushSession(cfg, entry){
+  // An existing file needs its blob sha to be replaced rather than rejected.
+  let sha = null;
+  try{
+    const head = await ghRequest(cfg, entry.path, { method:"GET" });
+    if(head.ok) sha = (await head.json()).sha;
+    else if(head.status !== 404) return { ok:false, error:ghError(head.status) };
+  }catch(err){
+    return { ok:false, error:`Network error: ${err.message}` };
+  }
+
+  try{
+    const res = await ghRequest(cfg, entry.path, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: entry.message,
+        content: toBase64(entry.json),
+        ...(sha ? { sha } : {})
+      })
+    });
+    if(!res.ok) return { ok:false, error:ghError(res.status) };
+    return { ok:true };
+  }catch(err){
+    return { ok:false, error:`Network error: ${err.message}` };
+  }
+}
+
+// Returns { pushed, failed, error } — never throws, so a bad connection at the
+// gym degrades to "still queued" instead of losing the session.
+async function flushQueue(){
+  const cfg = sync.config;
+  const queue = sync.queue;
+  if(!cfg || !cfg.token || queue.length === 0) return { pushed:0, failed:queue.length };
+
+  let pushed = 0, error = null;
+  const remaining = [];
+  for(const entry of queue){
+    if(error){ remaining.push(entry); continue; }   // stop on first failure
+    const res = await pushSession(cfg, entry);
+    if(res.ok) pushed++;
+    else { error = res.error; remaining.push(entry); }
+  }
+  sync.queue = remaining;
+  return { pushed, failed:remaining.length, error };
+}
+
+/* Collapsed by default — this is setup, not something touched while training. */
+function syncCard(){
+  const cfg = sync.config || { owner:"", repo:"", token:"" };
+  const wrap = document.createElement("details");
+  wrap.className = "card sync";
+
+  const sum = document.createElement("summary");
+  sum.textContent = cfg.token
+    ? `Saving to ${cfg.owner}/${cfg.repo}`
+    : "Set up saving to GitHub";
+  wrap.appendChild(sum);
+
+  const body = el("div", "notes-stack");
+  body.style.marginTop = "14px";
+
+  const mk = (labelText, value, type, placeholder) => {
+    const l = el("label", "block");
+    l.append(labelText);
+    const i = document.createElement("input");
+    i.className = "text";
+    i.type = type;
+    i.value = value || "";
+    i.placeholder = placeholder || "";
+    i.autocomplete = "off";
+    i.autocapitalize = "none";
+    i.spellcheck = false;
+    l.appendChild(i);
+    body.appendChild(l);
+    return i;
+  };
+
+  const owner = mk("GitHub username", cfg.owner, "text", "brinkcp");
+  const repo  = mk("Private repo for sessions", cfg.repo, "text", "training-data");
+  const token = mk("Fine-grained token", cfg.token, "password", "github_pat_…");
+
+  const note = el("p", "cue",
+    "The token stays in this browser on this device. It is never sent anywhere except GitHub, and never written into the public repo. Revoke it any time from GitHub settings.");
+  body.appendChild(note);
+
+  const row = el("div", "actions");
+  const saveBtn  = el("button", "btn btn-primary", "Save and test");
+  saveBtn.type = "button";
+  const clearBtn = el("button", "btn btn-quiet", "Forget token");
+  clearBtn.type = "button";
+  const out = el("p", "status", "");
+  row.append(saveBtn, clearBtn, out);
+  body.appendChild(row);
+
+  saveBtn.addEventListener("click", async () => {
+    const next = { owner:owner.value.trim(), repo:repo.value.trim(), token:token.value.trim() };
+    if(!next.owner || !next.repo || !next.token){
+      out.textContent = "Fill in all three fields."; return;
+    }
+    saveBtn.disabled = true;
+    out.textContent = "Testing…";
+    // Write a real file, so this proves write access rather than just read.
+    const probe = await pushSession(next, {
+      path: "sessions/.connection-test.json",
+      message: "Connection test from training log",
+      json: JSON.stringify({ testedAt:new Date().toISOString() }, null, 2)
+    });
+    saveBtn.disabled = false;
+    if(probe.ok){
+      sync.config = next;
+      out.textContent = "Connected. Finishing a session now saves here.";
+      out.classList.add("good");
+      sum.textContent = `Saving to ${next.owner}/${next.repo}`;
+    }else{
+      out.textContent = probe.error;
+      out.classList.remove("good");
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    if(!confirm("Forget the token on this device?\n\nFinishing a session will download a file instead. Any pending uploads stay queued.")) return;
+    sync.config = null;
+    token.value = "";
+    out.textContent = "Token removed from this device.";
+    out.classList.remove("good");
+    sum.textContent = "Set up saving to GitHub";
+  });
+
+  wrap.appendChild(body);
+  return wrap;
+}
 
 /* ---------- Validation ----------
    An AI writes program.json, so assume it will occasionally be wrong and say
@@ -181,7 +371,12 @@ function showProblem(title, lines, extra){
   const ul = el("ul");
   lines.forEach(l => {
     const li = el("li");
-    li.innerHTML = l.replace(/`([^`]+)`/g, "<code>$1</code>");
+    // Messages quote values straight out of program.json, so escape before any
+    // markup goes in. A sync token lives in localStorage; an exercise named
+    // "<img src=x onerror=...>" must not be able to reach it.
+    const safe = l.replace(/[&<>"']/g, c =>
+      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]);
+    li.innerHTML = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
     ul.appendChild(li);
   });
   card.appendChild(ul);
@@ -491,17 +686,69 @@ function render(program, stale){
     }
 
     backup.addEventListener("click", () => download(build()));
-    finish.addEventListener("click", () => {
-      if(!confirm("Finish this session?\n\nIt saves a file to your device, becomes the “last time” you'll see next week, and clears the form.")) return;
-      const data = build();
-      download(data);
+
+    finish.addEventListener("click", async () => {
+      const configured = Boolean(sync.config && sync.config.token);
+      const what = configured
+        ? "It saves to GitHub, becomes the “last time” you'll see next week, and clears the form."
+        : "It downloads a file, becomes the “last time” you'll see next week, and clears the form.";
+      if(!confirm(`Finish this session?\n\n${what}`)) return;
+
+      const data  = build();
+      const stamp = new Date().toISOString().slice(0, 10);
+      const slug  = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+      // Record locally first. The upload can fail; the session must not be lost.
       history[sessionKey(active)] = data;
       localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
       delete state[sessionKey(active)];
       localStorage.setItem(STATE_KEY, JSON.stringify(state));
+
+      if(configured){
+        sync.queue = sync.queue.concat([{
+          path: `sessions/${stamp}-w${program.week}-${slug}.json`,
+          message: `${stamp} ${session.day || session.title || "session"} — week ${program.week}`,
+          json: JSON.stringify(data, null, 2),
+          savedAt: new Date().toISOString()
+        }]);
+        finish.disabled = true;
+        status.textContent = "Saving to GitHub…";
+        const res = await flushQueue();
+        finish.disabled = false;
+        pendingNote(res.pushed ? `Saved to GitHub.` : null, res);
+      }else{
+        download(data);
+      }
+
       draw();
       window.scrollTo(0, 0);
     });
+
+    // Anything still queued is shown with a retry, so a session logged without
+    // signal isn't silently stranded.
+    function pendingNote(successMsg, res){
+      const queued = sync.queue.length;
+      if(!queued && successMsg){ alert(successMsg); return; }
+      if(!queued) return;
+      const detail = res && res.error ? `\n\n${res.error}` : "";
+      alert(`${queued} session${queued > 1 ? "s" : ""} still waiting to upload.${detail}\n\nThey're saved on this device. Use “Retry upload” when you have signal.`);
+    }
+
+    if(sync.config && sync.config.token && sync.queue.length){
+      const retry = el("button", "btn btn-quiet", `Retry upload (${sync.queue.length} pending)`);
+      retry.type = "button";
+      retry.addEventListener("click", async () => {
+        retry.disabled = true;
+        retry.textContent = "Uploading…";
+        const res = await flushQueue();
+        retry.disabled = false;
+        if(res.failed === 0){ alert(`Uploaded. Nothing pending.`); draw(); }
+        else { retry.textContent = `Retry upload (${res.failed} pending)`; alert(res.error || "Still couldn't upload."); }
+      });
+      actions.insertBefore(retry, status);
+    }
+
+    app.appendChild(syncCard());
 
     refreshProgress();
   }
