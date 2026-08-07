@@ -1,35 +1,131 @@
 {
-  "schema": 1,
+  "schema": 2,
   "block": "Foundation Season",
   "week": 1,
   "sessions": [
     {
-      "day": "Saturday",
-      "title": "Calibration",
-      "notes": "First session of the block. Leave 2-3 reps in reserve on everything — this is a baseline, not a test.",
-      "exercises": [
+      "day": "Thursday",
+      "dayLabel": "Day 2",
+      "title": "Upper Strength + Athletic Control",
+      "duration": "~60 minutes",
+      "goal": "Build strength, improve shoulder control, train single-leg stability, and get movement through the back without adding more spinal loading.",
+      "intensity": "RPE 6–8",
+      "success": "Leave feeling better than when you arrived.",
+      "blocks": [
         {
-          "name": "Trap Bar Deadlift",
-          "target": "4 × 5 @ RPE 7",
-          "sets": 4,
-          "notes": "Stop the set if bracing slips."
+          "type": "reference",
+          "title": "Readiness + Movement Check",
+          "duration": "5 minutes",
+          "note": "Does the back loosen as you move, stay the same, or get sharper? If it loosens, continue.",
+          "items": [
+            { "name": "Cat-Cow", "detail": "10 reps" },
+            { "name": "Bodyweight Squat", "detail": "10 reps" },
+            { "name": "Hip Hinge", "detail": "10 slow reps" }
+          ]
         },
         {
-          "name": "Goblet Squat",
-          "target": "3 × 8",
-          "sets": 3
+          "type": "reference",
+          "title": "Warm-up",
+          "duration": "10 minutes",
+          "items": [
+            { "name": "Bike", "detail": "5 minutes easy/moderate" },
+            { "name": "World's Greatest Stretch", "detail": "5 each side", "focus": "Long spine. Rotate through upper back. Don't force range." },
+            { "name": "Dead Bug", "detail": "3 × 8 each side", "focus": "Ribs down. Slow breathing. Pelvis stable." },
+            { "name": "Scapular Wall Slides", "detail": "2 × 10", "focus": "Smooth movement. Compare left vs right shoulder." },
+            { "name": "Passive Hang", "detail": "2 × 20–30 sec", "focus": "Do not force. Just create space through the shoulder." }
+          ]
         },
         {
-          "name": "DB Bench Press",
-          "target": "3 × 8",
-          "sets": 3
+          "type": "reference",
+          "title": "Skill — Handstand Progression",
+          "duration": "8 minutes",
+          "note": "Today's goal is not strength. It's better shoulder position and body awareness.",
+          "items": [
+            { "name": "Wall Pike Hold", "detail": "3 rounds × 30–40 sec, rest 60 sec", "focus": "Push the ground away. Shoulders active. Head neutral. Ribs tucked." }
+          ]
         },
         {
-          "name": "Farmer Carry",
-          "target": "4 × 30 m",
-          "sets": 4,
-          "notes": "Log the weight per hand."
+          "type": "log",
+          "title": "Strength Block A",
+          "exercises": [
+            {
+              "pair": "A1",
+              "name": "Incline Dumbbell Bench Press",
+              "target": "4 × 8",
+              "sets": 4,
+              "prescription": "20 kg each hand",
+              "rpe": "RPE 7",
+              "rest": "90 sec",
+              "focus": "Shoulder blades stable. Controlled lowering. Smooth reps."
+            },
+            {
+              "pair": "A2",
+              "name": "Chest Supported Dumbbell Row",
+              "target": "4 × 8",
+              "sets": 4,
+              "prescription": "15 kg each hand",
+              "rpe": "RPE 7",
+              "rest": "90 sec",
+              "focus": "Pull elbows back. Pause at top. Don't shrug.",
+              "note": "Yesterday's 17.5 kg was RPE 9. Today we build quality."
+            }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Strength Block B",
+          "exercises": [
+            {
+              "pair": "B1",
+              "name": "Bulgarian Split Squat",
+              "target": "3 × 8 each leg",
+              "sets": 3,
+              "prescription": "Bodyweight to start",
+              "rest": "60–90 sec",
+              "focus": "Front foot planted. Controlled descent. Drive through whole foot.",
+              "note": "Only add weight if there's no hamstring cramping, the pelvis is stable, and movement stays smooth."
+            },
+            {
+              "pair": "B2",
+              "name": "Half-Kneeling Cable Press",
+              "target": "3 × 10 each side",
+              "sets": 3,
+              "prescription": "Moderate weight",
+              "focus": "Glute engaged on kneeling side. Resist rotation. Smooth press."
+            }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Core / Back Resilience",
+          "note": "Adjusted for today's back status.",
+          "items": [
+            { "name": "Dead Bug", "detail": "3 × 8 each side" },
+            { "name": "Bird Dog", "detail": "3 × 8 each side", "focus": "2-second hold each rep." },
+            { "name": "Side Plank", "detail": "3 × 20 sec each side" }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Conditioning",
+          "items": [
+            { "name": "Bike Intervals", "detail": "8 rounds — 30 sec hard / 60 sec easy", "focus": "Hard = 8/10 effort. Do not sprint. The goal is consistent output." }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Cool Down",
+          "duration": "5 minutes",
+          "items": [
+            { "name": "Hip Flexor Stretch", "detail": "60 sec each side" },
+            { "name": "Thoracic Rotation", "detail": "8 each side" },
+            { "name": "Child's Pose Breathing", "detail": "2 minutes" }
+          ]
         }
+      ],
+      "questions": [
+        "Did the left shoulder still feel restricted?",
+        "Did hamstring cramping appear during the split squats?"
       ]
     }
   ]

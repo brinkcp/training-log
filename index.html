@@ -21,69 +21,87 @@ body{
   font-family:var(--sans); font-size:16px; line-height:1.45;
   padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
-.wrap{max-width:640px; margin:0 auto; padding:20px 16px 56px; display:flex; flex-direction:column; gap:14px}
+.wrap{max-width:660px; margin:0 auto; padding:20px 16px 56px; display:flex; flex-direction:column; gap:14px}
 
-header{display:flex; flex-direction:column; gap:4px}
+header{display:flex; flex-direction:column; gap:5px}
 .eyebrow{font-size:.72rem; text-transform:uppercase; letter-spacing:.11em; color:var(--accent); font-weight:600}
-h1{font-size:1.5rem; font-weight:650; margin:0; letter-spacing:-.02em; text-wrap:balance}
+h1{font-size:1.45rem; font-weight:650; margin:0; letter-spacing:-.02em; text-wrap:balance; line-height:1.2}
+.meta{font-size:.82rem; color:var(--muted)}
+.goal{font-size:.9rem; color:var(--muted); line-height:1.5; margin:6px 0 0}
 .progress{font-size:.85rem; color:var(--muted); font-variant-numeric:tabular-nums}
 .progress b{color:var(--text); font-weight:600}
 
 .card{background:var(--card); border:1px solid var(--line-soft); border-radius:12px; padding:16px}
-h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); margin:0 0 12px; font-weight:600}
-.session-note{font-size:.88rem; color:var(--muted); margin:0; line-height:1.5}
+h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); margin:0; font-weight:600}
+.h2row{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:12px}
+.h2row .dur{font-size:.72rem; color:var(--muted); font-family:var(--mono); white-space:nowrap}
+.blocknote{font-size:.85rem; color:var(--accent); line-height:1.5; margin:0 0 12px}
 
-.days{display:flex; gap:8px; overflow-x:auto; padding-bottom:2px}
-.days button{
-  appearance:none; flex:0 0 auto; background:var(--field); color:var(--text);
-  border:1px solid var(--line); border-radius:999px; padding:9px 16px;
-  min-height:44px; font-size:.9rem; font-family:var(--sans); cursor:pointer;
-}
-.days button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:var(--accent); font-weight:650}
+/* reference blocks — read, don't fill in */
+.ref{display:flex; flex-direction:column; gap:12px}
+.ref-item{display:flex; flex-direction:column; gap:2px; padding-left:12px; border-left:2px solid var(--line)}
+.ref-item .nm{font-size:.95rem; font-weight:600}
+.ref-item .dt{font-size:.85rem; color:var(--accent); font-family:var(--mono)}
+.ref-item .fc{font-size:.82rem; color:var(--muted); line-height:1.45}
 
-.rdy{display:flex; flex-direction:column; gap:12px}
-.rdy-row{display:flex; flex-direction:column; gap:6px}
-.rdy-row span{font-size:.9rem}
+/* scales */
+.scale-row{display:flex; flex-direction:column; gap:6px}
+.scale-row > span{font-size:.9rem}
 .scale{display:grid; grid-template-columns:repeat(5,1fr); gap:6px}
 .scale button{
   appearance:none; background:var(--field); color:var(--text); border:1px solid var(--line);
-  border-radius:8px; min-height:44px; font-size:1rem; font-family:var(--mono); cursor:pointer;
+  border-radius:8px; min-height:42px; font-size:.95rem; font-family:var(--mono); cursor:pointer;
   transition:background .12s,border-color .12s,color .12s;
 }
 .scale button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:var(--accent); font-weight:700}
+.stack{display:flex; flex-direction:column; gap:14px}
 
-.ex-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
+/* logged exercises */
+.ex{padding-top:14px; border-top:1px solid var(--line-soft)}
+.ex:first-child{padding-top:0; border-top:0}
+.ex-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
 .ex-head h3{margin:0; font-size:1.05rem; font-weight:600; letter-spacing:-.01em}
+.pair{font-family:var(--mono); font-size:.75rem; color:var(--accent); margin-right:6px}
 .target{font-size:.82rem; color:var(--accent); font-family:var(--mono); white-space:nowrap}
-.cue{font-size:.82rem; color:var(--muted); margin:0 0 12px; line-height:1.45}
+.presc{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 0}
+.chip{
+  font-size:.72rem; font-family:var(--mono); color:var(--muted);
+  border:1px solid var(--line); border-radius:999px; padding:3px 9px;
+}
+.cue{font-size:.82rem; color:var(--muted); margin:8px 0 0; line-height:1.45}
+.coachnote{font-size:.82rem; color:var(--accent); margin:6px 0 0; line-height:1.45}
 
-.col-head{display:grid; grid-template-columns:26px 1fr 1fr; gap:8px; margin-bottom:6px}
-.col-head span{font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+.col-head{display:grid; grid-template-columns:22px 1fr 1fr 1fr; gap:6px; margin:12px 0 6px}
+.col-head span{font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted)}
 .col-head span:first-child{text-align:center}
-.sets{display:flex; flex-direction:column; gap:8px}
-.set{display:grid; grid-template-columns:26px 1fr 1fr; gap:8px; align-items:center}
-.set-n{font-family:var(--mono); font-size:.85rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
+.sets{display:flex; flex-direction:column; gap:7px}
+.set{display:grid; grid-template-columns:22px 1fr 1fr 1fr; gap:6px; align-items:center}
+.set-n{font-family:var(--mono); font-size:.8rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .set.done .set-n{color:var(--logged); font-weight:700}
 .field{position:relative; display:flex; align-items:center}
 .field input{
-  width:100%; min-height:44px; padding:8px 34px 8px 10px;
+  width:100%; min-height:44px; padding:8px 26px 8px 8px;
   background:var(--field); color:var(--text); border:1px solid var(--line); border-radius:8px;
   font-size:16px; font-family:var(--mono); font-variant-numeric:tabular-nums;
 }
-.field .unit{position:absolute; right:10px; font-size:.75rem; color:var(--muted); pointer-events:none}
+.field .unit{position:absolute; right:7px; font-size:.68rem; color:var(--muted); pointer-events:none}
 .set.done .field input{border-color:var(--logged)}
-.prev-note{font-size:.75rem; color:var(--muted); margin:10px 0 0; font-variant-numeric:tabular-nums}
+.prev-note{font-size:.75rem; color:var(--muted); margin:9px 0 0; font-variant-numeric:tabular-nums}
+.conf{margin-top:12px}
+.conf > span{font-size:.8rem; color:var(--muted); display:block; margin-bottom:6px}
 
 label.block{display:flex; flex-direction:column; gap:6px; font-size:.9rem}
 textarea,input.text{
   width:100%; background:var(--field); color:var(--text); border:1px solid var(--line);
   border-radius:8px; padding:10px; font-size:16px; font-family:var(--sans); min-height:44px;
 }
-textarea{min-height:80px; resize:vertical; line-height:1.5}
-.notes-stack{display:flex; flex-direction:column; gap:12px}
-
+textarea{min-height:70px; resize:vertical; line-height:1.5}
 input:focus,textarea:focus{border-color:var(--accent); outline:none}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+.later{border-color:var(--accent)}
+.later h2{color:var(--accent)}
+.later .why{font-size:.82rem; color:var(--muted); margin:0 0 12px; line-height:1.5}
 
 .actions{display:flex; flex-direction:column; gap:10px}
 .btn{
@@ -92,6 +110,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px soli
   border:1px solid transparent; transition:opacity .12s;
 }
 .btn:active{opacity:.75}
+.btn:disabled{opacity:.5; cursor:default}
 .btn-primary{background:var(--accent); color:var(--accent-ink)}
 .btn-quiet{background:transparent; color:var(--muted); border-color:var(--line)}
 .status{font-size:.78rem; color:var(--muted); text-align:center; min-height:1.2em}
@@ -109,35 +128,56 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px soli
 
 .problem{border-color:var(--warn)}
 .problem h2{color:var(--warn)}
-.problem code{
-  font-family:var(--mono); font-size:.82rem; background:var(--field);
-  padding:2px 6px; border-radius:4px; word-break:break-word;
-}
+.problem code{font-family:var(--mono); font-size:.82rem; background:var(--field); padding:2px 6px; border-radius:4px; word-break:break-word}
 .problem ul{margin:8px 0 0; padding-left:20px; font-size:.88rem; line-height:1.6}
 .stale{font-size:.78rem; color:var(--warn)}
+
+.days{display:flex; gap:8px; overflow-x:auto; padding-bottom:2px}
+.days button{
+  appearance:none; flex:0 0 auto; background:var(--field); color:var(--text);
+  border:1px solid var(--line); border-radius:999px; padding:9px 16px;
+  min-height:44px; font-size:.9rem; font-family:var(--sans); cursor:pointer;
+}
+.days button[aria-pressed="true"]{background:var(--accent); color:var(--accent-ink); border-color:var(--accent); font-weight:650}
 
 @media (prefers-reduced-motion: reduce){*{transition:none !important}}
 </style>
 </head>
 <body>
 <div class="wrap" id="app">
-  <p class="status" id="boot">Loading this week's program…</p>
+  <p class="status">Loading this week's program…</p>
 </div>
 
 <script>
 "use strict";
 
 const PROGRAM_URL = "program.json";
-const CACHE_KEY   = "trainingLog:program:v1";
-const STATE_KEY   = "trainingLog:state:v1";
-const HISTORY_KEY = "trainingLog:history:v1";
-const SYNC_KEY    = "trainingLog:sync:v1";   // { owner, repo, token }
-const QUEUE_KEY   = "trainingLog:queue:v1";  // sessions saved but not yet pushed
+const CACHE_KEY   = "trainingLog:program:v2";
+const STATE_KEY   = "trainingLog:state:v2";
+const HISTORY_KEY = "trainingLog:history:v2";
+const SYNC_KEY    = "trainingLog:sync:v1";
+const QUEUE_KEY   = "trainingLog:queue:v1";
 
+/* Constant across every session so far, so they're built in rather than
+   restated in each program file. */
 const READINESS = [
   { key:"sleep",  label:"Sleep" },
   { key:"energy", label:"Energy" },
   { key:"back",   label:"Back confidence" }
+];
+
+const BACK_CHECK = [
+  { key:"before",    label:"Before training" },
+  { key:"warmup",    label:"After warm-up" },
+  { key:"lifting",   label:"During lifting" },
+  { key:"after",     label:"Immediately after" },
+  { key:"laterHours",label:"2–3 hours later", late:true }
+];
+
+const REFLECTION = [
+  { key:"strongest", label:"Strongest exercise",  kind:"input" },
+  { key:"weakest",   label:"Weakest exercise",    kind:"input" },
+  { key:"awkward",   label:"Anything awkward or technically difficult", kind:"textarea" }
 ];
 
 const app = document.getElementById("app");
@@ -151,25 +191,14 @@ const readJSON = key => {
   try { return JSON.parse(localStorage.getItem(key)) || null; } catch { return null; }
 };
 
-/* ---------- GitHub sync ----------
-   Sessions are committed to a private repo through the contents API. The token
-   is a fine-grained PAT scoped to that one repo and lives only in this device's
-   localStorage — it is never written into the page or the public repo.
-
-   Pushing is queued rather than fire-and-forget: the gym has no signal, so a
-   finished session must survive a failed upload and go up later. */
-
+/* ---------- GitHub sync ---------- */
 const sync = {
   get config(){ return readJSON(SYNC_KEY); },
-  set config(v){
-    if(v) localStorage.setItem(SYNC_KEY, JSON.stringify(v));
-    else  localStorage.removeItem(SYNC_KEY);
-  },
+  set config(v){ v ? localStorage.setItem(SYNC_KEY, JSON.stringify(v)) : localStorage.removeItem(SYNC_KEY); },
   get queue(){ return readJSON(QUEUE_KEY) || []; },
   set queue(v){ localStorage.setItem(QUEUE_KEY, JSON.stringify(v)); }
 };
 
-// btoa() is byte-oriented; the data contains × and — so encode UTF-8 first.
 function toBase64(str){
   const bytes = new TextEncoder().encode(str);
   let bin = "";
@@ -189,10 +218,6 @@ async function ghRequest(cfg, path, options){
   });
 }
 
-/* kind matters as much as the text: an auth failure needs you to go and fix
-   something, a network failure just needs a connection. Telling someone to
-   "retry when you have signal" because their token expired sends them looking
-   in the wrong place entirely. */
 function ghError(status){
   if(status === 401) return { kind:"auth", message:
     "Token rejected (401) — expired, or mistyped. Create a new token and paste it into the settings below." };
@@ -210,8 +235,6 @@ function ghError(status){
 const netFail = err => ({ ok:false, kind:"network", error:`No connection to GitHub (${err.message}).` });
 
 async function pushSession(cfg, entry){
-  // An existing file needs its blob sha to be replaced rather than rejected.
-  // A 404 here is the normal case — the file doesn't exist yet.
   let sha = null;
   try{
     const head = await ghRequest(cfg, entry.path, { method:"GET" });
@@ -220,9 +243,7 @@ async function pushSession(cfg, entry){
       const e = ghError(head.status);
       return { ok:false, kind:e.kind, error:e.message };
     }
-  }catch(err){
-    return netFail(err);
-  }
+  }catch(err){ return netFail(err); }
 
   try{
     const res = await ghRequest(cfg, entry.path, {
@@ -238,13 +259,15 @@ async function pushSession(cfg, entry){
       return { ok:false, kind:e.kind, error:e.message };
     }
     return { ok:true };
-  }catch(err){
-    return netFail(err);
-  }
+  }catch(err){ return netFail(err); }
 }
 
-// Returns { pushed, failed, error, kind } — never throws, so a bad connection at
-// the gym degrades to "still queued" instead of losing the session.
+// Latest write for a given path wins — re-saving a session replaces the queued
+// copy rather than stacking duplicates behind it.
+function enqueue(entry){
+  sync.queue = sync.queue.filter(q => q.path !== entry.path).concat([entry]);
+}
+
 async function flushQueue(){
   const cfg = sync.config;
   const queue = sync.queue;
@@ -253,7 +276,7 @@ async function flushQueue(){
   let pushed = 0, error = null, kind = null;
   const remaining = [];
   for(const entry of queue){
-    if(error){ remaining.push(entry); continue; }   // stop on first failure
+    if(error){ remaining.push(entry); continue; }
     const res = await pushSession(cfg, entry);
     if(res.ok) pushed++;
     else { error = res.error; kind = res.kind; remaining.push(entry); }
@@ -262,38 +285,29 @@ async function flushQueue(){
   return { pushed, failed:remaining.length, error, kind };
 }
 
-// render() owns draw(); this lets the settings card refresh the page after a
-// successful reconnect, so an uploaded backlog disappears immediately.
 let redraw = () => {};
 
-/* Collapsed by default — this is setup, not something touched while training. */
+/* ---------- Settings ---------- */
 function syncCard(){
   const cfg = sync.config || { owner:"", repo:"", token:"" };
   const wrap = document.createElement("details");
   wrap.className = "card sync";
 
   const sum = document.createElement("summary");
-  sum.textContent = cfg.token
-    ? `Saving to ${cfg.owner}/${cfg.repo}`
-    : "Set up saving to GitHub";
+  sum.textContent = cfg.token ? `Saving to ${cfg.owner}/${cfg.repo}` : "Set up saving to GitHub";
   wrap.appendChild(sum);
 
-  const body = el("div", "notes-stack");
+  const body = el("div", "stack");
   body.style.marginTop = "14px";
 
   const mk = (labelText, value, type, placeholder) => {
     const l = el("label", "block");
     l.append(labelText);
     const i = document.createElement("input");
-    i.className = "text";
-    i.type = type;
-    i.value = value || "";
-    i.placeholder = placeholder || "";
-    i.autocomplete = "off";
-    i.autocapitalize = "none";
-    i.spellcheck = false;
-    l.appendChild(i);
-    body.appendChild(l);
+    i.className = "text"; i.type = type; i.value = value || "";
+    i.placeholder = placeholder || ""; i.autocomplete = "off";
+    i.autocapitalize = "none"; i.spellcheck = false;
+    l.appendChild(i); body.appendChild(l);
     return i;
   };
 
@@ -301,27 +315,21 @@ function syncCard(){
   const repo  = mk("Private repo for sessions", cfg.repo, "text", "training-data");
   const token = mk("Fine-grained token", cfg.token, "password", "github_pat_…");
 
-  const note = el("p", "cue",
-    "The token stays in this browser on this device. It is never sent anywhere except GitHub, and never written into the public repo. Revoke it any time from GitHub settings.");
-  body.appendChild(note);
+  body.appendChild(el("p", "cue",
+    "The token stays in this browser on this device. It is never sent anywhere except GitHub, and never written into the public repo. Revoke it any time from GitHub settings."));
 
   const row = el("div", "actions");
-  const saveBtn  = el("button", "btn btn-primary", "Save and test");
-  saveBtn.type = "button";
-  const clearBtn = el("button", "btn btn-quiet", "Forget token");
-  clearBtn.type = "button";
+  const saveBtn  = el("button", "btn btn-primary", "Save and test"); saveBtn.type = "button";
+  const clearBtn = el("button", "btn btn-quiet", "Forget token");    clearBtn.type = "button";
   const out = el("p", "status", "");
   row.append(saveBtn, clearBtn, out);
   body.appendChild(row);
 
   saveBtn.addEventListener("click", async () => {
     const next = { owner:owner.value.trim(), repo:repo.value.trim(), token:token.value.trim() };
-    if(!next.owner || !next.repo || !next.token){
-      out.textContent = "Fill in all three fields."; return;
-    }
+    if(!next.owner || !next.repo || !next.token){ out.textContent = "Fill in all three fields."; return; }
     saveBtn.disabled = true;
     out.textContent = "Testing…";
-    // Write a real file, so this proves write access rather than just read.
     const probe = await pushSession(next, {
       path: "sessions/.connection-test.json",
       message: "Connection test from training log",
@@ -332,8 +340,6 @@ function syncCard(){
       sync.config = next;
       sum.textContent = `Saving to ${next.owner}/${next.repo}`;
       out.classList.add("good");
-      // A new token usually means the old one failed, so there may be a backlog.
-      // Clear it now rather than waiting for the user to find the retry button.
       const pending = sync.queue.length;
       if(pending){
         out.textContent = `Connected. Uploading ${pending} pending…`;
@@ -343,7 +349,7 @@ function syncCard(){
           : `Connected. ${pending} pending session${pending > 1 ? "s" : ""} uploaded.`;
         redraw();
       }else{
-        out.textContent = "Connected. Finishing a session now saves here.";
+        out.textContent = "Connected. Saving a session now writes here.";
       }
     }else{
       out.textContent = probe.error;
@@ -352,9 +358,8 @@ function syncCard(){
   });
 
   clearBtn.addEventListener("click", () => {
-    if(!confirm("Forget the token on this device?\n\nFinishing a session will download a file instead. Any pending uploads stay queued.")) return;
-    sync.config = null;
-    token.value = "";
+    if(!confirm("Forget the token on this device?\n\nSaving a session will download a file instead. Any pending uploads stay queued.")) return;
+    sync.config = null; token.value = "";
     out.textContent = "Token removed from this device.";
     out.classList.remove("good");
     sum.textContent = "Set up saving to GitHub";
@@ -365,13 +370,10 @@ function syncCard(){
 }
 
 /* ---------- Validation ----------
-   An AI writes program.json, so assume it will occasionally be wrong and say
-   exactly what's wrong rather than rendering a broken page. */
+   An AI writes program.json, so malformed input is expected, not exceptional. */
 function validate(p){
   const errs = [];
-  if(typeof p !== "object" || p === null || Array.isArray(p)) {
-    return ["The file must contain a single JSON object."];
-  }
+  if(typeof p !== "object" || p === null || Array.isArray(p)) return ["The file must contain a single JSON object."];
   if(!Array.isArray(p.sessions) || p.sessions.length === 0){
     errs.push("`sessions` must be an array with at least one session.");
     return errs;
@@ -380,20 +382,43 @@ function validate(p){
     const at = `sessions[${i}]`;
     if(!s || typeof s !== "object"){ errs.push(`${at} must be an object.`); return; }
     if(!s.day && !s.title) errs.push(`${at} needs a \`day\` or a \`title\`.`);
-    if(!Array.isArray(s.exercises) || s.exercises.length === 0){
-      errs.push(`${at}.exercises must be an array with at least one exercise.`);
+    if(!Array.isArray(s.blocks) || s.blocks.length === 0){
+      errs.push(`${at}.blocks must be an array with at least one block.`);
       return;
     }
-    s.exercises.forEach((e, j) => {
-      const eat = `${at}.exercises[${j}]`;
-      if(!e || typeof e !== "object"){ errs.push(`${eat} must be an object.`); return; }
-      if(typeof e.name !== "string" || !e.name.trim()) errs.push(`${eat}.name must be a non-empty string.`);
-      if(!Number.isInteger(e.sets) || e.sets < 1 || e.sets > 20)
-        errs.push(`${eat}.sets must be a whole number from 1 to 20 (got ${JSON.stringify(e.sets)}).`);
+    const logged = [];
+    s.blocks.forEach((b, j) => {
+      const bat = `${at}.blocks[${j}]`;
+      if(!b || typeof b !== "object"){ errs.push(`${bat} must be an object.`); return; }
+      if(b.type !== "log" && b.type !== "reference"){
+        errs.push(`${bat}.type must be "log" or "reference" (got ${JSON.stringify(b.type)}).`);
+        return;
+      }
+      if(!b.title) errs.push(`${bat} needs a \`title\`.`);
+      if(b.type === "reference"){
+        if(!Array.isArray(b.items) || b.items.length === 0)
+          errs.push(`${bat}.items must be an array with at least one item (reference blocks).`);
+        else b.items.forEach((it, k) => {
+          if(!it || typeof it.name !== "string" || !it.name.trim())
+            errs.push(`${bat}.items[${k}].name must be a non-empty string.`);
+        });
+      }else{
+        if(!Array.isArray(b.exercises) || b.exercises.length === 0){
+          errs.push(`${bat}.exercises must be an array with at least one exercise (log blocks).`);
+          return;
+        }
+        b.exercises.forEach((e, k) => {
+          const eat = `${bat}.exercises[${k}]`;
+          if(!e || typeof e !== "object"){ errs.push(`${eat} must be an object.`); return; }
+          if(typeof e.name !== "string" || !e.name.trim()) errs.push(`${eat}.name must be a non-empty string.`);
+          else logged.push(e.name);
+          if(!Number.isInteger(e.sets) || e.sets < 1 || e.sets > 20)
+            errs.push(`${eat}.sets must be a whole number from 1 to 20 (got ${JSON.stringify(e.sets)}).`);
+        });
+      }
     });
-    const names = s.exercises.map(e => e && e.name).filter(Boolean);
-    const dupes = names.filter((n, k) => names.indexOf(n) !== k);
-    if(dupes.length) errs.push(`${at} has repeated exercise names (${[...new Set(dupes)].join(", ")}). Names identify saved sets, so make them unique.`);
+    const dupes = logged.filter((n, k) => logged.indexOf(n) !== k);
+    if(dupes.length) errs.push(`${at} logs the same exercise name more than once (${[...new Set(dupes)].join(", ")}). Names identify saved sets, so make them unique.`);
   });
   return errs;
 }
@@ -402,15 +427,12 @@ function showProblem(title, lines, extra){
   app.innerHTML = "";
   const card = el("section", "card problem");
   card.appendChild(el("h2", null, title));
-  if(extra) card.appendChild(el("p", "session-note", extra));
+  if(extra) card.appendChild(el("p", "cue", extra));
   const ul = el("ul");
   lines.forEach(l => {
     const li = el("li");
-    // Messages quote values straight out of program.json, so escape before any
-    // markup goes in. A sync token lives in localStorage; an exercise named
-    // "<img src=x onerror=...>" must not be able to reach it.
-    const safe = l.replace(/[&<>"']/g, c =>
-      ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]);
+    // Messages quote values from program.json; escape before any markup goes in.
+    const safe = l.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" })[c]);
     li.innerHTML = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
     ul.appendChild(li);
   });
@@ -421,22 +443,16 @@ function showProblem(title, lines, extra){
 /* ---------- Load ---------- */
 async function load(){
   let text = null, netErr = null;
-
   try{
     const res = await fetch(PROGRAM_URL, { cache:"no-store" });
     if(!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
     text = await res.text();
-  }catch(err){
-    netErr = err;
-  }
+  }catch(err){ netErr = err; }
 
-  // Reached the file: it is the source of truth, so report its problems rather
-  // than silently falling back to a stale copy.
   if(text !== null){
     let program;
-    try{
-      program = JSON.parse(text);
-    }catch(err){
+    try{ program = JSON.parse(text); }
+    catch(err){
       showProblem("program.json isn't valid JSON", [
         `The file was downloaded but couldn't be parsed: ${err.message}`,
         "Usually a trailing comma, a missing bracket, or smart quotes instead of straight ones."
@@ -449,18 +465,13 @@ async function load(){
         "The page won't guess at what you meant. Fix the file in GitHub and reload.");
       return;
     }
-    // Only cache what passed, so a bad publish can't poison the offline copy.
     localStorage.setItem(CACHE_KEY, JSON.stringify(program));
     render(program, false);
     return;
   }
 
-  // Couldn't reach the file — fall back to the last good copy.
   const cached = readJSON(CACHE_KEY);
-  if(cached && validate(cached).length === 0){
-    render(cached, true);
-    return;
-  }
+  if(cached && validate(cached).length === 0){ render(cached, true); return; }
   showProblem("Can't load the program", [
     "The page couldn't fetch `program.json`, and there's no good saved copy on this device yet.",
     "If you're offline, open it once with a connection and it'll be kept for next time.",
@@ -470,49 +481,89 @@ async function load(){
 
 /* ---------- Render ---------- */
 function render(program, stale){
-  const block = program.block || "Training";
-  const week  = program.week != null ? `Week ${program.week}` : "";
-
-  let state   = readJSON(STATE_KEY) || {};
+  const blockName = program.block || "Training";
+  const weekLabel = program.week != null ? `Week ${program.week}` : "";
+  let state = readJSON(STATE_KEY) || {};
   const history = readJSON(HISTORY_KEY) || {};
 
-  // Pick today's session by weekday name if it matches, else the first.
   const today = new Date().toLocaleDateString("en-AU", { weekday:"long" });
   let active = program.sessions.findIndex(s => (s.day || "").toLowerCase() === today.toLowerCase());
   if(active < 0) active = 0;
 
-  const sessionKey = i => {
+  const keyFor = i => {
     const s = program.sessions[i];
-    return `${block}|${program.week}|${s.day || s.title || i}`;
+    return `${blockName}|${program.week}|${s.day || s.title || i}`;
   };
   const stateFor = i => {
-    const k = sessionKey(i);
-    if(!state[k]) state[k] = { readiness:{}, exercises:{}, session:{ strongest:"", weakest:"", notes:"" } };
-    return state[k];
+    const k = keyFor(i);
+    if(!state[k]) state[k] = { readiness:{}, exercises:{}, backCheck:{}, reflection:{}, answers:{} };
+    const st = state[k];
+    st.readiness = st.readiness || {}; st.exercises = st.exercises || {};
+    st.backCheck = st.backCheck || {}; st.reflection = st.reflection || {}; st.answers = st.answers || {};
+    return st;
   };
 
-  let statusTimer = null;
-  function save(statusNode){
+  let statusEl = null, statusTimer = null;
+  function save(){
     localStorage.setItem(STATE_KEY, JSON.stringify(state));
-    if(!statusNode) return;
+    if(!statusEl) return;
     clearTimeout(statusTimer);
-    statusNode.textContent = "Saved";
-    statusNode.classList.add("good");
+    statusEl.textContent = "Saved on this device";
+    statusEl.classList.add("good");
     statusTimer = setTimeout(() => {
-      statusNode.textContent = "Saves as you go";
-      statusNode.classList.remove("good");
+      statusEl.textContent = defaultStatus();
+      statusEl.classList.remove("good");
     }, 1200);
+  }
+  function defaultStatus(){
+    const st = stateFor(active);
+    return st.savedAt ? `Last saved to GitHub ${new Date(st.savedAt).toLocaleString("en-AU")}` : "Saves as you go";
+  }
+
+  // A 1–10 scale as two rows of five: ten buttons across a phone would be
+  // 30px each, which is below a usable touch target.
+  function scale(labelText, max, getVal, setVal){
+    const row = el("div", "scale-row");
+    row.appendChild(el("span", null, labelText));
+    const grid = el("div", "scale");
+    grid.setAttribute("role", "group");
+    grid.setAttribute("aria-label", labelText);
+    for(let n = 1; n <= max; n++){
+      const b = el("button", null, String(n));
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(getVal() === n));
+      b.addEventListener("click", () => {
+        setVal(getVal() === n ? null : n);
+        [...grid.children].forEach((c, i) => c.setAttribute("aria-pressed", String(getVal() === i + 1)));
+        save();
+      });
+      grid.appendChild(b);
+    }
+    row.appendChild(grid);
+    return row;
+  }
+
+  function textField(labelText, kind, getVal, setVal){
+    const l = el("label", "block");
+    l.append(labelText);
+    const f = document.createElement(kind);
+    if(kind === "input"){ f.type = "text"; f.className = "text"; f.autocomplete = "off"; }
+    f.value = getVal() || "";
+    f.addEventListener("input", () => { setVal(f.value); save(); });
+    l.appendChild(f);
+    return l;
   }
 
   function draw(){
     const session = program.sessions[active];
     const st = stateFor(active);
     const exState = name => {
-      if(!st.exercises[name]) st.exercises[name] = { sets:{}, notes:"" };
-      if(!st.exercises[name].sets) st.exercises[name].sets = {};
-      return st.exercises[name];
+      if(!st.exercises[name]) st.exercises[name] = { sets:{}, confidence:null, notes:"" };
+      const e = st.exercises[name];
+      e.sets = e.sets || {};
+      return e;
     };
-    const last = history[sessionKey(active)] || null;
+    const last = history[keyFor(active)] || null;
     const prevSet = (name, n) => {
       const e = last && last.exercises && last.exercises[name];
       const s = e && e.sets && e.sets[n];
@@ -521,22 +572,29 @@ function render(program, stale){
 
     app.innerHTML = "";
 
-    // Header
+    /* Header */
     const head = el("header");
-    head.appendChild(el("span", "eyebrow", [block, week].filter(Boolean).join(" • ")));
+    head.appendChild(el("span", "eyebrow",
+      [blockName, weekLabel, session.dayLabel].filter(Boolean).join(" • ")));
     head.appendChild(el("h1", null, session.title || session.day || "Session"));
-    const totalSets = session.exercises.reduce((a, e) => a + e.sets, 0);
+    const metaBits = [session.day, session.duration, session.intensity].filter(Boolean);
+    if(metaBits.length) head.appendChild(el("p", "meta", metaBits.join("  ·  ")));
+    if(session.goal) head.appendChild(el("p", "goal", session.goal));
+    if(session.success) head.appendChild(el("p", "goal", `Success today: ${session.success}`));
+
+    const totalSets = session.blocks
+      .filter(b => b.type === "log")
+      .reduce((a, b) => a + b.exercises.reduce((x, e) => x + e.sets, 0), 0);
     const prog = el("p", "progress");
-    prog.innerHTML = `<b id="done">0</b> of <b>${totalSets}</b> sets logged`;
+    prog.innerHTML = `<b id="done">0</b> of <b>${totalSets}</b> working sets logged`;
     head.appendChild(prog);
     if(stale) head.appendChild(el("span", "stale", "Offline — showing the last program saved on this device."));
     app.appendChild(head);
 
-    // Day picker
     if(program.sessions.length > 1){
       const days = el("div", "days");
       program.sessions.forEach((s, i) => {
-        const b = el("button", null, s.day || s.title || `Day ${i + 1}`);
+        const b = el("button", null, s.dayLabel || s.day || s.title || `Day ${i + 1}`);
         b.type = "button";
         b.setAttribute("aria-pressed", String(i === active));
         b.addEventListener("click", () => { active = i; draw(); window.scrollTo(0, 0); });
@@ -545,248 +603,272 @@ function render(program, stale){
       app.appendChild(days);
     }
 
-    if(session.notes){
-      const card = el("section", "card");
-      card.appendChild(el("h2", null, "Session brief"));
-      card.appendChild(el("p", "session-note", session.notes));
-      app.appendChild(card);
-    }
+    /* Readiness */
+    const rc = el("section", "card");
+    const rh = el("div", "h2row");
+    rh.append(el("h2", null, "Readiness"), el("span", "dur", "out of 10"));
+    rc.appendChild(rh);
+    const rstack = el("div", "stack");
+    READINESS.forEach(item => rstack.appendChild(
+      scale(item.label, 10, () => st.readiness[item.key], v => { st.readiness[item.key] = v; })
+    ));
+    rc.appendChild(rstack);
+    app.appendChild(rc);
 
-    // Readiness
-    const rdyCard = el("section", "card");
-    rdyCard.appendChild(el("h2", null, "Readiness"));
-    const rdy = el("div", "rdy");
-    READINESS.forEach(item => {
-      const row = el("div", "rdy-row");
-      row.appendChild(el("span", null, item.label));
-      const scale = el("div", "scale");
-      scale.setAttribute("role", "group");
-      scale.setAttribute("aria-label", item.label);
-      for(let n = 1; n <= 5; n++){
-        const b = el("button", null, String(n));
-        b.type = "button";
-        b.setAttribute("aria-pressed", String(st.readiness[item.key] === n));
-        b.addEventListener("click", () => {
-          st.readiness[item.key] = st.readiness[item.key] === n ? null : n;
-          [...scale.children].forEach((c, i) => c.setAttribute("aria-pressed", String(st.readiness[item.key] === i + 1)));
-          save(status);
-        });
-        scale.appendChild(b);
-      }
-      row.appendChild(scale);
-      rdy.appendChild(row);
-    });
-    rdyCard.appendChild(rdy);
-    app.appendChild(rdyCard);
-
-    // Exercises
-    const doneEl = () => document.getElementById("done");
+    /* Blocks */
     function refreshProgress(){
       let n = 0;
-      session.exercises.forEach(e => {
+      session.blocks.filter(b => b.type === "log").forEach(b => b.exercises.forEach(e => {
         for(let i = 1; i <= e.sets; i++){
           const s = exState(e.name).sets[i];
           if(s && s.weight && s.reps) n++;
         }
-      });
-      doneEl().textContent = n;
+      }));
+      const d = document.getElementById("done");
+      if(d) d.textContent = n;
     }
 
-    session.exercises.forEach(exercise => {
+    session.blocks.forEach(block => {
       const card = el("section", "card");
-      const h = el("div", "ex-head");
-      h.appendChild(el("h3", null, exercise.name));
-      if(exercise.target) h.appendChild(el("span", "target", exercise.target));
-      card.appendChild(h);
-      if(exercise.notes) card.appendChild(el("p", "cue", exercise.notes));
+      const hr = el("div", "h2row");
+      hr.appendChild(el("h2", null, block.title));
+      if(block.duration) hr.appendChild(el("span", "dur", block.duration));
+      card.appendChild(hr);
+      if(block.note) card.appendChild(el("p", "blocknote", block.note));
 
-      const ch = el("div", "col-head");
-      ch.append(el("span", null, "Set"), el("span", null, "Weight"), el("span", null, "Reps"));
-      card.appendChild(ch);
-
-      const sets = el("div", "sets");
-      for(let n = 1; n <= exercise.sets; n++){
-        const saved = exState(exercise.name).sets[n] || { weight:"", reps:"" };
-        const last  = prevSet(exercise.name, n);
-        const row   = el("div", "set");
-        row.appendChild(el("span", "set-n", String(n)));
-
-        const inputs = {};
-        [["weight","kg","decimal"],["reps","×","numeric"]].forEach(([field, unit, mode]) => {
-          const wrap = el("div", "field");
-          const input = document.createElement("input");
-          input.type = "text";
-          input.inputMode = mode;
-          input.value = saved[field] || "";
-          input.placeholder = last ? String(last[field] || "") : "";
-          input.setAttribute("aria-label", `${exercise.name} set ${n} ${field}`);
-          input.addEventListener("input", () => {
-            const s = exState(exercise.name).sets;
-            s[n] = s[n] || { weight:"", reps:"" };
-            s[n][field] = input.value.trim();
-            row.classList.toggle("done", Boolean(inputs.weight.value.trim() && inputs.reps.value.trim()));
-            refreshProgress();
-            save(status);
-          });
-          inputs[field] = input;
-          wrap.append(input, el("span", "unit", unit));
-          row.appendChild(wrap);
+      if(block.type === "reference"){
+        const list = el("div", "ref");
+        block.items.forEach(it => {
+          const row = el("div", "ref-item");
+          row.appendChild(el("span", "nm", it.name));
+          if(it.detail) row.appendChild(el("span", "dt", it.detail));
+          if(it.focus)  row.appendChild(el("span", "fc", it.focus));
+          list.appendChild(row);
         });
-        row.classList.toggle("done", Boolean(saved.weight && saved.reps));
-        sets.appendChild(row);
+        card.appendChild(list);
+        app.appendChild(card);
+        return;
       }
-      card.appendChild(sets);
 
-      const lastLine = [];
-      for(let n = 1; n <= exercise.sets; n++){
-        const p = prevSet(exercise.name, n);
-        if(p) lastLine.push(`${p.weight || "—"}×${p.reps || "—"}`);
-      }
-      if(lastLine.length) card.appendChild(el("p", "prev-note", "Last time:  " + lastLine.join("   ·   ")));
+      block.exercises.forEach(exercise => {
+        const ex = el("div", "ex");
+        const h = el("div", "ex-head");
+        const h3 = el("h3");
+        if(exercise.pair){
+          const p = el("span", "pair", exercise.pair);
+          h3.appendChild(p);
+        }
+        h3.appendChild(document.createTextNode(exercise.name));
+        h.appendChild(h3);
+        if(exercise.target) h.appendChild(el("span", "target", exercise.target));
+        ex.appendChild(h);
 
-      const nl = el("label", "block");
-      nl.style.marginTop = "14px";
-      nl.append("Notes");
-      const ta = document.createElement("textarea");
-      ta.style.minHeight = "56px";
-      ta.value = exState(exercise.name).notes || "";
-      ta.addEventListener("input", () => { exState(exercise.name).notes = ta.value; save(status); });
-      nl.appendChild(ta);
-      card.appendChild(nl);
+        const chips = [exercise.prescription, exercise.rpe, exercise.rest && `Rest ${exercise.rest}`].filter(Boolean);
+        if(chips.length){
+          const cw = el("div", "presc");
+          chips.forEach(c => cw.appendChild(el("span", "chip", c)));
+          ex.appendChild(cw);
+        }
+        if(exercise.focus) ex.appendChild(el("p", "cue", exercise.focus));
+        if(exercise.note)  ex.appendChild(el("p", "coachnote", exercise.note));
+
+        const ch = el("div", "col-head");
+        ch.append(el("span", null, "Set"), el("span", null, "Weight"), el("span", null, "Reps"), el("span", null, "RPE"));
+        ex.appendChild(ch);
+
+        const sets = el("div", "sets");
+        for(let n = 1; n <= exercise.sets; n++){
+          const saved = exState(exercise.name).sets[n] || { weight:"", reps:"", rpe:"" };
+          const lastSet = prevSet(exercise.name, n);
+          const row = el("div", "set");
+          row.appendChild(el("span", "set-n", String(n)));
+          const inputs = {};
+          [["weight","kg","decimal"],["reps","×","numeric"],["rpe","rpe","decimal"]].forEach(([f, unit, mode]) => {
+            const wrap = el("div", "field");
+            const input = document.createElement("input");
+            input.type = "text"; input.inputMode = mode;
+            input.value = saved[f] || "";
+            input.placeholder = lastSet ? String(lastSet[f] || "") : "";
+            input.setAttribute("aria-label", `${exercise.name} set ${n} ${f}`);
+            input.addEventListener("input", () => {
+              const s = exState(exercise.name).sets;
+              s[n] = s[n] || { weight:"", reps:"", rpe:"" };
+              s[n][f] = input.value.trim();
+              row.classList.toggle("done", Boolean(inputs.weight.value.trim() && inputs.reps.value.trim()));
+              refreshProgress();
+              save();
+            });
+            inputs[f] = input;
+            wrap.append(input, el("span", "unit", unit));
+            row.appendChild(wrap);
+          });
+          row.classList.toggle("done", Boolean(saved.weight && saved.reps));
+          sets.appendChild(row);
+        }
+        ex.appendChild(sets);
+
+        const prevBits = [];
+        for(let n = 1; n <= exercise.sets; n++){
+          const p = prevSet(exercise.name, n);
+          if(p) prevBits.push(`${p.weight || "—"}×${p.reps || "—"}${p.rpe ? ` @${p.rpe}` : ""}`);
+        }
+        if(prevBits.length) ex.appendChild(el("p", "prev-note", "Last time:  " + prevBits.join("   ·   ")));
+
+        const conf = el("div", "conf");
+        conf.appendChild(el("span", null, "Confidence (1–5)"));
+        conf.appendChild(scale("", 5,
+          () => exState(exercise.name).confidence,
+          v => { exState(exercise.name).confidence = v; }
+        ).lastChild);
+        ex.appendChild(conf);
+
+        ex.appendChild(textField("Notes", "textarea",
+          () => exState(exercise.name).notes,
+          v => { exState(exercise.name).notes = v; }));
+
+        card.appendChild(ex);
+      });
 
       app.appendChild(card);
     });
 
-    // Session notes
-    const nc = el("section", "card");
-    nc.appendChild(el("h2", null, "Session notes"));
-    const stack = el("div", "notes-stack");
-    [["Strongest exercise","strongest","input"],["Weakest exercise","weakest","input"],["General notes","notes","textarea"]]
-      .forEach(([label, key, kind]) => {
-        const l = el("label", "block");
-        l.append(label);
-        const f = document.createElement(kind);
-        if(kind === "input"){ f.type = "text"; f.className = "text"; f.autocomplete = "off"; }
-        f.value = st.session[key] || "";
-        f.addEventListener("input", () => { st.session[key] = f.value; save(status); });
-        l.appendChild(f);
-        stack.appendChild(l);
-      });
-    nc.appendChild(stack);
-    app.appendChild(nc);
+    /* Back check */
+    const bc = el("section", "card later");
+    bc.appendChild(el("h2", null, "Back check"));
+    bc.appendChild(el("p", "why",
+      "Every session so far tracks this. The last one is filled in after you've left — the page stays editable, and saving again updates the same file."));
+    const bstack = el("div", "stack");
+    BACK_CHECK.forEach(pt => bstack.appendChild(
+      scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, 10,
+        () => st.backCheck[pt.key], v => { st.backCheck[pt.key] = v; })
+    ));
+    bstack.appendChild(textField("Back notes", "textarea",
+      () => st.backCheck.note, v => { st.backCheck.note = v; }));
+    bc.appendChild(bstack);
+    app.appendChild(bc);
 
-    // Actions
+    /* Reflection */
+    const rf = el("section", "card");
+    rf.appendChild(el("h2", null, "Session report"));
+    const rfs = el("div", "stack");
+    REFLECTION.forEach(q => rfs.appendChild(
+      textField(q.label, q.kind, () => st.reflection[q.key], v => { st.reflection[q.key] = v; })
+    ));
+    (session.questions || []).forEach((q, i) => rfs.appendChild(
+      textField(q, "textarea", () => st.answers[`q${i}`], v => { st.answers[`q${i}`] = v; })
+    ));
+    rf.appendChild(rfs);
+    app.appendChild(rf);
+
+    /* Actions */
     const actions = el("div", "actions");
-    const finish = el("button", "btn btn-primary", "Finish session");
-    finish.type = "button";
-    const backup = el("button", "btn btn-quiet", "Download a copy");
-    backup.type = "button";
-    const status = el("p", "status", "Saves as you go");
-    actions.append(finish, backup, status);
+    const configured = Boolean(sync.config && sync.config.token);
+    const saveBtn = el("button", "btn btn-primary",
+      st.savedAt ? "Update saved session" : (configured ? "Save session to GitHub" : "Download session"));
+    saveBtn.type = "button";
+    const dl = el("button", "btn btn-quiet", "Download a copy"); dl.type = "button";
+    statusEl = el("p", "status", defaultStatus());
+    actions.append(saveBtn, dl, statusEl);
     app.appendChild(actions);
 
     function build(){
+      const loggedBlocks = session.blocks.filter(b => b.type === "log");
       return {
-        block, week: program.week,
+        block: blockName,
+        week: program.week,
         day: session.day || null,
+        dayLabel: session.dayLabel || null,
         title: session.title || null,
         completedAt: new Date().toISOString(),
         readiness: st.readiness,
-        exercises: session.exercises.reduce((acc, e) => {
-          acc[e.name] = {
-            target: e.target || null,
-            sets: Object.fromEntries(
-              Array.from({ length:e.sets }, (_, i) =>
-                [i + 1, exState(e.name).sets[i + 1] || { weight:"", reps:"" }])
-            ),
-            notes: exState(e.name).notes || ""
-          };
+        exercises: loggedBlocks.reduce((acc, b) => {
+          b.exercises.forEach(e => {
+            const s = exState(e.name);
+            acc[e.name] = {
+              block: b.title,
+              pair: e.pair || null,
+              target: e.target || null,
+              prescribed: e.prescription || null,
+              sets: Object.fromEntries(
+                Array.from({ length:e.sets }, (_, i) =>
+                  [i + 1, s.sets[i + 1] || { weight:"", reps:"", rpe:"" }])
+              ),
+              confidence: s.confidence ?? null,
+              notes: s.notes || ""
+            };
+          });
           return acc;
         }, {}),
-        session: st.session
+        backCheck: st.backCheck,
+        reflection: st.reflection,
+        answers: (session.questions || []).reduce((acc, q, i) => {
+          acc[q] = st.answers[`q${i}`] || "";
+          return acc;
+        }, {})
       };
     }
+
+    // Local date, not toISOString(). Perth is UTC+8, so a 6am session would
+    // otherwise be filed under the previous calendar day.
+    function localDate(){
+      const d = new Date(), p = n => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+    }
+    function filename(){
+      const slug = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      return `${localDate()}-w${program.week}-${slug}.json`;
+    }
     function download(data){
-      const stamp = new Date().toISOString().slice(0, 10);
-      const slug  = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      const blob  = new Blob([JSON.stringify(data, null, 2)], { type:"application/json" });
-      const url   = URL.createObjectURL(blob);
-      const a     = document.createElement("a");
-      a.href = url;
-      a.download = `${stamp}-w${program.week}-${slug}.json`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type:"application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename();
+      document.body.appendChild(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 
-    backup.addEventListener("click", () => download(build()));
+    dl.addEventListener("click", () => download(build()));
 
-    finish.addEventListener("click", async () => {
-      const configured = Boolean(sync.config && sync.config.token);
-      const what = configured
-        ? "It saves to GitHub, becomes the “last time” you'll see next week, and clears the form."
-        : "It downloads a file, becomes the “last time” you'll see next week, and clears the form.";
-      if(!confirm(`Finish this session?\n\n${what}`)) return;
-
-      const data  = build();
-      const stamp = new Date().toISOString().slice(0, 10);
-      const slug  = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-
-      // Record locally first. The upload can fail; the session must not be lost.
-      history[sessionKey(active)] = data;
+    saveBtn.addEventListener("click", async () => {
+      const data = build();
+      // History drives "last time" and must not depend on the upload working.
+      history[keyFor(active)] = data;
       localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
-      delete state[sessionKey(active)];
-      localStorage.setItem(STATE_KEY, JSON.stringify(state));
 
-      if(configured){
-        sync.queue = sync.queue.concat([{
-          path: `sessions/${stamp}-w${program.week}-${slug}.json`,
-          message: `${stamp} ${session.day || session.title || "session"} — week ${program.week}`,
-          json: JSON.stringify(data, null, 2),
-          savedAt: new Date().toISOString()
-        }]);
-        finish.disabled = true;
-        status.textContent = "Saving to GitHub…";
-        const res = await flushQueue();
-        finish.disabled = false;
-        pendingNote(res.pushed ? `Saved to GitHub.` : null, res);
+      if(!configured){ download(data); return; }
+
+      // Path is fixed per session, so a later edit overwrites rather than
+      // creating a second file — that's what makes the delayed back check work.
+      const path = st.savedPath || `sessions/${filename()}`;
+      st.savedPath = path;
+      enqueue({
+        path,
+        message: `${session.day || session.title} — ${blockName} week ${program.week}`,
+        json: JSON.stringify(data, null, 2),
+        savedAt: new Date().toISOString()
+      });
+      saveBtn.disabled = true;
+      statusEl.textContent = "Saving to GitHub…";
+      const res = await flushQueue();
+      saveBtn.disabled = false;
+      if(res.failed === 0){
+        st.savedAt = new Date().toISOString();
+        save();
+        statusEl.textContent = `Saved to GitHub ${new Date(st.savedAt).toLocaleTimeString("en-AU")}`;
+        statusEl.classList.add("good");
+        saveBtn.textContent = "Update saved session";
       }else{
-        download(data);
+        save();
+        const advice = res.kind === "auth"
+          ? "Fix the token under “Set up saving to GitHub” below — it uploads as soon as that works."
+          : "It uploads automatically next time you open this page with a connection.";
+        alert(`Saved on this device, but not uploaded.\n\n${res.error || ""}\n\n${advice}`);
+        statusEl.textContent = "Saved on this device — upload pending";
       }
-
-      draw();
-      window.scrollTo(0, 0);
     });
 
-    // Anything still queued is shown with a retry, so a session logged without
-    // signal isn't silently stranded.
-    function pendingNote(successMsg, res){
-      const queued = sync.queue.length;
-      if(!queued && successMsg){ alert(successMsg); return; }
-      if(!queued) return;
-      const detail = res && res.error ? `\n\n${res.error}` : "";
-      // Auth problems need action; a dropped connection needs nothing at all.
-      const advice = res && res.kind === "auth"
-        ? "Your session is saved on this device. Fix the token under “Set up saving to GitHub” below — the backlog uploads as soon as it works."
-        : "Your session is saved on this device. It uploads automatically next time you open this page with a connection.";
-      alert(`${queued} session${queued > 1 ? "s" : ""} waiting to upload.${detail}\n\n${advice}`);
-    }
-
-    if(sync.config && sync.config.token && sync.queue.length){
-      const retry = el("button", "btn btn-quiet", `Retry upload (${sync.queue.length} pending)`);
-      retry.type = "button";
-      retry.addEventListener("click", async () => {
-        retry.disabled = true;
-        retry.textContent = "Uploading…";
-        const res = await flushQueue();
-        retry.disabled = false;
-        if(res.failed === 0){ alert(`Uploaded. Nothing pending.`); draw(); }
-        else { retry.textContent = `Retry upload (${res.failed} pending)`; alert(res.error || "Still couldn't upload."); }
-      });
-      actions.insertBefore(retry, status);
-    }
-
+    // Inside draw(), because draw() clears the page — appended outside, the
+    // settings card disappears the first time anything re-renders.
     app.appendChild(syncCard());
 
     refreshProgress();
@@ -795,8 +877,6 @@ function render(program, stale){
   redraw = draw;
   draw();
 
-  // Anything stranded by a failed upload goes up quietly the next time this
-  // page is opened with a connection — no button to find, no action needed.
   if(sync.config && sync.config.token && sync.queue.length){
     flushQueue().then(res => { if(res.pushed) draw(); });
   }
@@ -804,7 +884,6 @@ function render(program, stale){
 
 load();
 
-// isSecureContext covers https and localhost, so this is testable locally too.
 if("serviceWorker" in navigator && window.isSecureContext){
   navigator.serviceWorker.register("sw.js").catch(() => {});
 }
