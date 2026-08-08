@@ -182,10 +182,18 @@ something broken. Fix and reload.
 Everything is saved to the browser's local storage as you go, continuously, with no
 connection required.
 
-**Save session** writes the session to `sessions/YYYY-MM-DD-w<week>-<day>.json` in your
-private repo. **The form is not cleared.** Saving again overwrites the same file, which
-is what makes the "2–3 hours later" back check possible — log it, train, save, then add
-the delayed reading from the couch and save again.
+**Trained on** at the top of the page defaults to today but is editable. It's the day
+the session actually happened, and it drives the filename — so a session logged the
+next morning is still filed under the right day.
+
+**Save session** writes to `sessions/<trained-on>-w<week>-<day>.json` in your private
+repo. **The form is not cleared.** Saving again overwrites the same file, which is what
+makes the "2–3 hours later" back check possible — log it, train, save, then add the
+delayed reading from the couch and save again.
+
+If you change the date *after* saving, the page warns you, and the next save moves the
+file: it writes the new name first, then deletes the old one, so a session is never
+stored twice. If the delete fails you're told which file to remove by hand.
 
 Next week is a separate file automatically, because saved state is keyed by block,
 week and day.
@@ -198,6 +206,7 @@ week and day.
   "week": 1,
   "day": "Thursday",
   "title": "Upper Strength + Athletic Control",
+  "date": "2026-08-07",
   "completedAt": "2026-08-07T06:41:00.000Z",
   "updatedAt": "2026-08-07T09:12:44.000Z",
   "readiness": { "sleep": 7, "energy": 6, "back": 7 },
@@ -230,9 +239,12 @@ week and day.
 }
 ```
 
-- **`completedAt` is stamped once**, when the session is first saved. **`updatedAt`**
-  moves on every save. Adding the delayed back check hours later doesn't rewrite when
-  you trained.
+- **`date`** is the day you trained, set by the *Trained on* field. It's the one to
+  sort and chart by. **`completedAt`** is stamped once, when first saved.
+  **`updatedAt`** moves on every save. Adding the delayed back check hours later
+  doesn't rewrite when you trained.
+- **`day` is the program's label** ("Thursday"), not necessarily the real weekday —
+  sessions get trained a day late. Trust `date`.
 - **RPE is one value per exercise**, not per set — it matches the report table, and
   per-set RPE went unfilled in practice.
 - **Conditioning records `prescribed` next to what happened**, so "6 rounds of 20/40

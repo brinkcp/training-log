@@ -104,6 +104,14 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(-
   font-variant-numeric:tabular-nums;
 }
 .prescribed{font-size:.75rem; color:var(--muted); margin:10px 0 0}
+.date-row{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:8px}
+.date-row label{display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--muted)}
+.date-row input{
+  background:var(--field); color:var(--text); border:1px solid var(--line);
+  border-radius:8px; padding:8px 10px; min-height:40px; font-size:16px;
+  font-family:var(--mono); color-scheme:dark;
+}
+.renote{font-size:.75rem; color:var(--accent)}
 
 label.block{display:flex; flex-direction:column; gap:6px; font-size:.9rem}
 textarea,input.text{
@@ -206,6 +214,13 @@ const readJSON = key => {
   try { return JSON.parse(localStorage.getItem(key)) || null; } catch { return null; }
 };
 
+// Local date parts, not toISOString(). Perth is UTC+8, so a 6am session would
+// otherwise be filed under the previous calendar day.
+function localDate(d = new Date()){
+  const p = n => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
 /* ---------- GitHub sync ---------- */
 const sync = {
   get config(){ return readJSON(SYNC_KEY); },
@@ -275,6 +290,24 @@ async function pushSession(cfg, entry){
     }
     return { ok:true };
   }catch(err){ return netFail(err); }
+}
+
+// Only ever called after the replacement file is confirmed written, so a failed
+// delete leaves a stray copy rather than losing the session.
+async function deleteFile(cfg, path){
+  try{
+    const head = await ghRequest(cfg, path, { method:"GET" });
+    if(head.status === 404) return { ok:true };          // already gone
+    if(!head.ok) return { ok:false, error:ghError(head.status).message };
+    const sha = (await head.json()).sha;
+    const res = await ghRequest(cfg, path, {
+      method: "DELETE",
+      body: JSON.stringify({ message:`Renaming session file`, sha })
+    });
+    return res.ok ? { ok:true } : { ok:false, error:ghError(res.status).message };
+  }catch(err){
+    return { ok:false, error:`No connection to GitHub (${err.message}).` };
+  }
 }
 
 // Latest write for a given path wins — re-saving a session replaces the queued
@@ -515,6 +548,7 @@ function render(program, stale){
     const st = state[k];
     st.readiness = st.readiness || {}; st.exercises = st.exercises || {};
     st.backCheck = st.backCheck || {}; st.reflection = st.reflection || {}; st.answers = st.answers || {};
+    st.date = st.date || localDate();   // the day actually trained, editable
     return st;
   };
 
@@ -597,6 +631,15 @@ function render(program, stale){
       return (s && (s.weight || s.reps)) ? s : null;
     };
 
+    // Defined before the header, which reads pathFor() to warn about a rename.
+    // Driven by the editable date, so a session logged a day late is filed under
+    // the day it was actually trained.
+    function filename(){
+      const slug = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      return `${st.date}-w${program.week}-${slug}.json`;
+    }
+    const pathFor = () => `sessions/${filename()}`;
+
     app.innerHTML = "";
 
     /* Header */
@@ -616,6 +659,26 @@ function render(program, stale){
     prog.innerHTML = `<b id="done">0</b> of <b>${totalSets}</b> working sets logged`;
     head.appendChild(prog);
     if(stale) head.appendChild(el("span", "stale", "Offline — showing the last program saved on this device."));
+
+    // Defaults to today, but editable — a session logged the next morning should
+    // still be filed under the day it happened.
+    const dateRow = el("div", "date-row");
+    const dateLabel = el("label", null, "Trained on");
+    const dateIn = document.createElement("input");
+    dateIn.type = "date";
+    dateIn.value = st.date;
+    dateIn.setAttribute("aria-label", "Date trained");
+    dateIn.addEventListener("change", () => {
+      st.date = dateIn.value || localDate();
+      save();
+      draw();
+    });
+    dateLabel.appendChild(dateIn);
+    dateRow.appendChild(dateLabel);
+    if(st.savedPath && st.savedPath !== pathFor())
+      dateRow.appendChild(el("span", "renote", "Saving will rename the stored file."));
+    head.appendChild(dateRow);
+
     app.appendChild(head);
 
     if(program.sessions.length > 1){
@@ -862,6 +925,7 @@ function render(program, stale){
         day: session.day || null,
         dayLabel: session.dayLabel || null,
         title: session.title || null,
+        date: st.date,
         completedAt: st.completedAt,
         updatedAt: new Date().toISOString(),
         readiness: st.readiness,
@@ -910,16 +974,6 @@ function render(program, stale){
       };
     }
 
-    // Local date, not toISOString(). Perth is UTC+8, so a 6am session would
-    // otherwise be filed under the previous calendar day.
-    function localDate(){
-      const d = new Date(), p = n => String(n).padStart(2, "0");
-      return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
-    }
-    function filename(){
-      const slug = (session.day || session.title || "session").toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      return `${localDate()}-w${program.week}-${slug}.json`;
-    }
     function download(data){
       const blob = new Blob([JSON.stringify(data, null, 2)], { type:"application/json" });
       const url = URL.createObjectURL(blob);
@@ -939,9 +993,10 @@ function render(program, stale){
 
       if(!configured){ download(data); return; }
 
-      // Path is fixed per session, so a later edit overwrites rather than
-      // creating a second file — that's what makes the delayed back check work.
-      const path = st.savedPath || `sessions/${filename()}`;
+      // Path follows the trained-on date. Changing that date after saving moves
+      // the file rather than leaving two copies of the same session.
+      const path = pathFor();
+      const oldPath = st.savedPath && st.savedPath !== path ? st.savedPath : null;
       st.savedPath = path;
       enqueue({
         path,
@@ -959,6 +1014,11 @@ function render(program, stale){
         statusEl.textContent = `Saved to GitHub ${new Date(st.savedAt).toLocaleTimeString("en-AU")}`;
         statusEl.classList.add("good");
         saveBtn.textContent = "Update saved session";
+        if(oldPath){
+          const gone = await deleteFile(sync.config, oldPath);
+          if(gone.ok) draw();
+          else alert(`Saved as ${path}, but the old file couldn't be removed.\n\n${gone.error}\n\nDelete ${oldPath} in GitHub so this session isn't stored twice.`);
+        }
       }else{
         save();
         const advice = res.kind === "auth"

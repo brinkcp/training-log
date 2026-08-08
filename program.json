@@ -4,6 +4,129 @@
   "week": 1,
   "sessions": [
     {
+      "day": "Wednesday",
+      "dayLabel": "Day 1",
+      "title": "Build the Foundation",
+      "duration": "~60 minutes",
+      "blocks": [
+        {
+          "type": "reference",
+          "title": "Warm-up",
+          "duration": "10 minutes",
+          "items": [
+            { "name": "Bike", "detail": "5 minutes easy" },
+            { "name": "Cat-Cows", "detail": "× 10" },
+            { "name": "Book Openers", "detail": "× 8 each side" },
+            { "name": "World's Greatest Stretch", "detail": "× 5 each side" },
+            { "name": "Glute Bridges", "detail": "× 10" },
+            { "name": "Dead Bugs", "detail": "× 8 each side" },
+            { "name": "Bodyweight Squats", "detail": "× 10" },
+            { "name": "Band Pull-Aparts", "detail": "× 15", "focus": "Activation." },
+            { "name": "Scapular Pull-ups", "detail": "× 8", "focus": "Activation." },
+            { "name": "Passive Hangs", "detail": "2 × 20 sec", "focus": "Activation." }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Skill — Trap Bar Technique",
+          "duration": "8–10 minutes",
+          "note": "These sets don't count toward your working sets — they're technique practice.",
+          "items": [
+            { "name": "Trap Bar build-up", "detail": "20 kg × 5, then 30 kg × 5", "focus": "Brace before every rep. Push the floor away. Finish with your glutes, not your lower back. Control the lowering phase." }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Strength — A",
+          "exercises": [
+            {
+              "pair": "A1",
+              "name": "Trap Bar Deadlift",
+              "target": "4 × 5",
+              "sets": 4,
+              "prescription": "65 kg",
+              "rpe": "RPE 7",
+              "focus": "Every rep should look identical. If rep 5 doesn't look like rep 1, the weight is too heavy."
+            },
+            {
+              "pair": "A2",
+              "name": "Half-Kneeling Cable Chop",
+              "target": "3 × 10 each side",
+              "sets": 3,
+              "prescription": "Moderate weight",
+              "focus": "Move slowly and resist rotation."
+            }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Strength — B",
+          "exercises": [
+            {
+              "pair": "B1",
+              "name": "Incline Dumbbell Bench Press",
+              "target": "3 × 8",
+              "sets": 3,
+              "prescription": "17.5 kg each hand",
+              "rpe": "RPE 7"
+            },
+            {
+              "pair": "B2",
+              "name": "Chest Supported Dumbbell Row",
+              "target": "3 × 10",
+              "sets": 3,
+              "prescription": "15–17.5 kg each hand",
+              "focus": "Pause for one second at the top of every rep."
+            }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Strength — C",
+          "exercises": [
+            {
+              "pair": "C1",
+              "name": "Walking Lunges",
+              "target": "3 × 10 each leg",
+              "sets": 3,
+              "prescription": "10 kg dumbbells",
+              "focus": "If balance is the limiting factor, reduce the weight rather than shortening the stride."
+            },
+            {
+              "pair": "C2",
+              "name": "Farmer Carry",
+              "target": "4 × 30 m",
+              "sets": 4,
+              "prescription": "48 kg total (24 kg each hand)",
+              "focus": "Walk tall. Shoulders down. No rushing."
+            }
+          ]
+        },
+        {
+          "type": "conditioning",
+          "title": "Conditioning",
+          "items": [
+            { "name": "Assault Bike", "detail": "8 rounds — 20 sec hard / 40 sec easy", "focus": "Aim for consistent effort across all rounds." }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Cool Down",
+          "duration": "5–8 minutes",
+          "items": [
+            { "name": "Hip flexor stretch" },
+            { "name": "Hamstring stretch" },
+            { "name": "Thoracic rotation" },
+            { "name": "Child's pose with side reach" },
+            { "name": "Cat-Cows", "detail": "× 10" }
+          ]
+        }
+      ],
+      "questions": [
+        "How did you feel 2–3 hours later — energy and soreness, aside from the back?"
+      ]
+    },
+    {
       "day": "Thursday",
       "dayLabel": "Day 2",
       "title": "Upper Strength + Athletic Control",
