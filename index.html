@@ -71,11 +71,11 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(-
 .cue{font-size:.82rem; color:var(--muted); margin:8px 0 0; line-height:1.45}
 .coachnote{font-size:.82rem; color:var(--accent); margin:6px 0 0; line-height:1.45}
 
-.col-head{display:grid; grid-template-columns:22px 1fr 1fr 1fr; gap:6px; margin:12px 0 6px}
+.col-head{display:grid; grid-template-columns:22px 1fr 1fr; gap:8px; margin:12px 0 6px}
 .col-head span{font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; color:var(--muted)}
 .col-head span:first-child{text-align:center}
 .sets{display:flex; flex-direction:column; gap:7px}
-.set{display:grid; grid-template-columns:22px 1fr 1fr 1fr; gap:6px; align-items:center}
+.set{display:grid; grid-template-columns:22px 1fr 1fr; gap:8px; align-items:center}
 .set-n{font-family:var(--mono); font-size:.8rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .set.done .set-n{color:var(--logged); font-weight:700}
 .field{position:relative; display:flex; align-items:center}
@@ -89,6 +89,21 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(-
 .prev-note{font-size:.75rem; color:var(--muted); margin:9px 0 0; font-variant-numeric:tabular-nums}
 .conf{margin-top:12px}
 .conf > span{font-size:.8rem; color:var(--muted); display:block; margin-bottom:6px}
+.rpe-row{margin-top:12px; display:flex; align-items:center; gap:10px}
+.rpe-row > span{font-size:.8rem; color:var(--muted)}
+.rpe-row input{
+  width:88px; min-height:44px; padding:8px 10px; background:var(--field); color:var(--text);
+  border:1px solid var(--line); border-radius:8px; font-size:16px; font-family:var(--mono);
+  font-variant-numeric:tabular-nums; text-align:center;
+}
+.cond-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px}
+.cond-grid label{display:flex; flex-direction:column; gap:5px; font-size:.78rem; color:var(--muted)}
+.cond-grid input{
+  min-height:44px; padding:8px 10px; background:var(--field); color:var(--text);
+  border:1px solid var(--line); border-radius:8px; font-size:16px; font-family:var(--mono);
+  font-variant-numeric:tabular-nums;
+}
+.prescribed{font-size:.75rem; color:var(--muted); margin:10px 0 0}
 
 label.block{display:flex; flex-direction:column; gap:6px; font-size:.9rem}
 textarea,input.text{
@@ -390,14 +405,14 @@ function validate(p){
     s.blocks.forEach((b, j) => {
       const bat = `${at}.blocks[${j}]`;
       if(!b || typeof b !== "object"){ errs.push(`${bat} must be an object.`); return; }
-      if(b.type !== "log" && b.type !== "reference"){
-        errs.push(`${bat}.type must be "log" or "reference" (got ${JSON.stringify(b.type)}).`);
+      if(!["log", "reference", "conditioning"].includes(b.type)){
+        errs.push(`${bat}.type must be "log", "reference" or "conditioning" (got ${JSON.stringify(b.type)}).`);
         return;
       }
       if(!b.title) errs.push(`${bat} needs a \`title\`.`);
-      if(b.type === "reference"){
+      if(b.type === "reference" || b.type === "conditioning"){
         if(!Array.isArray(b.items) || b.items.length === 0)
-          errs.push(`${bat}.items must be an array with at least one item (reference blocks).`);
+          errs.push(`${bat}.items must be an array with at least one item (${b.type} blocks).`);
         else b.items.forEach((it, k) => {
           if(!it || typeof it.name !== "string" || !it.name.trim())
             errs.push(`${bat}.items[${k}].name must be a non-empty string.`);
@@ -558,10 +573,22 @@ function render(program, stale){
     const session = program.sessions[active];
     const st = stateFor(active);
     const exState = name => {
-      if(!st.exercises[name]) st.exercises[name] = { sets:{}, confidence:null, notes:"" };
+      if(!st.exercises[name]) st.exercises[name] = { sets:{}, rpe:"", confidence:null, notes:"" };
       const e = st.exercises[name];
       e.sets = e.sets || {};
       return e;
+    };
+    // RPE used to live on each set. Lift the first set's value up so sessions
+    // logged under the old shape keep it instead of silently losing it.
+    const exRpe = name => {
+      const e = exState(name);
+      if(!e.rpe && e.sets[1] && e.sets[1].rpe) e.rpe = e.sets[1].rpe;
+      return e.rpe || "";
+    };
+    const condState = name => {
+      st.conditioning = st.conditioning || {};
+      if(!st.conditioning[name]) st.conditioning[name] = { rounds:"", work:"", rest:"", effort:"", notes:"" };
+      return st.conditioning[name];
     };
     const last = history[keyFor(active)] || null;
     const prevSet = (name, n) => {
@@ -650,6 +677,41 @@ function render(program, stale){
         return;
       }
 
+      // Conditioning is prescribed precisely and rarely executed exactly as
+      // written, so what actually happened is the interesting part.
+      if(block.type === "conditioning"){
+        block.items.forEach(item => {
+          const c = el("div", "ex");
+          const h = el("div", "ex-head");
+          h.appendChild(el("h3", null, item.name));
+          if(item.detail) h.appendChild(el("span", "target", item.detail));
+          c.appendChild(h);
+          if(item.focus) c.appendChild(el("p", "cue", item.focus));
+
+          const st_ = condState(item.name);
+          const grid = el("div", "cond-grid");
+          [["rounds","Rounds done","numeric"],["work","Work (sec)","numeric"],
+           ["rest","Rest (sec)","numeric"],["effort","Effort /10","decimal"]]
+            .forEach(([k, label, mode]) => {
+              const l = el("label", null);
+              l.append(label);
+              const i = document.createElement("input");
+              i.type = "text"; i.inputMode = mode;
+              i.value = st_[k] || "";
+              i.setAttribute("aria-label", `${item.name} ${label}`);
+              i.addEventListener("input", () => { st_[k] = i.value.trim(); save(); });
+              l.appendChild(i);
+              grid.appendChild(l);
+            });
+          c.appendChild(grid);
+          if(item.detail) c.appendChild(el("p", "prescribed", `Prescribed: ${item.detail}`));
+          c.appendChild(textField("Notes", "textarea", () => st_.notes, v => { st_.notes = v; }));
+          card.appendChild(c);
+        });
+        app.appendChild(card);
+        return;
+      }
+
       block.exercises.forEach(exercise => {
         const ex = el("div", "ex");
         const h = el("div", "ex-head");
@@ -673,17 +735,17 @@ function render(program, stale){
         if(exercise.note)  ex.appendChild(el("p", "coachnote", exercise.note));
 
         const ch = el("div", "col-head");
-        ch.append(el("span", null, "Set"), el("span", null, "Weight"), el("span", null, "Reps"), el("span", null, "RPE"));
+        ch.append(el("span", null, "Set"), el("span", null, "Weight"), el("span", null, "Reps"));
         ex.appendChild(ch);
 
         const sets = el("div", "sets");
         for(let n = 1; n <= exercise.sets; n++){
-          const saved = exState(exercise.name).sets[n] || { weight:"", reps:"", rpe:"" };
+          const saved = exState(exercise.name).sets[n] || { weight:"", reps:"" };
           const lastSet = prevSet(exercise.name, n);
           const row = el("div", "set");
           row.appendChild(el("span", "set-n", String(n)));
           const inputs = {};
-          [["weight","kg","decimal"],["reps","×","numeric"],["rpe","rpe","decimal"]].forEach(([f, unit, mode]) => {
+          [["weight","kg","decimal"],["reps","×","numeric"]].forEach(([f, unit, mode]) => {
             const wrap = el("div", "field");
             const input = document.createElement("input");
             input.type = "text"; input.inputMode = mode;
@@ -692,7 +754,7 @@ function render(program, stale){
             input.setAttribute("aria-label", `${exercise.name} set ${n} ${f}`);
             input.addEventListener("input", () => {
               const s = exState(exercise.name).sets;
-              s[n] = s[n] || { weight:"", reps:"", rpe:"" };
+              s[n] = s[n] || { weight:"", reps:"" };
               s[n][f] = input.value.trim();
               row.classList.toggle("done", Boolean(inputs.weight.value.trim() && inputs.reps.value.trim()));
               refreshProgress();
@@ -710,9 +772,26 @@ function render(program, stale){
         const prevBits = [];
         for(let n = 1; n <= exercise.sets; n++){
           const p = prevSet(exercise.name, n);
-          if(p) prevBits.push(`${p.weight || "—"}×${p.reps || "—"}${p.rpe ? ` @${p.rpe}` : ""}`);
+          if(p) prevBits.push(`${p.weight || "—"}×${p.reps || "—"}`);
         }
-        if(prevBits.length) ex.appendChild(el("p", "prev-note", "Last time:  " + prevBits.join("   ·   ")));
+        if(prevBits.length){
+          const lastRpe = last && last.exercises && last.exercises[exercise.name] && last.exercises[exercise.name].rpe;
+          ex.appendChild(el("p", "prev-note",
+            "Last time:  " + prevBits.join("   ·   ") + (lastRpe ? `   @ RPE ${lastRpe}` : "")));
+        }
+
+        // One RPE for the exercise, not one per set — the coach's report table is
+        // per-exercise, and per-set columns went unfilled after the first row.
+        const rpeRow = el("div", "rpe-row");
+        rpeRow.appendChild(el("span", null, "RPE for this exercise"));
+        const rpeIn = document.createElement("input");
+        rpeIn.type = "text"; rpeIn.inputMode = "decimal";
+        rpeIn.value = exRpe(exercise.name);
+        rpeIn.placeholder = "7";
+        rpeIn.setAttribute("aria-label", `${exercise.name} RPE`);
+        rpeIn.addEventListener("input", () => { exState(exercise.name).rpe = rpeIn.value.trim(); save(); });
+        rpeRow.appendChild(rpeIn);
+        ex.appendChild(rpeRow);
 
         const conf = el("div", "conf");
         conf.appendChild(el("span", null, "Confidence (1–5)"));
@@ -773,13 +852,18 @@ function render(program, stale){
 
     function build(){
       const loggedBlocks = session.blocks.filter(b => b.type === "log");
+      const condBlocks   = session.blocks.filter(b => b.type === "conditioning");
+      // Stamped once. Re-saving to add the delayed back check must not move the
+      // time the session was actually trained.
+      st.completedAt = st.completedAt || new Date().toISOString();
       return {
         block: blockName,
         week: program.week,
         day: session.day || null,
         dayLabel: session.dayLabel || null,
         title: session.title || null,
-        completedAt: new Date().toISOString(),
+        completedAt: st.completedAt,
+        updatedAt: new Date().toISOString(),
         readiness: st.readiness,
         exercises: loggedBlocks.reduce((acc, b) => {
           b.exercises.forEach(e => {
@@ -790,11 +874,29 @@ function render(program, stale){
               target: e.target || null,
               prescribed: e.prescription || null,
               sets: Object.fromEntries(
-                Array.from({ length:e.sets }, (_, i) =>
-                  [i + 1, s.sets[i + 1] || { weight:"", reps:"", rpe:"" }])
+                Array.from({ length:e.sets }, (_, i) => {
+                  const set = s.sets[i + 1] || {};
+                  return [i + 1, { weight:set.weight || "", reps:set.reps || "" }];
+                })
               ),
+              rpe: exRpe(e.name),
               confidence: s.confidence ?? null,
               notes: s.notes || ""
+            };
+          });
+          return acc;
+        }, {}),
+        conditioning: condBlocks.reduce((acc, b) => {
+          b.items.forEach(item => {
+            const c = condState(item.name);
+            acc[item.name] = {
+              block: b.title,
+              prescribed: item.detail || null,
+              rounds: c.rounds || "",
+              work: c.work || "",
+              rest: c.rest || "",
+              effort: c.effort || "",
+              notes: c.notes || ""
             };
           });
           return acc;

@@ -20,17 +20,24 @@ fetch and the offline cache.
 
 **This section is the contract. If you're an AI writing this file, follow it exactly.**
 
-A session is a list of **blocks**. Each block is one of two types:
+A session is a list of **blocks**. Each block is one of three types:
 
 - **`reference`** — displayed as instructions. Warm-ups, skill work, mobility, core,
-  conditioning, cool-downs. Nothing to fill in.
-- **`log`** — renders a table with a row per set, capturing **weight, reps and RPE**,
-  plus a confidence score for the exercise. Use this only for the lifts you want
-  reported back.
+  cool-downs. Nothing to fill in.
+- **`log`** — a table with a row per set capturing **weight and reps**, plus one
+  **RPE** and one **confidence (1–5)** for the exercise as a whole. Use for the lifts
+  you want reported back.
+- **`conditioning`** — intervals and metabolic work. Shows the prescription and
+  records what was **actually done**: rounds, work seconds, rest seconds, effort out
+  of 10, notes.
 
 Getting this split right is the main thing. A warm-up bike ride in a `log` block
 produces a pointless weight/reps table; a working set in a `reference` block can't be
 recorded at all.
+
+**Conditioning is prescribed precisely and often executed differently** — fewer
+rounds, a shorter work interval. Put it in a `conditioning` block so the difference
+between prescribed and actual is recorded as data rather than lost in a notes field.
 
 ### Shape
 
@@ -115,15 +122,18 @@ recorded at all.
 
 | Field | Required | Notes |
 |---|---|---|
-| `type` | **yes** | `"reference"` or `"log"` — exactly these |
+| `type` | **yes** | `"reference"`, `"log"` or `"conditioning"` — exactly these |
 | `title` | **yes** | e.g. "Warm-up", "Strength Block A" |
 | `duration` | no | Shown right-aligned next to the title |
 | `note` | no | One line under the title |
-| `items` | **reference only** | See below |
+| `items` | **reference / conditioning** | See below |
 | `exercises` | **log only** | See below |
 
-**`items`** (reference blocks): `name` **required**; `detail` (e.g. "3 × 8 each side",
-"2 × 20–30 sec"); `focus` (coaching cue).
+**`items`** (reference and conditioning blocks): `name` **required**; `detail` (e.g.
+"3 × 8 each side", "8 rounds — 30 sec hard / 60 sec easy"); `focus` (coaching cue).
+
+For conditioning blocks, `detail` is the prescription and is saved alongside what was
+actually done, so put the full interval spec there.
 
 **`exercises`** (log blocks): `name` **required**; `sets` **required**, whole number
 1–20; `pair` ("A1"); `target` ("4 × 8 each leg"); `prescription` ("20 kg each hand");
@@ -141,7 +151,9 @@ recorded at all.
    written.
 5. **Per-side and time-based work belongs in `target`**, not in `sets`. `sets` is only
    how many rows you get.
-6. **Don't put warm-ups, mobility or conditioning in `log` blocks.**
+6. **Don't put warm-ups or mobility in `log` blocks**, and **don't put interval work
+   in a `reference` block** — it belongs in `conditioning` so the actual rounds get
+   recorded.
 7. Fields not listed above are ignored.
 
 ### Already built in — don't restate these
@@ -187,6 +199,7 @@ week and day.
   "day": "Thursday",
   "title": "Upper Strength + Athletic Control",
   "completedAt": "2026-08-07T06:41:00.000Z",
+  "updatedAt": "2026-08-07T09:12:44.000Z",
   "readiness": { "sleep": 7, "energy": 6, "back": 7 },
   "exercises": {
     "Incline Dumbbell Bench Press": {
@@ -195,11 +208,20 @@ week and day.
       "target": "4 × 8",
       "prescribed": "20 kg each hand",
       "sets": {
-        "1": { "weight": "20", "reps": "8", "rpe": "7" },
-        "2": { "weight": "20", "reps": "8", "rpe": "7.5" }
+        "1": { "weight": "20", "reps": "8" },
+        "2": { "weight": "20", "reps": "8" }
       },
+      "rpe": "7",
       "confidence": 4,
       "notes": ""
+    }
+  },
+  "conditioning": {
+    "Bike Intervals": {
+      "block": "Conditioning",
+      "prescribed": "8 rounds — 30 sec hard / 60 sec easy",
+      "rounds": "6", "work": "20", "rest": "40", "effort": "9",
+      "notes": "Couldn't hold power past round 4."
     }
   },
   "backCheck": { "before": 6, "warmup": 7, "lifting": 7, "after": 6, "laterHours": 8, "note": "" },
@@ -207,6 +229,14 @@ week and day.
   "answers": { "Did the left shoulder still feel restricted?": "" }
 }
 ```
+
+- **`completedAt` is stamped once**, when the session is first saved. **`updatedAt`**
+  moves on every save. Adding the delayed back check hours later doesn't rewrite when
+  you trained.
+- **RPE is one value per exercise**, not per set — it matches the report table, and
+  per-set RPE went unfilled in practice.
+- **Conditioning records `prescribed` next to what happened**, so "6 rounds of 20/40
+  against a prescribed 8 rounds of 30/60" is readable without parsing prose.
 
 Weights, reps and RPE are stored as strings exactly as typed — `"82.5"`, `"7.5"` — so
 half kilos and half-point RPE survive. Anything reading these should parse them itself.

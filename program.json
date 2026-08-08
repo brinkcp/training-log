@@ -106,7 +106,7 @@
           ]
         },
         {
-          "type": "reference",
+          "type": "conditioning",
           "title": "Conditioning",
           "items": [
             { "name": "Bike Intervals", "detail": "8 rounds — 30 sec hard / 60 sec easy", "focus": "Hard = 8/10 effort. Do not sprint. The goal is consistent output." }
