@@ -3,7 +3,7 @@
    a connection, with the cache as fallback when there isn't.
    Bump CACHE when you change index.html and want clients to drop the old copy. */
 
-const CACHE = "training-log-v1";
+const CACHE = "training-log-v2";
 const SHELL = ["./", "./index.html", "./program.json"];
 
 self.addEventListener("install", event => {
@@ -26,8 +26,12 @@ self.addEventListener("fetch", event => {
   const { request } = event;
   if(request.method !== "GET" || new URL(request.url).origin !== location.origin) return;
 
+  // cache:"no-store" bypasses the *HTTP* cache. Without it, GitHub Pages' 10
+  // minute max-age on HTML meant a freshly published page or program could keep
+  // serving the old copy even with a connection. The app is ~30 KB, so always
+  // asking the network is cheap, and the SW cache below still covers offline.
   event.respondWith(
-    fetch(request)
+    fetch(new Request(request, { cache:"no-store" }))
       .then(response => {
         if(response && response.ok){
           const copy = response.clone();
