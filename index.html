@@ -197,6 +197,12 @@ const BACK_CHECK = [
   { key:"laterHours",label:"2–3 hours later", late:true }
 ];
 
+// Post-session readings that aren't about the back. Asked for in two of the
+// first three sessions, so built in rather than restated per program.
+const POST_SESSION = [
+  { key:"energy", label:"Energy immediately after" }
+];
+
 const REFLECTION = [
   { key:"strongest", label:"Strongest exercise",  kind:"input" },
   { key:"weakest",   label:"Weakest exercise",    kind:"input" },
@@ -548,6 +554,7 @@ function render(program, stale){
     const st = state[k];
     st.readiness = st.readiness || {}; st.exercises = st.exercises || {};
     st.backCheck = st.backCheck || {}; st.reflection = st.reflection || {}; st.answers = st.answers || {};
+    st.postSession = st.postSession || {};
     st.date = st.date || localDate();   // the day actually trained, editable
     return st;
   };
@@ -876,13 +883,16 @@ function render(program, stale){
 
     /* Back check */
     const bc = el("section", "card later");
-    bc.appendChild(el("h2", null, "Back check"));
+    bc.appendChild(el("h2", null, "Back & recovery check"));
     bc.appendChild(el("p", "why",
       "Every session so far tracks this. The last one is filled in after you've left — the page stays editable, and saving again updates the same file."));
     const bstack = el("div", "stack");
     BACK_CHECK.forEach(pt => bstack.appendChild(
       scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, 10,
         () => st.backCheck[pt.key], v => { st.backCheck[pt.key] = v; })
+    ));
+    POST_SESSION.forEach(pt => bstack.appendChild(
+      scale(pt.label, 10, () => st.postSession[pt.key], v => { st.postSession[pt.key] = v; })
     ));
     bstack.appendChild(textField("Back notes", "textarea",
       () => st.backCheck.note, v => { st.backCheck.note = v; }));
@@ -966,6 +976,7 @@ function render(program, stale){
           return acc;
         }, {}),
         backCheck: st.backCheck,
+        postSession: st.postSession,
         reflection: st.reflection,
         answers: (session.questions || []).reduce((acc, q, i) => {
           acc[q] = st.answers[`q${i}`] || "";

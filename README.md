@@ -163,8 +163,10 @@ The page always includes them, so leave them out of `program.json`:
 - **Readiness**: sleep, energy, back confidence, each **out of 10**
 - **Back check**: before training, after warm-up, during lifting, immediately after,
   and **2–3 hours later**, each out of 10, plus a notes field
+- **Energy immediately after**, out of 10
 - **Session report**: strongest exercise, weakest exercise, anything awkward
 - **Confidence (1–5)** per logged exercise
+- **Trained on** date, defaulting to today
 
 Use `questions` only for what's *specific to that session* — "did the left shoulder
 still feel restricted", "did hamstring cramping appear".
@@ -234,6 +236,7 @@ week and day.
     }
   },
   "backCheck": { "before": 6, "warmup": 7, "lifting": 7, "after": 6, "laterHours": 8, "note": "" },
+  "postSession": { "energy": 7 },
   "reflection": { "strongest": "", "weakest": "", "awkward": "" },
   "answers": { "Did the left shoulder still feel restricted?": "" }
 }

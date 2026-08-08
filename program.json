@@ -250,6 +250,137 @@
         "Did the left shoulder still feel restricted?",
         "Did hamstring cramping appear during the split squats?"
       ]
+    },
+    {
+      "day": "Saturday",
+      "dayLabel": "Day 3",
+      "title": "Single-Leg Strength + Posterior Chain",
+      "duration": "~60 minutes",
+      "goal": "Build single-leg strength without provoking the hamstring cramping, develop functional posterior-chain strength, train core stability, continue GST/handstand skill, and get a solid cardiovascular stimulus.",
+      "success": "Finish feeling better than you started.",
+      "blocks": [
+        {
+          "type": "reference",
+          "title": "Readiness + Movement Check",
+          "duration": "5 minutes",
+          "note": "Pay particular attention to your lower back. If it feels like normal muscular soreness and improves as you move, proceed.",
+          "items": [
+            { "name": "Cat-Cow", "detail": "× 10" },
+            { "name": "Bodyweight Squat", "detail": "× 10" },
+            { "name": "Hip Hinge", "detail": "× 10" },
+            { "name": "Reverse Lunge", "detail": "× 5 each side" }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Warm-up",
+          "duration": "8 minutes",
+          "items": [
+            { "name": "Bike", "detail": "5 min easy/moderate" },
+            { "name": "90/90 Hip Switches", "detail": "8 each side" },
+            { "name": "Glute Bridge", "detail": "× 12" },
+            { "name": "Dead Bug", "detail": "8 each side" },
+            { "name": "Scapular Wall Slides", "detail": "× 10" },
+            { "name": "Deep Squat Hold", "detail": "30 sec", "focus": "Use whatever assistance you need. Working gradually toward sitting comfortably in a deep squat." }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "GST Skill",
+          "duration": "8 minutes",
+          "items": [
+            { "name": "Wall Pike / Handstand Progression", "detail": "3 × 30–40 sec, rest ~60 sec", "focus": "Active shoulders. Push the floor away. Ribs controlled. Don't chase range." },
+            { "name": "Passive Hang", "detail": "2 × 20–30 sec", "focus": "Note whether the left shoulder still feels restricted compared with the right." }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Functional Strength — Block A",
+          "note": "Rest ~60–75 sec between rounds.",
+          "exercises": [
+            {
+              "pair": "A1",
+              "name": "Bulgarian Split Squat",
+              "target": "3 × 8 each side",
+              "sets": 3,
+              "prescription": "Bodyweight to start",
+              "rpe": "RPE 6–7",
+              "focus": "Full foot planted. Knee tracks naturally. Controlled descent. Drive through the floor.",
+              "note": "Your hamstrings cramped when you loaded the walking lunges, so we're deliberately rebuilding this pattern. If all three sets are completely comfortable, try 5 kg each hand on the final set."
+            },
+            {
+              "pair": "A2",
+              "name": "Cable Pallof Press",
+              "target": "3 × 10 each side",
+              "sets": 3,
+              "prescription": "Moderate weight",
+              "focus": "Pause for 2 seconds fully extended.",
+              "note": "Anti-rotation strength and trunk control."
+            }
+          ]
+        },
+        {
+          "type": "log",
+          "title": "Functional Strength — Block B",
+          "exercises": [
+            {
+              "pair": "B1",
+              "name": "Dumbbell Romanian Deadlift",
+              "target": "3 × 8",
+              "sets": 3,
+              "prescription": "15 kg each hand",
+              "rpe": "RPE 6",
+              "focus": "Teaching your hips to load the posterior chain while keeping the spine controlled.",
+              "note": "Deliberately much lighter than your trap-bar work. If the lower back feels worse rather than better during the movement, stop and report it."
+            },
+            {
+              "pair": "B2",
+              "name": "Single-Arm Farmer Carry",
+              "target": "3 × 30–40 m each side",
+              "sets": 3,
+              "prescription": "~24 kg",
+              "focus": "Walk slowly and stay tall.",
+              "note": "Different from your normal farmer carry — the offset load forces your trunk to resist lateral flexion."
+            }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Core",
+          "duration": "7 minutes",
+          "note": "First small step toward the trunk strength that supports your GST goals.",
+          "items": [
+            { "name": "Bird Dog", "detail": "3 × 8 each side", "focus": "2-second hold." },
+            { "name": "Side Plank", "detail": "3 × 20–30 sec each side" },
+            { "name": "Hollow Body Hold", "detail": "2 × 15–20 sec", "focus": "If this feels too difficult, use a tucked position." }
+          ]
+        },
+        {
+          "type": "conditioning",
+          "title": "Conditioning",
+          "duration": "10 minutes",
+          "note": "You've already shown this protocol is challenging. Today is consistent output, not beating the previous session.",
+          "items": [
+            { "name": "Bike Intervals", "detail": "10 rounds — 20 sec hard / 40 sec easy", "focus": "Aim for roughly 8/10 on the hard intervals." }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Mobility",
+          "duration": "5 minutes",
+          "items": [
+            { "name": "Deep Squat Hold", "detail": "60 sec total" },
+            { "name": "Hip Flexor Stretch", "detail": "45 sec each side" },
+            { "name": "90/90 Position", "detail": "45 sec each side" },
+            { "name": "Thoracic Rotation", "detail": "5 each side" },
+            { "name": "Cat-Cows", "detail": "× 5 slow", "focus": "Finish here." }
+          ]
+        }
+      ],
+      "questions": [
+        "Hamstrings — any cramping?",
+        "Left shoulder — still restricted during the hangs?"
+      ]
     }
   ]
 }
