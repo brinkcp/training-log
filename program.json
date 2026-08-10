@@ -5,213 +5,60 @@
   "sessions": [
     {
       "day": "Monday",
-      "dayLabel": "Adapted Day",
-      "title": "Posterior Strength + Control",
-      "duration": "~55 minutes",
-      "goal": "Use today's availability after a disrupted Week 1. Real training stimulus without replaying a missed session as-written. Protect the knee, keep the back happy, fill hinge/upper/core work.",
-      "intensity": "RPE 6\u20137",
-      "success": "Quality work done, knee quiet, ready for normal Wed\u2013Sun rhythm from Wednesday.",
-      "note": "Adapted programming for an available day \u2014 not a guilt make-up of Wednesday or Saturday. Sauna after is fine.",
+      "dayLabel": "Recovery Day",
+      "title": "Back Movement + Sauna",
+      "duration": "~20\u201330 minutes + sauna",
+      "goal": "Protect the knee after Saturday's pinch signal. Keep the back moving. Use heat. Do not add loading today.",
+      "intensity": "Easy",
+      "success": "Knee stays quiet. Back feels better after movement + sauna. Fresh for Wednesday.",
+      "note": "No lunges. No weighted strength. Charl's call after the under-kneecap/shin pinch on bodyweight single-leg work. Correct decision.",
       "blocks": [
         {
           "type": "reference",
-          "title": "Readiness + Movement Check",
-          "duration": "5 minutes",
-          "note": "Check knee and back before loading. If knee feels sharp on bodyweight reverse lunge, skip single-leg loading and note it in the log.",
+          "title": "Easy Movement",
+          "duration": "15\u201325 minutes",
+          "note": "All easy. Nothing sharp. If anything bothers the knee, stop and go straight to sauna.",
           "items": [
+            {
+              "name": "Bike or walk",
+              "detail": "8\u201310 min easy"
+            },
             {
               "name": "Cat-Cow",
               "detail": "\u00d7 10"
             },
             {
-              "name": "Bodyweight Squat",
-              "detail": "\u00d7 10"
-            },
-            {
-              "name": "Hip Hinge",
-              "detail": "\u00d7 10 slow"
-            },
-            {
-              "name": "Reverse Lunge",
-              "detail": "\u00d7 4 each side bodyweight",
-              "focus": "Front shin vertical. Stop if knee pinches."
-            }
-          ]
-        },
-        {
-          "type": "reference",
-          "title": "Warm-up",
-          "duration": "8\u201310 minutes",
-          "items": [
-            {
-              "name": "Bike",
-              "detail": "5 min easy"
-            },
-            {
-              "name": "World's Greatest Stretch",
-              "detail": "\u00d7 4 each side"
-            },
-            {
               "name": "Glute Bridge",
-              "detail": "\u00d7 12"
+              "detail": "\u00d7 10"
             },
             {
               "name": "Dead Bug",
               "detail": "\u00d7 6 each side"
             },
             {
-              "name": "Band Pull-Aparts",
-              "detail": "\u00d7 15"
-            },
-            {
-              "name": "Scapular Pull-ups or Scapular Hang",
-              "detail": "\u00d7 6\u20138"
-            },
-            {
-              "name": "Passive Hang",
-              "detail": "2 \u00d7 20 sec"
-            }
-          ]
-        },
-        {
-          "type": "reference",
-          "title": "Skill \u2014 Trap Bar Groove",
-          "duration": "6\u20138 minutes",
-          "note": "Technique only. Not working sets.",
-          "items": [
-            {
-              "name": "Trap Bar build-up",
-              "detail": "20 kg \u00d7 5, then 30\u201340 kg \u00d7 5",
-              "focus": "Brace first. Push the floor away. Finish with glutes. Control the lower."
-            }
-          ]
-        },
-        {
-          "type": "log",
-          "title": "Strength \u2014 A",
-          "exercises": [
-            {
-              "pair": "A1",
-              "name": "Trap Bar Deadlift",
-              "target": "4 \u00d7 5",
-              "sets": 4,
-              "prescription": "60\u201365 kg",
-              "rpe": "RPE 6\u20137",
-              "rest": "90\u2013120 sec",
-              "focus": "Identical reps. If form drifts, drop load. Do not chase a PR today."
-            },
-            {
-              "pair": "A2",
-              "name": "Half-Kneeling Cable Chop",
-              "target": "3 \u00d7 8\u201310 each side",
-              "sets": 3,
-              "prescription": "Moderate weight",
-              "focus": "Slow. Resist rotation. Glute on kneeling side."
-            }
-          ]
-        },
-        {
-          "type": "log",
-          "title": "Strength \u2014 B",
-          "exercises": [
-            {
-              "pair": "B1",
-              "name": "Incline Dumbbell Bench Press",
-              "target": "3 \u00d7 8",
-              "sets": 3,
-              "prescription": "20 kg each hand",
-              "rpe": "RPE 7",
-              "rest": "90 sec",
-              "focus": "Same load that worked Thursday. Smooth controlled reps."
-            },
-            {
-              "pair": "B2",
-              "name": "Chest Supported Dumbbell Row",
-              "target": "3 \u00d7 8",
-              "sets": 3,
-              "prescription": "15\u201317.5 kg each hand",
-              "rpe": "RPE 7",
-              "focus": "Pause 1 sec at top. No shrug.",
-              "note": "Use 17.5 only if 15 is clearly easy."
-            }
-          ]
-        },
-        {
-          "type": "log",
-          "title": "Strength \u2014 C",
-          "note": "No Bulgarian split squats today. Knee stays quiet after Saturday.",
-          "exercises": [
-            {
-              "pair": "C1",
-              "name": "Reverse Lunge",
-              "target": "3 \u00d7 8 each leg",
-              "sets": 3,
-              "prescription": "Bodyweight or 5\u20138 kg DBs",
-              "rpe": "RPE 6",
-              "rest": "60\u201375 sec",
-              "focus": "Front shin vertical. Knee tracks over mid-foot. Controlled descent. Stop immediately if the under-kneecap pinch returns.",
-              "note": "Safer single-leg pattern than BSS while we monitor the patellar tendon area."
-            },
-            {
-              "pair": "C2",
-              "name": "Farmer Carry",
-              "target": "3 \u00d7 30\u201340 m",
-              "sets": 3,
-              "prescription": "24 kg each hand (48 kg total)",
-              "focus": "Tall walk. Shoulders down. No rush."
-            }
-          ]
-        },
-        {
-          "type": "reference",
-          "title": "Core",
-          "duration": "6 minutes",
-          "items": [
-            {
-              "name": "Dead Bug",
-              "detail": "2 \u00d7 6 each side"
-            },
-            {
-              "name": "Side Plank",
-              "detail": "2 \u00d7 20\u201325 sec each side"
-            },
-            {
-              "name": "Bird Dog",
-              "detail": "2 \u00d7 6 each side",
-              "focus": "2-sec hold"
-            }
-          ]
-        },
-        {
-          "type": "conditioning",
-          "title": "Conditioning",
-          "duration": "8 minutes",
-          "note": "Rebuild capacity. Easier than Thursday's failed hard-interval attempt.",
-          "items": [
-            {
-              "name": "Bike Intervals",
-              "detail": "8 rounds \u2014 15 sec hard / 45 sec easy",
-              "focus": "Hard = 7/10 steady, not a sprint. Consistent output every round beats heroic first rounds."
-            }
-          ]
-        },
-        {
-          "type": "reference",
-          "title": "Cool Down + Sauna",
-          "duration": "5 minutes + sauna",
-          "items": [
-            {
-              "name": "Hip Flexor Stretch",
-              "detail": "45\u201360 sec each side"
-            },
-            {
-              "name": "Hamstring Stretch",
-              "detail": "45 sec each side"
+              "name": "World's Greatest Stretch",
+              "detail": "\u00d7 4 each side",
+              "focus": "No forcing range."
             },
             {
               "name": "Thoracic Rotation",
               "detail": "\u00d7 6 each side"
             },
+            {
+              "name": "Hip Flexor Stretch",
+              "detail": "45\u201360 sec each side"
+            },
+            {
+              "name": "Passive Hang",
+              "detail": "Optional 1\u20132 \u00d7 20 sec",
+              "focus": "Only if shoulders feel good."
+            }
+          ]
+        },
+        {
+          "type": "reference",
+          "title": "Sauna",
+          "items": [
             {
               "name": "Sauna",
               "detail": "As usual"
@@ -220,9 +67,8 @@
         }
       ],
       "questions": [
-        "Any return of the under-kneecap / shin pinch on reverse lunges?",
-        "Trap bar \u2014 how did the back feel during and 1\u20132 hours after?",
-        "Bike intervals \u2014 could you hold consistent 15-sec efforts?"
+        "Any residual knee sensation today, even mild?",
+        "How does the back feel after movement + sauna?"
       ]
     },
     {
@@ -230,10 +76,10 @@
       "dayLabel": "Day 1",
       "title": "Build the Foundation",
       "duration": "~60 minutes",
-      "goal": "Return to normal Wed\u2013Sun rhythm. Hinge strength, upper balance, controlled single-leg pattern, gradual conditioning.",
+      "goal": "Return to normal Wed\u2013Sun rhythm. Hinge strength, upper balance, controlled work. No rushed single-leg loading if knee is not fully quiet.",
       "intensity": "RPE 6\u20138",
       "success": "Leave better than you arrived. Knee quiet. Consistent effort.",
-      "note": "Draft published early as failsafe. Will refine after Monday's session feedback if submitted.",
+      "note": "Draft failsafe. Will refine after Monday recovery notes if submitted. Default single-leg = reverse lunge only if knee fully quiet; otherwise skip or swap to supported bilateral pattern.",
       "blocks": [
         {
           "type": "reference",
@@ -304,7 +150,7 @@
               "name": "Trap Bar Deadlift",
               "target": "4 \u00d7 5",
               "sets": 4,
-              "prescription": "Based on Monday \u2014 hold or +2.5\u20135 kg if Monday was clean RPE \u22647",
+              "prescription": "60\u201365 kg",
               "rpe": "RPE 7",
               "focus": "Every rep identical."
             },
@@ -343,16 +189,16 @@
         {
           "type": "log",
           "title": "Strength \u2014 C",
-          "note": "BSS only if Monday reverse lunges were completely quiet. Otherwise reverse lunges again.",
+          "note": "No BSS. Single-leg only if knee has been fully quiet since Saturday. Otherwise farmer carry + core emphasis.",
           "exercises": [
             {
               "pair": "C1",
-              "name": "Reverse Lunge or Bulgarian Split Squat",
-              "target": "3 \u00d7 8 each leg",
+              "name": "Goblet Squat or Reverse Lunge",
+              "target": "3 \u00d7 8",
               "sets": 3,
-              "prescription": "Bodyweight to light DBs",
-              "focus": "Front shin vertical. Stop if knee pinch returns.",
-              "note": "Default = reverse lunge. BSS only if knee has been fully quiet."
+              "prescription": "Goblet squat preferred if any knee doubt; reverse lunge only if knee fully quiet",
+              "focus": "Controlled. Stop if knee pinch returns.",
+              "note": "Default = goblet squat today until knee clears single-leg work."
             },
             {
               "pair": "C2",
@@ -369,9 +215,9 @@
           "title": "Conditioning",
           "items": [
             {
-              "name": "Assault Bike or Bike",
-              "detail": "8 rounds \u2014 15\u201320 sec hard / 40\u201345 sec easy",
-              "focus": "Consistent output. Build from Monday."
+              "name": "Bike",
+              "detail": "8 rounds \u2014 15 sec hard / 45 sec easy",
+              "focus": "Consistent output. Build capacity gradually."
             }
           ]
         },
@@ -400,8 +246,8 @@
         }
       ],
       "questions": [
-        "Knee status vs Monday?",
-        "Ready to progress trap bar next session?"
+        "Any knee sensation during or after?",
+        "Trap bar \u2014 back feel during and later?"
       ]
     }
   ]
