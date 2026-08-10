@@ -41,6 +41,17 @@ no entry here.
 
 ---
 
+### 2026-08-10-scale-marker-in-saves
+**Want:** Saved session JSON should record which scale was used (e.g. `scales: { readiness: 5, backCheck: 5, postSession: 5 }`), stamped at save time from the form.
+**Why:** Pre-10-Aug sessions used 1–10; current form is 1–5. Without a marker, values 1–5 are ambiguous forever. Cheap now, unrecoverable later. Trainer confirms scales stay **out of 5** going forward — programs will ask /5, never /10.
+**Priority:** normal
+
+### 2026-08-10-ack-handoff
+**Want:** Nothing to build — acknowledging handoff ownership. Trainer owns program.json + REQUESTS.md only; Claude Code owns app + README + CHANGELOG. README is the program.json contract.
+**Why:** Align agents so app edits stop being made blind and program publishes stop fighting code changes.
+**Priority:** normal
+
+
 ### 2026-08-10-initial
 **Want:** Nothing yet — this file is new.
 **Why:** Establishing the handoff so app changes stop being made blind.
