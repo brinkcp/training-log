@@ -76,6 +76,9 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(-
 .col-head span:first-child{text-align:center}
 .sets{display:flex; flex-direction:column; gap:7px}
 .set{display:grid; grid-template-columns:22px 1fr 1fr; gap:8px; align-items:center}
+.col-head.reps-only,.set.reps-only{grid-template-columns:36px 1fr}
+.sets.reps-only .field{max-width:none}
+
 .set-n{font-family:var(--mono); font-size:.8rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums}
 .set.done .set-n{color:var(--logged); font-weight:700}
 .field{position:relative; display:flex; align-items:center}
@@ -713,9 +716,11 @@ function render(program, stale){
     function refreshProgress(){
       let n = 0;
       session.blocks.filter(b => b.type === "log").forEach(b => b.exercises.forEach(e => {
+        const needsWeight = e.load !== false;
         for(let i = 1; i <= e.sets; i++){
           const s = exState(e.name).sets[i];
-          if(s && s.weight && s.reps) n++;
+          if(!s || !s.reps) continue;
+          if(needsWeight ? s.weight : true) n++;
         }
       }));
       const d = document.getElementById("done");
@@ -801,18 +806,27 @@ function render(program, stale){
         if(exercise.focus) ex.appendChild(el("p", "cue", exercise.focus));
         if(exercise.note)  ex.appendChild(el("p", "coachnote", exercise.note));
 
+        const trackWeight = exercise.load !== false;
         const ch = el("div", "col-head");
-        ch.append(el("span", null, "Set"), el("span", null, "Weight"), el("span", null, "Reps"));
+        ch.appendChild(el("span", null, "Set"));
+        if(trackWeight) ch.appendChild(el("span", null, "Weight"));
+        ch.appendChild(el("span", null, "Reps"));
+        if(!trackWeight) ch.classList.add("reps-only");
         ex.appendChild(ch);
 
         const sets = el("div", "sets");
+        if(!trackWeight) sets.classList.add("reps-only");
         for(let n = 1; n <= exercise.sets; n++){
           const saved = exState(exercise.name).sets[n] || { weight:"", reps:"" };
           const lastSet = prevSet(exercise.name, n);
           const row = el("div", "set");
+          if(!trackWeight) row.classList.add("reps-only");
           row.appendChild(el("span", "set-n", String(n)));
           const inputs = {};
-          [["weight","kg","decimal"],["reps","×","numeric"]].forEach(([f, unit, mode]) => {
+          const fields = trackWeight
+            ? [["weight","kg","decimal"],["reps","×","numeric"]]
+            : [["reps","×","numeric"]];
+          fields.forEach(([f, unit, mode]) => {
             const wrap = el("div", "field");
             const input = document.createElement("input");
             input.type = "text"; input.inputMode = mode;
@@ -823,7 +837,10 @@ function render(program, stale){
               const s = exState(exercise.name).sets;
               s[n] = s[n] || { weight:"", reps:"" };
               s[n][f] = input.value.trim();
-              row.classList.toggle("done", Boolean(inputs.weight.value.trim() && inputs.reps.value.trim()));
+              const done = trackWeight
+                ? Boolean((inputs.weight && inputs.weight.value.trim()) && inputs.reps.value.trim())
+                : Boolean(inputs.reps.value.trim());
+              row.classList.toggle("done", done);
               refreshProgress();
               save();
             });
@@ -831,7 +848,9 @@ function render(program, stale){
             wrap.append(input, el("span", "unit", unit));
             row.appendChild(wrap);
           });
-          row.classList.toggle("done", Boolean(saved.weight && saved.reps));
+          row.classList.toggle("done", trackWeight
+            ? Boolean(saved.weight && saved.reps)
+            : Boolean(saved.reps));
           sets.appendChild(row);
         }
         ex.appendChild(sets);
@@ -839,7 +858,10 @@ function render(program, stale){
         const prevBits = [];
         for(let n = 1; n <= exercise.sets; n++){
           const p = prevSet(exercise.name, n);
-          if(p) prevBits.push(`${p.weight || "—"}×${p.reps || "—"}`);
+          if(!p) continue;
+          prevBits.push(trackWeight
+            ? `${p.weight || "—"}×${p.reps || "—"}`
+            : `${p.reps || "—"} reps`);
         }
         if(prevBits.length){
           const lastRpe = last && last.exercises && last.exercises[exercise.name] && last.exercises[exercise.name].rpe;
