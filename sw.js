@@ -3,7 +3,7 @@
    a connection, with the cache as fallback when there isn't.
    Bump CACHE when you change index.html and want clients to drop the old copy. */
 
-const CACHE = "training-log-v2";
+const CACHE = "training-log-v3";
 const SHELL = ["./", "./index.html", "./program.json"];
 
 self.addEventListener("install", event => {
