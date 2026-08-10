@@ -204,8 +204,6 @@ const POST_SESSION = [
 ];
 
 const REFLECTION = [
-  { key:"strongest", label:"Strongest exercise",  kind:"input" },
-  { key:"weakest",   label:"Weakest exercise",    kind:"input" },
   { key:"awkward",   label:"Anything awkward or technically difficult", kind:"textarea" }
 ];
 
@@ -576,8 +574,7 @@ function render(program, stale){
     return st.savedAt ? `Last saved to GitHub ${new Date(st.savedAt).toLocaleString("en-AU")}` : "Saves as you go";
   }
 
-  // A 1–10 scale as two rows of five: ten buttons across a phone would be
-  // 30px each, which is below a usable touch target.
+  // Scales use 1–5 touch buttons (single row on phone).
   function scale(labelText, max, getVal, setVal){
     const row = el("div", "scale-row");
     row.appendChild(el("span", null, labelText));
@@ -614,7 +611,7 @@ function render(program, stale){
     const session = program.sessions[active];
     const st = stateFor(active);
     const exState = name => {
-      if(!st.exercises[name]) st.exercises[name] = { sets:{}, rpe:"", confidence:null, notes:"" };
+      if(!st.exercises[name]) st.exercises[name] = { sets:{}, rpe:"", notes:"" };
       const e = st.exercises[name];
       e.sets = e.sets || {};
       return e;
@@ -703,11 +700,11 @@ function render(program, stale){
     /* Readiness */
     const rc = el("section", "card");
     const rh = el("div", "h2row");
-    rh.append(el("h2", null, "Readiness"), el("span", "dur", "out of 10"));
+    rh.append(el("h2", null, "Readiness"), el("span", "dur", "out of 5"));
     rc.appendChild(rh);
     const rstack = el("div", "stack");
     READINESS.forEach(item => rstack.appendChild(
-      scale(item.label, 10, () => st.readiness[item.key], v => { st.readiness[item.key] = v; })
+      scale(item.label, 5, () => st.readiness[item.key], v => { st.readiness[item.key] = v; })
     ));
     rc.appendChild(rstack);
     app.appendChild(rc);
@@ -863,14 +860,6 @@ function render(program, stale){
         rpeRow.appendChild(rpeIn);
         ex.appendChild(rpeRow);
 
-        const conf = el("div", "conf");
-        conf.appendChild(el("span", null, "Confidence (1–5)"));
-        conf.appendChild(scale("", 5,
-          () => exState(exercise.name).confidence,
-          v => { exState(exercise.name).confidence = v; }
-        ).lastChild);
-        ex.appendChild(conf);
-
         ex.appendChild(textField("Notes", "textarea",
           () => exState(exercise.name).notes,
           v => { exState(exercise.name).notes = v; }));
@@ -888,11 +877,11 @@ function render(program, stale){
       "Every session so far tracks this. The last one is filled in after you've left — the page stays editable, and saving again updates the same file."));
     const bstack = el("div", "stack");
     BACK_CHECK.forEach(pt => bstack.appendChild(
-      scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, 10,
+      scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, 5,
         () => st.backCheck[pt.key], v => { st.backCheck[pt.key] = v; })
     ));
     POST_SESSION.forEach(pt => bstack.appendChild(
-      scale(pt.label, 10, () => st.postSession[pt.key], v => { st.postSession[pt.key] = v; })
+      scale(pt.label, 5, () => st.postSession[pt.key], v => { st.postSession[pt.key] = v; })
     ));
     bstack.appendChild(textField("Back notes", "textarea",
       () => st.backCheck.note, v => { st.backCheck.note = v; }));
@@ -954,7 +943,6 @@ function render(program, stale){
                 })
               ),
               rpe: exRpe(e.name),
-              confidence: s.confidence ?? null,
               notes: s.notes || ""
             };
           });
