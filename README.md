@@ -171,9 +171,23 @@ there.
 Use `questions` only for what's specific to that session — "any residual knee
 sensation", "left shoulder still restricted during hangs".
 
-> **Scales are 1–5 as of 10 Aug 2026** (previously 1–10). If a program asks for a
-> reading "out of 10", it will be recorded out of 5 and the numbers won't mean what
-> they say. Ask for /5, or request the form be changed back.
+### Which scale to ask for
+
+Two scales are in use, deliberately:
+
+| Measure | Scale |
+|---|---|
+| Readiness (sleep, energy, back), back check, energy after | **1–5** |
+| RPE per exercise, conditioning effort | **out of 10** |
+
+Subjective wellbeing is 1–5 — it's a quick tap and ten options is more deliberation
+than the answer deserves. Effort stays out of 10 because RPE is conventionally a
+ten-point scale and the programs already prescribe it that way ("RPE 7", "8/10
+effort").
+
+**Write programs to match.** Asking for "Sleep /10" gets recorded out of 5, and the
+number then means something other than what it says. Readiness moved from 1–10 to 1–5
+on 10 Aug 2026.
 
 ### If the file is wrong
 

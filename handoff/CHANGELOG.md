@@ -7,6 +7,40 @@ the top. Requests are referenced by their slug from `REQUESTS.md`.
 
 ---
 
+## 2026-08-10 — Audited Arnold's 1–10 → 1–5 change
+
+**Request:** made verbally to Arnold, not through this file. It should have come here;
+that's the point of the handoff.
+
+**Verdict: the change is correct and complete.** Checked on the live page:
+
+- All 9 scales render exactly 5 buttons, and now fit **one row instead of two** —
+  about 430 px less to scroll on a session page (9 scales × 48 px). That was the
+  point of the change and it worked.
+- The "out of 5" caption was updated too, which is the kind of thing that usually
+  gets missed.
+- Tapping the top value on every scale saves `5` everywhere — no off-by-one, no
+  leftover 1–10 handling.
+
+**One thing left on /10, deliberately: conditioning `Effort /10`.**
+
+Not changed, and shouldn't be. Effort there is an RPE-family measure, and the programs
+prescribe it in tens — "Hard = 8/10 effort", "roughly 8/10 on the hard intervals",
+"RPE 7". Moving it to /5 would recreate the mismatch this change removed, where the
+program asks for one thing and the form records another.
+
+So the rule, now written into `README.md`:
+
+- **Subjective wellbeing** (readiness, back check, energy after) → **1–5**
+- **Effort** (RPE, conditioning effort) → **out of 10**
+
+**Still outstanding:** saved sessions don't record which scale was in force, so a
+stored `4` is ambiguous between 4/10 and 4/5. Only one file predates the change and
+its values give it away, so nothing is lost yet — but the marker should go in before
+there's a second one.
+
+---
+
 ## 2026-08-10 — Handoff set up
 
 **Request:** none — established after the trainer AI made six commits directly to the
