@@ -5,9 +5,9 @@
   "sessions": [
     {
       "day": "Monday",
-      "dayLabel": "Recovery Day",
+      "dayLabel": "Mon · Recovery",
       "title": "Back Movement + Sauna",
-      "duration": "~20\u201330 minutes + sauna",
+      "duration": "~20–30 minutes + sauna",
       "goal": "Protect the knee after Saturday's pinch signal. Keep the back moving. Use heat. Do not add loading today.",
       "intensity": "Easy",
       "success": "Knee stays quiet. Back feels better after movement + sauna. Fresh for Wednesday.",
@@ -16,48 +16,48 @@
         {
           "type": "reference",
           "title": "Easy Movement",
-          "duration": "15\u201325 minutes",
+          "duration": "15–25 minutes",
           "note": "All easy. Nothing sharp. If anything bothers the knee, stop and go straight to sauna.",
           "items": [
             {
               "name": "Bike or walk",
-              "detail": "8\u201310 min easy"
+              "detail": "8–10 min easy"
             },
             {
               "name": "Cat-Cow",
-              "detail": "\u00d7 10"
+              "detail": "× 10"
             },
             {
               "name": "Glute Bridge",
-              "detail": "\u00d7 10"
+              "detail": "× 10"
             },
             {
               "name": "Dead Bug",
-              "detail": "\u00d7 6 each side"
+              "detail": "× 6 each side"
             },
             {
               "name": "World's Greatest Stretch",
-              "detail": "\u00d7 4 each side",
+              "detail": "× 4 each side",
               "focus": "No forcing range."
             },
             {
               "name": "Thoracic Rotation",
-              "detail": "\u00d7 6 each side"
+              "detail": "× 6 each side"
             },
             {
               "name": "Hip Flexor Stretch",
-              "detail": "45\u201360 sec each side"
+              "detail": "45–60 sec each side"
             },
             {
               "name": "Passive Hang",
-              "detail": "Optional 1\u20132 \u00d7 20 sec",
+              "detail": "Optional 1–2 × 20 sec",
               "focus": "Only if shoulders feel good."
             }
           ]
         },
         {
           "type": "log",
-          "title": "MoveU Cool-down \u2014 Lordosis L2 (hold 2\u20133 weeks)",
+          "title": "MoveU Cool-down — Lordosis L2 (hold 2–3 weeks)",
           "note": "Same block until consistency is solid, then progress in MoveU app. No added weight. Log reps/time quality. Alignment layer after main session.",
           "exercises": [
             {
@@ -65,7 +65,7 @@
               "name": "Deep Tissue: All Hip",
               "target": "1 round follow-along",
               "sets": 1,
-              "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
+              "prescription": "No weight — ~2–3 min video/follow-along",
               "focus": "Slow pressure. Breathe. Don't force into pain.",
               "note": "Soft tissue prep for the hip block.",
               "load": false
@@ -73,7 +73,7 @@
             {
               "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 \u00d7 8\u201310 each side",
+              "target": "2 × 8–10 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Controlled rotation. Pelvis stacked. No lumbar flop.",
@@ -82,7 +82,7 @@
             {
               "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 \u00d7 8\u201310 each side",
+              "target": "2 × 8–10 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation.",
@@ -91,7 +91,7 @@
             {
               "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 \u00d7 8\u201310",
+              "target": "2 × 8–10",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Low back stays calm. Move from hips, not spine.",
@@ -100,9 +100,9 @@
             {
               "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 \u00d7 45\u201360 sec each side",
+              "target": "2 × 45–60 sec each side",
               "sets": 2,
-              "prescription": "No weight \u2014 stretch hold",
+              "prescription": "No weight — stretch hold",
               "focus": "Easy breath. Soften into the stretch, don't yank.",
               "load": false
             }
@@ -126,13 +126,13 @@
     },
     {
       "day": "Wednesday",
-      "dayLabel": "Day 1",
+      "dayLabel": "Wed · Day 1",
       "title": "Build the Foundation",
       "duration": "~60 minutes",
-      "goal": "Return to normal Wed\u2013Sun rhythm. Hinge strength, upper balance, controlled work. No rushed single-leg loading if knee is not fully quiet.",
-      "intensity": "RPE 6\u20138",
-      "success": "Leave better than you arrived. Knee quiet. Consistent effort.",
-      "note": "Draft failsafe. Will refine after Monday recovery notes if submitted. Default single-leg = reverse lunge only if knee fully quiet; otherwise skip or swap to supported bilateral pattern.",
+      "goal": "Return to Wed–Sun rhythm. Hinge strength, upper balance, controlled work. Protect the knee; keep back calm under load.",
+      "intensity": "RPE 6–8",
+      "success": "Leave better than you arrived. Knee quiet. Trap bar crisp. Consistent effort — not a hero day.",
+      "note": "Refined after Mon 10 Aug recovery submit. Sleep/energy 4/5, back readiness 5, finished a bit tight (3) from new MoveU work (good pain). Knee questions blank — treat as clear but still no BSS. Default C1 = goblet squat. Reverse lunge only if knee fully quiet through warm-up. Bike intervals stay short (15/45).",
       "blocks": [
         {
           "type": "reference",
@@ -145,86 +145,87 @@
             },
             {
               "name": "Cat-Cows",
-              "detail": "\u00d7 10"
+              "detail": "× 10"
             },
             {
               "name": "Book Openers",
-              "detail": "\u00d7 8 each side"
+              "detail": "× 8 each side"
             },
             {
               "name": "World's Greatest Stretch",
-              "detail": "\u00d7 5 each side"
+              "detail": "× 5 each side"
             },
             {
               "name": "Glute Bridges",
-              "detail": "\u00d7 10"
+              "detail": "× 10"
             },
             {
               "name": "Dead Bugs",
-              "detail": "\u00d7 8 each side"
+              "detail": "× 8 each side"
             },
             {
               "name": "Bodyweight Squats",
-              "detail": "\u00d7 10"
+              "detail": "× 10",
+              "focus": "Check knee — must be quiet before loading."
             },
             {
               "name": "Band Pull-Aparts",
-              "detail": "\u00d7 15"
+              "detail": "× 15"
             },
             {
               "name": "Scapular Pull-ups",
-              "detail": "\u00d7 8"
+              "detail": "× 8"
             },
             {
               "name": "Passive Hangs",
-              "detail": "2 \u00d7 20\u201330 sec"
+              "detail": "2 × 20–30 sec"
             }
           ]
         },
         {
           "type": "reference",
-          "title": "Skill \u2014 Trap Bar Technique",
-          "duration": "6\u20138 minutes",
+          "title": "Skill — Trap Bar Technique",
+          "duration": "6–8 minutes",
           "note": "Technique practice only.",
           "items": [
             {
               "name": "Trap Bar build-up",
-              "detail": "20 kg \u00d7 5, then 30\u201340 kg \u00d7 5",
+              "detail": "20 kg × 5, then 30–40 kg × 5",
               "focus": "Brace. Push floor away. Glutes finish. Control lower."
             }
           ]
         },
         {
           "type": "log",
-          "title": "Strength \u2014 A",
+          "title": "Strength — A",
           "exercises": [
             {
               "pair": "A1",
               "name": "Trap Bar Deadlift",
-              "target": "4 \u00d7 5",
+              "target": "4 × 5",
               "sets": 4,
-              "prescription": "60\u201365 kg",
+              "prescription": "60–65 kg",
               "rpe": "RPE 7",
-              "focus": "Every rep identical."
+              "focus": "Every rep identical. Stop a set early if brace softens."
             },
             {
               "pair": "A2",
               "name": "Half-Kneeling Cable Chop",
-              "target": "3 \u00d7 10 each side",
+              "target": "3 × 10 each side",
               "sets": 3,
               "prescription": "Moderate weight",
-              "focus": "Slow. Resist rotation."
+              "focus": "Slow. Resist rotation. Tall posture."
             }
           ]
         },
         {
           "type": "log",
-          "title": "Strength \u2014 B",
+          "title": "Strength — B",
           "exercises": [
             {
               "pair": "B1",
               "name": "Incline Dumbbell Bench Press",
-              "target": "3 \u00d7 8",
+              "target": "3 × 8",
               "sets": 3,
               "prescription": "20 kg each hand",
               "rpe": "RPE 7"
@@ -232,34 +233,34 @@
             {
               "pair": "B2",
               "name": "Chest Supported Dumbbell Row",
-              "target": "3 \u00d7 8\u201310",
+              "target": "3 × 8–10",
               "sets": 3,
-              "prescription": "15\u201317.5 kg each hand",
+              "prescription": "15–17.5 kg each hand",
               "focus": "Pause at top."
             }
           ]
         },
         {
           "type": "log",
-          "title": "Strength \u2014 C",
-          "note": "No BSS. Single-leg only if knee has been fully quiet since Saturday. Otherwise farmer carry + core emphasis.",
+          "title": "Strength — C",
+          "note": "No BSS. Knee still on watch after Sat pinch. Goblet squat is the default.",
           "exercises": [
             {
               "pair": "C1",
-              "name": "Goblet Squat or Reverse Lunge",
-              "target": "3 \u00d7 8",
+              "name": "Goblet Squat",
+              "target": "3 × 8",
               "sets": 3,
-              "prescription": "Goblet squat preferred if any knee doubt; reverse lunge only if knee fully quiet",
-              "focus": "Controlled. Stop if knee pinch returns.",
-              "note": "Default = goblet squat today until knee clears single-leg work."
+              "prescription": "16–24 kg",
+              "focus": "Controlled. Knees track toes. Stop if any under-kneecap pinch.",
+              "note": "Swap to reverse lunge only if knee fully quiet through warm-up AND goblet feels trivial. Otherwise stay goblet."
             },
             {
               "pair": "C2",
               "name": "Farmer Carry",
-              "target": "4 \u00d7 30 m",
+              "target": "4 × 30 m",
               "sets": 4,
               "prescription": "24 kg each hand",
-              "focus": "Walk tall."
+              "focus": "Walk tall. Soft ribs. Even steps."
             }
           ]
         },
@@ -269,30 +270,30 @@
           "items": [
             {
               "name": "Bike",
-              "detail": "8 rounds \u2014 15 sec hard / 45 sec easy",
-              "focus": "Consistent output. Build capacity gradually."
+              "detail": "8 rounds — 15 sec hard / 45 sec easy",
+              "focus": "Consistent output. Build capacity gradually. No hero intervals."
             }
           ]
         },
         {
           "type": "log",
-          "title": "MoveU Cool-down \u2014 Lordosis L2 (hold 2\u20133 weeks)",
-          "note": "Same block until consistency is solid, then progress in MoveU app. No added weight. Log reps/time quality. Alignment layer after main session.",
+          "title": "MoveU Cool-down — Lordosis L2 (hold 2–3 weeks)",
+          "note": "Same block until consistency is solid, then progress in MoveU app. No added weight. Log reps/time quality. Alignment layer after main session. Deep tissue optional if short on time — main rotations + stretch are the priority.",
           "exercises": [
             {
               "pair": "M1",
               "name": "Deep Tissue: All Hip",
               "target": "1 round follow-along",
               "sets": 1,
-              "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
+              "prescription": "No weight — ~2–3 min video/follow-along",
               "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Soft tissue prep for the hip block.",
+              "note": "Optional if time is tight — skipped Mon and that was fine.",
               "load": false
             },
             {
               "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 \u00d7 8\u201310 each side",
+              "target": "2 × 8–10 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Controlled rotation. Pelvis stacked. No lumbar flop.",
@@ -301,16 +302,17 @@
             {
               "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 \u00d7 8\u201310 each side",
+              "target": "2 × 8–10 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation.",
+              "note": "Mon: you did 3 sets — 2 quality sets is enough. Extra only if fresh.",
               "load": false
             },
             {
               "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 \u00d7 8\u201310",
+              "target": "2 × 8–10",
               "sets": 2,
               "prescription": "Bodyweight only",
               "focus": "Low back stays calm. Move from hips, not spine.",
@@ -319,10 +321,10 @@
             {
               "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 \u00d7 45\u201360 sec each side",
+              "target": "2 × 45–60 sec each side",
               "sets": 2,
-              "prescription": "No weight \u2014 stretch hold",
-              "focus": "Easy breath. Soften into the stretch, don't yank.",
+              "prescription": "No weight — stretch hold",
+              "focus": "Breathe into the outside hip. No forcing.",
               "load": false
             }
           ]
@@ -330,8 +332,11 @@
       ],
       "questions": [
         "Any knee sensation during or after?",
-        "Trap bar \u2014 back feel during and later?"
+        "Trap bar — back feel during and later (tight like Mon MoveU, or calm)?",
+        "Goblet squat feel — knees OK?"
       ]
     }
-  ]
+  ],
+  "updated": "2026-08-10T07:35:00Z",
+  "note": "Next session = Wednesday. App opens on today's weekday; tap Wed · Day 1 to preview."
 }
