@@ -67,7 +67,8 @@
               "sets": 1,
               "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
               "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Soft tissue prep for the hip block."
+              "note": "Soft tissue prep for the hip block.",
+              "load": false
             },
             {
               "pair": "M2",
@@ -75,7 +76,8 @@
               "target": "2 \u00d7 8\u201310 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop.",
+              "load": false
             },
             {
               "pair": "M3",
@@ -83,7 +85,8 @@
               "target": "2 \u00d7 8\u201310 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation.",
+              "load": false
             },
             {
               "pair": "M4",
@@ -91,7 +94,8 @@
               "target": "2 \u00d7 8\u201310",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "focus": "Low back stays calm. Move from hips, not spine.",
+              "load": false
             },
             {
               "pair": "M5",
@@ -99,7 +103,8 @@
               "target": "2 \u00d7 45\u201360 sec each side",
               "sets": 2,
               "prescription": "No weight \u2014 stretch hold",
-              "focus": "Easy breath. Soften into the stretch, don't yank."
+              "focus": "Easy breath. Soften into the stretch, don't yank.",
+              "load": false
             }
           ]
         },
@@ -281,7 +286,8 @@
               "sets": 1,
               "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
               "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Soft tissue prep for the hip block."
+              "note": "Soft tissue prep for the hip block.",
+              "load": false
             },
             {
               "pair": "M2",
@@ -289,7 +295,8 @@
               "target": "2 \u00d7 8\u201310 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop.",
+              "load": false
             },
             {
               "pair": "M3",
@@ -297,7 +304,8 @@
               "target": "2 \u00d7 8\u201310 each side",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation.",
+              "load": false
             },
             {
               "pair": "M4",
@@ -305,7 +313,8 @@
               "target": "2 \u00d7 8\u201310",
               "sets": 2,
               "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "focus": "Low back stays calm. Move from hips, not spine.",
+              "load": false
             },
             {
               "pair": "M5",
@@ -313,7 +322,8 @@
               "target": "2 \u00d7 45\u201360 sec each side",
               "sets": 2,
               "prescription": "No weight \u2014 stretch hold",
-              "focus": "Easy breath. Soften into the stretch, don't yank."
+              "focus": "Easy breath. Soften into the stretch, don't yank.",
+              "load": false
             }
           ]
         }
