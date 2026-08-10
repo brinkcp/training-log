@@ -1,43 +1,57 @@
 # Training log
 
 A single-page training log. Open it on a phone, follow the session, log the working
-sets, and save the whole thing to a private repo.
+sets, save it to a private repo.
 
-- `index.html` — the whole app. No build step, no dependencies.
-- `program.json` — the current week's program. **This is the file that changes weekly.**
-- `sw.js` — offline support, so the page opens at the gym without signal.
-- `serve.ps1` — local preview only. Run it and open `http://localhost:8123`. Safe to delete.
+**Live page:** https://brinkcp.github.io/training-log/
 
-The page reads `program.json` on load and renders whatever is in it. Publishing a new
-week means replacing that one file — nothing else changes.
+---
 
-The page must be served over HTTP. Opening `index.html` from disk breaks the program
-fetch and the offline cache.
+## What this file is for
+
+**This README is the contract between the trainer and the app.** It says exactly how
+to write `program.json` so the page renders a session correctly, and what the page
+gives back afterwards.
+
+The trainer AI reads this to publish a program. If the app changes and this file
+doesn't, the trainer starts writing programs against a format that no longer exists —
+and nothing will warn anyone. **Whoever changes the form updates this file in the same
+commit.** That is the rule this whole setup depends on.
+
+## Who writes what
+
+| File | Owner | Notes |
+|---|---|---|
+| `program.json` | **Trainer AI** | The weekly program. Changes constantly |
+| `index.html`, `sw.js` | **Claude Code** | The app. Trainer only in an emergency |
+| `README.md` | **Claude Code** | This contract |
+| `handoff/REQUESTS.md` | **Trainer AI** | Asks for app changes |
+| `handoff/CHANGELOG.md` | **Claude Code** | Reports what was built, and asks back |
+
+One writer per file, so two agents never clobber each other. Want the app changed?
+Write it in `handoff/REQUESTS.md` rather than editing the code. If you must edit the
+code in an emergency, log it there so it isn't silently undone later.
+
+**Always pull before writing.** Both agents push to `main`, and a stale copy will
+overwrite work.
 
 ---
 
 ## Writing `program.json`
 
-**This section is the contract. If you're an AI writing this file, follow it exactly.**
+A session is a list of **blocks**, each one of three types:
 
-A session is a list of **blocks**. Each block is one of three types:
-
-- **`reference`** — displayed as instructions. Warm-ups, skill work, mobility, core,
+- **`reference`** — instructions to read. Warm-ups, skill work, mobility, core,
   cool-downs. Nothing to fill in.
-- **`log`** — a table with a row per set capturing **weight and reps**, plus one
-  **RPE** and one **confidence (1–5)** for the exercise as a whole. Use for the lifts
-  you want reported back.
-- **`conditioning`** — intervals and metabolic work. Shows the prescription and
-  records what was **actually done**: rounds, work seconds, rest seconds, effort out
-  of 10, notes.
+- **`log`** — a table with a row per set, plus one RPE for the exercise. Use for the
+  lifts you want reported back.
+- **`conditioning`** — intervals. Shows the prescription and records what was actually
+  done: rounds, work seconds, rest seconds, effort, notes.
 
 Getting this split right is the main thing. A warm-up bike ride in a `log` block
-produces a pointless weight/reps table; a working set in a `reference` block can't be
-recorded at all.
-
-**Conditioning is prescribed precisely and often executed differently** — fewer
-rounds, a shorter work interval. Put it in a `conditioning` block so the difference
-between prescribed and actual is recorded as data rather than lost in a notes field.
+produces a pointless table; a working set in a `reference` block can't be recorded at
+all; and interval work in a `reference` block loses the gap between prescribed and
+actual, which is usually the interesting part.
 
 ### Shape
 
@@ -48,45 +62,62 @@ between prescribed and actual is recorded as data rather than lost in a notes fi
   "week": 1,
   "sessions": [
     {
-      "day": "Thursday",
-      "dayLabel": "Day 2",
-      "title": "Upper Strength + Athletic Control",
+      "day": "Wednesday",
+      "dayLabel": "Wed · Day 1",
+      "title": "Build the Foundation",
       "duration": "~60 minutes",
       "intensity": "RPE 6–8",
-      "goal": "Build strength, improve shoulder control, train single-leg stability.",
-      "success": "Leave feeling better than when you arrived.",
+      "goal": "Hinge strength, upper balance, controlled work.",
+      "success": "Leave better than you arrived.",
+      "note": "Shown under the title — use for week-to-week adjustments.",
       "blocks": [
         {
           "type": "reference",
           "title": "Warm-up",
           "duration": "10 minutes",
-          "note": "Optional line shown under the block title.",
+          "note": "Optional line under the block title.",
           "items": [
             { "name": "Bike", "detail": "5 minutes easy" },
-            { "name": "World's Greatest Stretch", "detail": "5 each side",
-              "focus": "Long spine. Rotate through upper back." }
+            { "name": "Cat-Cows", "detail": "× 10", "focus": "Optional cue." }
           ]
         },
         {
           "type": "log",
-          "title": "Strength Block A",
+          "title": "Strength — A",
           "exercises": [
             {
               "pair": "A1",
-              "name": "Incline Dumbbell Bench Press",
-              "target": "4 × 8",
+              "name": "Trap Bar Deadlift",
+              "target": "4 × 5",
               "sets": 4,
-              "prescription": "20 kg each hand",
+              "prescription": "60–65 kg",
               "rpe": "RPE 7",
               "rest": "90 sec",
-              "focus": "Shoulder blades stable. Controlled lowering.",
-              "note": "Yesterday's 17.5 kg was RPE 9. Today we build quality."
+              "focus": "Every rep identical.",
+              "note": "Coach's note, shown in accent colour."
+            },
+            {
+              "pair": "M1",
+              "name": "Side Lying Hip Lift Rotations",
+              "target": "2 × 8–10 each side",
+              "sets": 2,
+              "load": false,
+              "prescription": "Bodyweight only",
+              "focus": "Pelvis stacked."
             }
+          ]
+        },
+        {
+          "type": "conditioning",
+          "title": "Conditioning",
+          "items": [
+            { "name": "Bike Intervals", "detail": "10 rounds — 20 sec hard / 40 sec easy",
+              "focus": "Roughly 8/10 on the hard intervals." }
           ]
         }
       ],
       "questions": [
-        "Did the left shoulder still feel restricted?"
+        "Any residual knee sensation today, even mild?"
       ]
     }
   ]
@@ -95,81 +126,54 @@ between prescribed and actual is recorded as data rather than lost in a notes fi
 
 ### Fields
 
-**Top level**
+**Top level:** `sessions` (**required**, one entry per training day); `schema`,
+`block`, `week` optional.
 
-| Field | Required | Notes |
-|---|---|---|
-| `schema` | no | `2` |
-| `block` | no | Training block name, e.g. "Foundation Season" |
-| `week` | no | Week number. Used in the saved filename |
-| `sessions` | **yes** | One entry per training day of the week |
+**Session:** at least one of `day` (weekday name — if it matches today, the page opens
+on it) or `title`. Optional: `dayLabel` (shown in the day picker, e.g. `"Wed · Day 1"`),
+`duration`, `intensity`, `goal`, `success`, `note`, `questions`. **`blocks` required.**
 
-**Session**
+**Block:** `type` (**required** — `reference`, `log` or `conditioning`), `title`
+(**required**), `duration`, `note`. Then `items` for reference/conditioning, or
+`exercises` for log.
 
-| Field | Required | Notes |
-|---|---|---|
-| `day` | yes\* | Weekday name. If it matches today, the page opens on it |
-| `dayLabel` | no | e.g. "Day 2" — shown in the header and the day picker |
-| `title` | yes\* | Session name |
-| `duration`, `intensity` | no | Shown as metadata under the title |
-| `goal`, `success` | no | Shown as a short brief |
-| `blocks` | **yes** | At least one |
-| `questions` | no | Session-specific follow-ups. Each becomes a text box |
+**`items`:** `name` **required**; `detail`; `focus`. For conditioning, `detail` is the
+prescription and is saved next to what actually happened — put the full interval spec
+there.
 
-\* At least one of `day` or `title`.
-
-**Block**
-
-| Field | Required | Notes |
-|---|---|---|
-| `type` | **yes** | `"reference"`, `"log"` or `"conditioning"` — exactly these |
-| `title` | **yes** | e.g. "Warm-up", "Strength Block A" |
-| `duration` | no | Shown right-aligned next to the title |
-| `note` | no | One line under the title |
-| `items` | **reference / conditioning** | See below |
-| `exercises` | **log only** | See below |
-
-**`items`** (reference and conditioning blocks): `name` **required**; `detail` (e.g.
-"3 × 8 each side", "8 rounds — 30 sec hard / 60 sec easy"); `focus` (coaching cue).
-
-For conditioning blocks, `detail` is the prescription and is saved alongside what was
-actually done, so put the full interval spec there.
-
-**`exercises`** (log blocks): `name` **required**; `sets` **required**, whole number
-1–20; `pair` ("A1"); `target` ("4 × 8 each leg"); `prescription` ("20 kg each hand");
-`rpe` ("RPE 7"); `rest` ("90 sec"); `focus`; `note`.
+**`exercises`:** `name` **required**; `sets` **required** (whole number 1–20);
+`load` (set `false` for reps-only — no weight column, for rehab and bodyweight work);
+`pair`; `target`; `prescription`; `rpe`; `rest`; `focus`; `note`.
 
 ### Rules
 
 1. **`sets` is a whole number, not a string.** `4`, never `"4"`. It's the row count.
-2. **Exercise names must be unique across all log blocks in a session.**
+2. **Exercise names must be unique** across all log blocks in a session.
 3. **Keep exercise names spelled identically week to week.** The page matches this
    week's sets to last week's by name. A renamed exercise silently loses its history.
-   Rename deliberately, never incidentally.
-4. **`target`, `prescription`, `rpe` and `rest` are free text and are never parsed.**
-   Put "3 × 8 each leg", "4 × 30 m", "BW / assisted", whatever suits. Displayed as
-   written.
-5. **Per-side and time-based work belongs in `target`**, not in `sets`. `sets` is only
-   how many rows you get.
-6. **Don't put warm-ups or mobility in `log` blocks**, and **don't put interval work
-   in a `reference` block** — it belongs in `conditioning` so the actual rounds get
-   recorded.
+4. **`target`, `prescription`, `rpe`, `rest` are free text and never parsed.** Put
+   "3 × 8 each leg", "4 × 30 m", "BW / assisted" — displayed as written.
+5. **Per-side and time-based work goes in `target`**, not `sets`. `sets` is only how
+   many rows you get.
+6. **`load: false` for anything without a weight** — mobility, rehab, bodyweight holds.
 7. Fields not listed above are ignored.
 
-### Already built in — don't restate these
+### Already built into the page — don't restate these
 
-The page always includes them, so leave them out of `program.json`:
-
-- **Readiness**: sleep, energy, back confidence, each **out of 10**
-- **Back check**: before training, after warm-up, during lifting, immediately after,
-  and **2–3 hours later**, each out of 10, plus a notes field
-- **Energy immediately after**, out of 10
-- **Session report**: strongest exercise, weakest exercise, anything awkward
-- **Confidence (1–5)** per logged exercise
+- **Readiness:** sleep, energy, back confidence — **each 1–5**
+- **Back & recovery check:** before training, after warm-up, during lifting,
+  immediately after, **2–3 hours later** — **each 1–5**, plus a notes field
+- **Energy immediately after** — **1–5**
+- **Anything awkward or technically difficult** — free text
 - **Trained on** date, defaulting to today
+- One **RPE** and a **notes** box per logged exercise
 
-Use `questions` only for what's *specific to that session* — "did the left shoulder
-still feel restricted", "did hamstring cramping appear".
+Use `questions` only for what's specific to that session — "any residual knee
+sensation", "left shoulder still restricted during hangs".
+
+> **Scales are 1–5 as of 10 Aug 2026** (previously 1–10). If a program asks for a
+> reading "out of 10", it will be recorded out of 5 and the numbers won't mean what
+> they say. Ask for /5, or request the form be changed back.
 
 ### If the file is wrong
 
@@ -179,141 +183,101 @@ something broken. Fix and reload.
 
 ---
 
-## Logging and saving
+## What comes back
 
-Everything is saved to the browser's local storage as you go, continuously, with no
-connection required.
+Everything saves to the browser's local storage as you go, with no connection needed.
 
-**Trained on** at the top of the page defaults to today but is editable. It's the day
-the session actually happened, and it drives the filename — so a session logged the
-next morning is still filed under the right day.
+**Trained on** drives the filename, so a session logged the next morning is still
+filed under the day it happened.
 
-**Save session** writes to `sessions/<trained-on>-w<week>-<day>.json` in your private
-repo. **The form is not cleared.** Saving again overwrites the same file, which is what
-makes the "2–3 hours later" back check possible — log it, train, save, then add the
-delayed reading from the couch and save again.
-
-If you change the date *after* saving, the page warns you, and the next save moves the
-file: it writes the new name first, then deletes the old one, so a session is never
-stored twice. If the delete fails you're told which file to remove by hand.
-
-Next week is a separate file automatically, because saved state is keyed by block,
-week and day.
-
-### Session file shape
+**Save session** writes to `sessions/<trained-on>-w<week>-<day>.json` in the private
+repo. **The form is not cleared** — saving again overwrites the same file, which is
+what makes the "2–3 hours later" reading possible. Change the date after saving and
+the next save renames the file, deleting the old one so a session is never stored
+twice.
 
 ```json
 {
-  "block": "Foundation Season",
-  "week": 1,
-  "day": "Thursday",
-  "title": "Upper Strength + Athletic Control",
-  "date": "2026-08-07",
-  "completedAt": "2026-08-07T06:41:00.000Z",
-  "updatedAt": "2026-08-07T09:12:44.000Z",
-  "readiness": { "sleep": 7, "energy": 6, "back": 7 },
+  "block": "Foundation Season", "week": 1,
+  "day": "Wednesday", "dayLabel": "Wed · Day 1", "title": "Build the Foundation",
+  "date": "2026-08-12",
+  "completedAt": "2026-08-12T06:41:00.000Z",
+  "updatedAt": "2026-08-12T09:12:44.000Z",
+  "readiness": { "sleep": 4, "energy": 4, "back": 5 },
   "exercises": {
-    "Incline Dumbbell Bench Press": {
-      "block": "Strength Block A",
-      "pair": "A1",
-      "target": "4 × 8",
-      "prescribed": "20 kg each hand",
-      "sets": {
-        "1": { "weight": "20", "reps": "8" },
-        "2": { "weight": "20", "reps": "8" }
-      },
+    "Trap Bar Deadlift": {
+      "block": "Strength — A", "pair": "A1", "target": "4 × 5", "prescribed": "60–65 kg",
+      "sets": { "1": { "weight": "60", "reps": "5" }, "2": { "weight": "65", "reps": "5" } },
       "rpe": "7",
-      "confidence": 4,
       "notes": ""
     }
   },
   "conditioning": {
     "Bike Intervals": {
-      "block": "Conditioning",
-      "prescribed": "8 rounds — 30 sec hard / 60 sec easy",
-      "rounds": "6", "work": "20", "rest": "40", "effort": "9",
-      "notes": "Couldn't hold power past round 4."
+      "block": "Conditioning", "prescribed": "10 rounds — 20 sec hard / 40 sec easy",
+      "rounds": "8", "work": "15", "rest": "45", "effort": "8", "notes": ""
     }
   },
-  "backCheck": { "before": 6, "warmup": 7, "lifting": 7, "after": 6, "laterHours": 8, "note": "" },
-  "postSession": { "energy": 7 },
-  "reflection": { "strongest": "", "weakest": "", "awkward": "" },
-  "answers": { "Did the left shoulder still feel restricted?": "" }
+  "backCheck": { "before": 4, "warmup": 4, "lifting": 5, "after": 4, "laterHours": 3, "note": "" },
+  "postSession": { "energy": 4 },
+  "reflection": { "awkward": "" },
+  "answers": { "Any residual knee sensation today, even mild?": "" }
 }
 ```
 
-- **`date`** is the day you trained, set by the *Trained on* field. It's the one to
-  sort and chart by. **`completedAt`** is stamped once, when first saved.
-  **`updatedAt`** moves on every save. Adding the delayed back check hours later
-  doesn't rewrite when you trained.
-- **`day` is the program's label** ("Thursday"), not necessarily the real weekday —
-  sessions get trained a day late. Trust `date`.
-- **RPE is one value per exercise**, not per set — it matches the report table, and
-  per-set RPE went unfilled in practice.
-- **Conditioning records `prescribed` next to what happened**, so "6 rounds of 20/40
-  against a prescribed 8 rounds of 30/60" is readable without parsing prose.
-
-Weights, reps and RPE are stored as strings exactly as typed — `"82.5"`, `"7.5"` — so
-half kilos and half-point RPE survive. Anything reading these should parse them itself.
+- **`date`** is the day trained, and the one to sort and chart by. **`day`** is the
+  program's label and may not be the real weekday — sessions get trained late.
+- **`completedAt`** is stamped once; **`updatedAt`** moves on every save.
+- Weights, reps and RPE are strings exactly as typed — `"82.5"`, `"7.5"` — so half
+  kilos and half-point RPE survive. Parse them yourself.
+- **Sessions saved before 10 Aug 2026 used 1–10 scales.** Nothing in the files marks
+  which scale applied. Only `2026-08-07-w1-thursday.json` predates the change.
 
 ---
 
-## Saving straight to GitHub
+## Saving to GitHub
 
 **Do these in order — it matters.**
 
 1. **Create the private repo first**, e.g. `training-data`. Not this repo; this one is
-   public. **Tick "Add a README"** so it has a default branch to commit against.
-
+   public. **Tick "Add a README"** so it has a default branch.
 2. **Then create a fine-grained token**
    ([github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)):
-   - *Repository access* → **Only select repositories** → your sessions repo
+   - *Repository access* → **Only select repositories** → the sessions repo
    - *Permissions* → *Repository permissions* → **Contents: Read and write**
-     (separate from repository access — granting one doesn't grant the other)
-   - Set an expiry you're happy to renew
+     (separate from repository access — one doesn't grant the other)
 
 **Why the order matters:** a fine-grained token only reaches repositories chosen when
-it was created. Make the token first and the repo won't be in its list, and GitHub
-answers with a **404, not a permission error** — it won't confirm a repo exists to a
-token that can't see it. It looks exactly like a typo in the repo name.
+it was created. Make the token first and GitHub answers with a **404, not a permission
+error** — it won't confirm a repo exists to a token that can't see it. It looks exactly
+like a typo in the repo name. Fix by editing the token's repository access; the token
+value doesn't change, so nothing needs re-pasting.
 
-If you hit that, you don't need a new token: edit the existing one's *Repository
-access* to add the repo. The token value doesn't change, so nothing needs re-pasting.
-
-Then open **Set up saving to GitHub** at the bottom of the page and fill in the three
-fields. **Save and test** writes a real file to prove write access, and only stores the
-token if that succeeds.
+Then open **Set up saving to GitHub** at the bottom of the page. **Save and test**
+writes a real file to prove write access, and only stores the token if that succeeds.
 
 ### About the token
 
-It lives in this browser's local storage on that device only. It's never written into
-this repo and never sent anywhere but GitHub. It reaches the one repo you scope it to
-and nothing else — revoke it from GitHub settings any time. Anyone with your unlocked
-phone could extract it, which is why it's scoped narrowly.
+It lives in that browser's local storage on that device only. Never written into this
+repo, never sent anywhere but GitHub, reaches only the repo you scope it to. Revoke it
+any time.
 
-`brinkcp.github.io` is a single origin for the whole account, and browser storage is
-per-origin rather than per-path. Any other page published under that account could read
-this token, so don't host third-party code there.
-
-**Forget token** removes it from the device; saving then downloads a file instead.
+`brinkcp.github.io` is one origin for the whole account and storage is per-origin, not
+per-path — so any other page published under that account could read this token. Don't
+host third-party code there.
 
 ### When an upload fails
 
 The session is recorded locally *first*, then uploaded. A failed upload queues it
-rather than losing it, and your "last time" reference updates either way. Queued
-sessions upload **automatically** next time you open the page with a connection.
-
-The message distinguishes the two cases, because the fix differs:
-
-- **No connection** — nothing to do.
-- **Token expired or wrong** — retrying won't help. Fix the token in the settings and
-  the backlog uploads the moment it works.
+rather than losing it, and uploads automatically next time the page is opened with a
+connection. The message distinguishes **no connection** (nothing to do) from **token
+expired or wrong** (fix it in the settings; the backlog goes up as soon as it works).
 
 ---
 
 ## Not built yet
 
-- **Trends.** Sessions archive with enough structure to chart later, but there's no
-  history view.
-- **Reading history back from the repo.** "Last time" comes from this device's local
-  storage, so it only carries over if you log on the same device each week.
+- **Trends.** Sessions archive with enough structure to chart later; no history view.
+- **Reading history back from the repo.** "Last time" comes from the device's local
+  storage, so it only carries over when logging on the same device.
+- **A scale marker in saved sessions.** See `handoff/CHANGELOG.md`.
