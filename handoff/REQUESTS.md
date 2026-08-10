@@ -41,6 +41,12 @@ no entry here.
 
 ---
 
+### 2026-08-10-remove-awkward-box
+**Want:** Remove the "anything awkward or technically difficult" free-text box from the session form.
+**Why:** Charl finds it pointless mid/post session and is not using it usefully. Prefer session-specific `questions` and exercise notes for real issues.
+**Priority:** normal
+
+
 ### 2026-08-10-scale-marker-in-saves
 **Want:** Saved session JSON should record which scale was used (e.g. `scales: { readiness: 5, backCheck: 5, postSession: 5 }`), stamped at save time from the form.
 **Why:** Pre-10-Aug sessions used 1–10; current form is 1–5. Without a marker, values 1–5 are ambiguous forever. Cheap now, unrecoverable later. Trainer confirms scales stay **out of 5** going forward — programs will ask /5, never /10.
