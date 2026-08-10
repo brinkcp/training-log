@@ -56,6 +56,54 @@
           ]
         },
         {
+          "type": "log",
+          "title": "MoveU Cool-down \u2014 Lordosis L2 (hold 2\u20133 weeks)",
+          "note": "Same block until consistency is solid, then progress in MoveU app. No added weight. Log reps/time quality. Alignment layer after main session.",
+          "exercises": [
+            {
+              "pair": "M1",
+              "name": "Deep Tissue: All Hip",
+              "target": "1 round follow-along",
+              "sets": 1,
+              "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
+              "focus": "Slow pressure. Breathe. Don't force into pain.",
+              "note": "Soft tissue prep for the hip block."
+            },
+            {
+              "pair": "M2",
+              "name": "Side Lying Hip Lift Rotations",
+              "target": "2 \u00d7 8\u201310 each side",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+            },
+            {
+              "pair": "M3",
+              "name": "Kickback Rotations",
+              "target": "2 \u00d7 8\u201310 each side",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+            },
+            {
+              "pair": "M4",
+              "name": "Double Leg Hip Rotations",
+              "target": "2 \u00d7 8\u201310",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Low back stays calm. Move from hips, not spine."
+            },
+            {
+              "pair": "M5",
+              "name": "TFL / Glute Med Stretch",
+              "target": "2 \u00d7 45\u201360 sec each side",
+              "sets": 2,
+              "prescription": "No weight \u2014 stretch hold",
+              "focus": "Easy breath. Soften into the stretch, don't yank."
+            }
+          ]
+        },
+        {
           "type": "reference",
           "title": "Sauna",
           "items": [
@@ -222,25 +270,50 @@
           ]
         },
         {
-          "type": "reference",
-          "title": "Cool Down",
-          "duration": "5\u20138 minutes",
-          "items": [
+          "type": "log",
+          "title": "MoveU Cool-down \u2014 Lordosis L2 (hold 2\u20133 weeks)",
+          "note": "Same block until consistency is solid, then progress in MoveU app. No added weight. Log reps/time quality. Alignment layer after main session.",
+          "exercises": [
             {
-              "name": "Hip flexor stretch"
+              "pair": "M1",
+              "name": "Deep Tissue: All Hip",
+              "target": "1 round follow-along",
+              "sets": 1,
+              "prescription": "No weight \u2014 ~2\u20133 min video/follow-along",
+              "focus": "Slow pressure. Breathe. Don't force into pain.",
+              "note": "Soft tissue prep for the hip block."
             },
             {
-              "name": "Hamstring stretch"
+              "pair": "M2",
+              "name": "Side Lying Hip Lift Rotations",
+              "target": "2 \u00d7 8\u201310 each side",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
             },
             {
-              "name": "Thoracic rotation"
+              "pair": "M3",
+              "name": "Kickback Rotations",
+              "target": "2 \u00d7 8\u201310 each side",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
             },
             {
-              "name": "Child's pose with side reach"
+              "pair": "M4",
+              "name": "Double Leg Hip Rotations",
+              "target": "2 \u00d7 8\u201310",
+              "sets": 2,
+              "prescription": "Bodyweight only",
+              "focus": "Low back stays calm. Move from hips, not spine."
             },
             {
-              "name": "Cat-Cows",
-              "detail": "\u00d7 10"
+              "pair": "M5",
+              "name": "TFL / Glute Med Stretch",
+              "target": "2 \u00d7 45\u201360 sec each side",
+              "sets": 2,
+              "prescription": "No weight \u2014 stretch hold",
+              "focus": "Easy breath. Soften into the stretch, don't yank."
             }
           ]
         }
