@@ -184,6 +184,13 @@ const HISTORY_KEY = "trainingLog:history:v2";
 const SYNC_KEY    = "trainingLog:sync:v1";
 const QUEUE_KEY   = "trainingLog:queue:v1";
 
+/* Single source of truth for the subjective scales. Every scale() call and the
+   `scales` block written into saved sessions both read this, so the recorded
+   marker can never drift from what the form actually showed.
+   Effort and RPE are free text and stay out of 10 by convention — see README. */
+const SCALE_MAX = 5;
+const EFFORT_MAX = 10;
+
 /* Constant across every session so far, so they're built in rather than
    restated in each program file. */
 const READINESS = [
@@ -703,11 +710,11 @@ function render(program, stale){
     /* Readiness */
     const rc = el("section", "card");
     const rh = el("div", "h2row");
-    rh.append(el("h2", null, "Readiness"), el("span", "dur", "out of 5"));
+    rh.append(el("h2", null, "Readiness"), el("span", "dur", `out of ${SCALE_MAX}`));
     rc.appendChild(rh);
     const rstack = el("div", "stack");
     READINESS.forEach(item => rstack.appendChild(
-      scale(item.label, 5, () => st.readiness[item.key], v => { st.readiness[item.key] = v; })
+      scale(item.label, SCALE_MAX, () => st.readiness[item.key], v => { st.readiness[item.key] = v; })
     ));
     rc.appendChild(rstack);
     app.appendChild(rc);
@@ -763,7 +770,7 @@ function render(program, stale){
           const st_ = condState(item.name);
           const grid = el("div", "cond-grid");
           [["rounds","Rounds done","numeric"],["work","Work (sec)","numeric"],
-           ["rest","Rest (sec)","numeric"],["effort","Effort /10","decimal"]]
+           ["rest","Rest (sec)","numeric"],["effort",`Effort /${EFFORT_MAX}`,"decimal"]]
             .forEach(([k, label, mode]) => {
               const l = el("label", null);
               l.append(label);
@@ -899,11 +906,11 @@ function render(program, stale){
       "Every session so far tracks this. The last one is filled in after you've left — the page stays editable, and saving again updates the same file."));
     const bstack = el("div", "stack");
     BACK_CHECK.forEach(pt => bstack.appendChild(
-      scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, 5,
+      scale(pt.late ? `${pt.label}  ⟵ fill in later` : pt.label, SCALE_MAX,
         () => st.backCheck[pt.key], v => { st.backCheck[pt.key] = v; })
     ));
     POST_SESSION.forEach(pt => bstack.appendChild(
-      scale(pt.label, 5, () => st.postSession[pt.key], v => { st.postSession[pt.key] = v; })
+      scale(pt.label, SCALE_MAX, () => st.postSession[pt.key], v => { st.postSession[pt.key] = v; })
     ));
     bstack.appendChild(textField("Back notes", "textarea",
       () => st.backCheck.note, v => { st.backCheck.note = v; }));
@@ -949,6 +956,16 @@ function render(program, stale){
         date: st.date,
         completedAt: st.completedAt,
         updatedAt: new Date().toISOString(),
+        // Stamped from the live constants, so a stored number always says what
+        // it was measured against. Sessions before 10 Aug 2026 have no `scales`
+        // block and were recorded out of 10.
+        scales: {
+          readiness: SCALE_MAX,
+          backCheck: SCALE_MAX,
+          postSession: SCALE_MAX,
+          rpe: EFFORT_MAX,
+          effort: EFFORT_MAX
+        },
         readiness: st.readiness,
         exercises: loggedBlocks.reduce((acc, b) => {
           b.exercises.forEach(e => {

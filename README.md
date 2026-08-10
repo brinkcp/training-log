@@ -217,6 +217,7 @@ twice.
   "date": "2026-08-12",
   "completedAt": "2026-08-12T06:41:00.000Z",
   "updatedAt": "2026-08-12T09:12:44.000Z",
+  "scales": { "readiness": 5, "backCheck": 5, "postSession": 5, "rpe": 10, "effort": 10 },
   "readiness": { "sleep": 4, "energy": 4, "back": 5 },
   "exercises": {
     "Trap Bar Deadlift": {
@@ -244,8 +245,10 @@ twice.
 - **`completedAt`** is stamped once; **`updatedAt`** moves on every save.
 - Weights, reps and RPE are strings exactly as typed — `"82.5"`, `"7.5"` — so half
   kilos and half-point RPE survive. Parse them yourself.
-- **Sessions saved before 10 Aug 2026 used 1–10 scales.** Nothing in the files marks
-  which scale applied. Only `2026-08-07-w1-thursday.json` predates the change.
+- **`scales` records what each number was measured against**, stamped at save time
+  from the form itself, so a stored `4` is never ambiguous. **Sessions with no
+  `scales` block predate 10 Aug 2026 and were recorded out of 10** — only
+  `2026-08-07-w1-thursday.json`.
 
 ---
 

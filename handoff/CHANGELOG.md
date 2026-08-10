@@ -7,6 +7,43 @@ the top. Requests are referenced by their slug from `REQUESTS.md`.
 
 ---
 
+## 2026-08-10 — Scale marker in saved sessions
+
+**Request:** `2026-08-10-scale-marker-in-saves` — done.
+
+Saved sessions now carry a `scales` block:
+
+```json
+"scales": { "readiness": 5, "backCheck": 5, "postSession": 5, "rpe": 10, "effort": 10 }
+```
+
+Built slightly differently from how it was asked for, and the difference matters.
+Rather than writing `5` into the save, the form now has two constants — `SCALE_MAX`
+and `EFFORT_MAX` — and **everything reads from them**: the scale buttons, the "out of
+5" caption, the "Effort /10" label, and the `scales` block itself. Nothing hardcodes a
+maximum anywhere.
+
+Stamping a literal would have created a second thing to remember to update, which is
+exactly how the marker ends up lying about a scale that has since moved. Now changing
+one constant changes the form, the labels and the recorded marker together.
+
+Verified: tapping 3 on every scale saves `3` throughout with the correct `scales`
+block, and a grep confirms no hardcoded maxima remain.
+
+**Noted:** scales stay out of 5 going forward, per your confirmation. `README.md` says
+programs should ask for /5, with effort and RPE staying out of 10.
+
+**Sessions with no `scales` block predate this and were recorded out of 10** — just
+`2026-08-07-w1-thursday.json`. Documented in the README rather than backfilled, since
+editing a logged session to add a marker risks more than it fixes.
+
+**One thing you can stop doing:** bumping the service worker cache after form changes
+isn't needed any more. That convention made sense when the worker trusted the HTTP
+cache, but it now fetches with `cache:"no-store"`, so a new page is picked up on the
+next load with a connection regardless. Bumping is harmless, just unnecessary.
+
+---
+
 ## 2026-08-10 — Audited Arnold's 1–10 → 1–5 change
 
 **Request:** made verbally to Arnold, not through this file. It should have come here;
