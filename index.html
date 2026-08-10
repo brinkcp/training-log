@@ -213,9 +213,11 @@ const POST_SESSION = [
   { key:"energy", label:"Energy immediately after" }
 ];
 
-const REFLECTION = [
-  { key:"awkward",   label:"Anything awkward or technically difficult", kind:"textarea" }
-];
+/* Deliberately empty (request 2026-08-10-remove-awkward-box). Real issues go in
+   per-exercise notes or a session-specific `questions` entry, both of which are
+   asked in context rather than as a catch-all at the end. The loop stays so a
+   standard field can be added back without rebuilding the card. */
+const REFLECTION = [];
 
 const app = document.getElementById("app");
 const el = (tag, cls, text) => {
@@ -917,18 +919,22 @@ function render(program, stale){
     bc.appendChild(bstack);
     app.appendChild(bc);
 
-    /* Reflection */
-    const rf = el("section", "card");
-    rf.appendChild(el("h2", null, "Session report"));
-    const rfs = el("div", "stack");
-    REFLECTION.forEach(q => rfs.appendChild(
-      textField(q.label, q.kind, () => st.reflection[q.key], v => { st.reflection[q.key] = v; })
-    ));
-    (session.questions || []).forEach((q, i) => rfs.appendChild(
-      textField(q, "textarea", () => st.answers[`q${i}`], v => { st.answers[`q${i}`] = v; })
-    ));
-    rf.appendChild(rfs);
-    app.appendChild(rf);
+    /* Reflection — only rendered when there is something to ask. With REFLECTION
+       empty, a session with no `questions` would otherwise get an empty card. */
+    const questions = session.questions || [];
+    if(REFLECTION.length || questions.length){
+      const rf = el("section", "card");
+      rf.appendChild(el("h2", null, "Session report"));
+      const rfs = el("div", "stack");
+      REFLECTION.forEach(q => rfs.appendChild(
+        textField(q.label, q.kind, () => st.reflection[q.key], v => { st.reflection[q.key] = v; })
+      ));
+      questions.forEach((q, i) => rfs.appendChild(
+        textField(q, "textarea", () => st.answers[`q${i}`], v => { st.answers[`q${i}`] = v; })
+      ));
+      rf.appendChild(rfs);
+      app.appendChild(rf);
+    }
 
     /* Actions */
     const actions = el("div", "actions");

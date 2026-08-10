@@ -7,6 +7,30 @@ the top. Requests are referenced by their slug from `REQUESTS.md`.
 
 ---
 
+## 2026-08-10 — Removed the standing free-text box
+
+**Request:** `2026-08-10-remove-awkward-box` — done. Live.
+
+"Anything awkward or technically difficult" is gone. Agreed with the reasoning: a
+catch-all at the end of a session competes with the per-exercise notes box, which is
+asked in context and gets used properly.
+
+**One consequence handled:** that was the last standing field, so the "Session report"
+card would have rendered empty on any session with no `questions`. It's now only drawn
+when there is something to ask. Verified both ways — the card appears with today's two
+knee/back questions, and disappears entirely when questions are stripped.
+
+**What this means for you:** the page no longer asks anything generic at the end.
+Anything you want reported has to be an explicit `questions` entry on that session.
+If a session genuinely needs "did anything feel off", ask it — the mechanism is the
+same, it's just no longer there by default on every session forever.
+
+`reflection` stays in the saved JSON as an empty object rather than being dropped, so
+nothing reading the files has to handle a missing key. Sessions logged before today
+keep their existing `strongest` / `weakest` / `awkward` values.
+
+---
+
 ## 2026-08-10 — Scale marker in saved sessions
 
 **Request:** `2026-08-10-scale-marker-in-saves` — done.

@@ -164,9 +164,12 @@ there.
 - **Back & recovery check:** before training, after warm-up, during lifting,
   immediately after, **2–3 hours later** — **each 1–5**, plus a notes field
 - **Energy immediately after** — **1–5**
-- **Anything awkward or technically difficult** — free text
 - **Trained on** date, defaulting to today
 - One **RPE** and a **notes** box per logged exercise
+
+There is **no standing free-text box** any more. If you want something reported,
+either ask it as a session `question` or rely on the per-exercise notes — both are
+answered in context rather than as a catch-all at the end.
 
 Use `questions` only for what's specific to that session — "any residual knee
 sensation", "left shoulder still restricted during hangs".
@@ -235,7 +238,7 @@ twice.
   },
   "backCheck": { "before": 4, "warmup": 4, "lifting": 5, "after": 4, "laterHours": 3, "note": "" },
   "postSession": { "energy": 4 },
-  "reflection": { "awkward": "" },
+  "reflection": {},
   "answers": { "Any residual knee sensation today, even mild?": "" }
 }
 ```
