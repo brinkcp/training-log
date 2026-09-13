@@ -1,30 +1,33 @@
 {
   "schema": 2,
   "block": "Foundation Season",
-  "week": 3,
-  "updated": "2026-09-07T00:12:00Z",
-  "note": "3-day reboot collapsed to 1 day. Revised blend — not a Day-1 clone. Pull + glute from Days 2–3 added; chop-heavy upper pair cut. Last hard data still 15 Aug. Train off the site even if Arnold is offline.",
+  "week": 4,
+  "updated": "2026-09-13T08:30:00Z",
+  "note": "Only one gym day this week. Full-body once-through from 7 Sep log — slight load nudge, extra back mobility (stiff/creaky last time). No BSS. MoveU L2 W3. Train off the site even if Arnold is offline.",
   "sessions": [
     {
-      "day": "Monday",
-      "dayLabel": "Mon · Single-Day Reboot",
-      "title": "Full-Body Blend",
+      "day": "Sunday",
+      "dayLabel": "Sun · Once This Week",
+      "title": "Full-Body Foundation",
       "duration": "~60 minutes",
       "intensity": "RPE 6–7",
-      "goal": "One session pulling the best pieces from the missed 3-day reboot: hinge + vertical pull + push + direct glute + single-leg option. Not Day 1 repeated.",
-      "success": "Trap bar clean. Honest pull-up work logged. Glutes actually worked. Single-leg or goblet done without drama. Leave 2–3 in the tank.",
-      "note": "Why this mix: Day 1 hinge kept. Day 2 pull-up + reverse-lunge option added. Day 3 hip thrust kept. Cut the redundant incline/row/goblet-only Day-1 shape. No BSS. MoveU L2 W3.",
+      "goal": "One honest full-body hit for the week: hinge, vertical pull, push, glute, squat pattern, carry. Quality over heroics.",
+      "success": "Trap bar clean and slightly stronger than 7 Sep if back allows. Pull-ups honest. Hip thrust actually loaded. Leave 2–3 in the tank.",
+      "note": "Last hard data 7 Sep: trap 60×5×4 @6.5; purple-band pull-ups 6/6/6; incline 17.5×10; hip thrust 15 (underloaded — load it today); goblet 15; farmers 20. Back was stiff — warm-up mobility is not optional.",
       "blocks": [
         {
           "type": "reference",
           "title": "Warm-up",
-          "duration": "10 minutes",
+          "duration": "12 minutes",
+          "note": "Extra mobility because back felt stiff/creaky on 7 Sep. Do not rush this.",
           "items": [
-            { "name": "Bike", "detail": "5 minutes easy" },
-            { "name": "Cat-Cows", "detail": "× 10" },
-            { "name": "Book Openers", "detail": "× 8 each side" },
+            { "name": "Bike", "detail": "4–5 minutes easy" },
+            { "name": "Cat-Cows", "detail": "× 10 slow" },
+            { "name": "Book Openers", "detail": "× 8 each side", "focus": "Open the stiff upper back." },
+            { "name": "Thread the Needle", "detail": "× 6 each side" },
             { "name": "World's Greatest Stretch", "detail": "× 5 each side" },
-            { "name": "Hip Flexor Stretch", "detail": "45 sec each side" },
+            { "name": "Hip Flexor Stretch", "detail": "45–60 sec each side", "focus": "Glute gently on, ribs quiet." },
+            { "name": "90/90 Hip Switches", "detail": "× 6 each side easy" },
             { "name": "Glute Bridges", "detail": "× 12 slow", "focus": "Full squeeze. Ribs down. Prep for hip thrust." },
             { "name": "Dead Bugs", "detail": "× 8 each side" },
             { "name": "Band Pull-Aparts", "detail": "× 15" },
@@ -40,18 +43,17 @@
         {
           "type": "reference",
           "title": "Skill — Hinge + Pull Prep",
-          "duration": "6–8 minutes",
-          "note": "Two patterns after time off: trap bar groove + honest pull assessment.",
+          "duration": "5–7 minutes",
           "items": [
             {
               "name": "Trap Bar build-up",
               "detail": "20 kg × 5, 40 kg × 5, 50–55 kg × 3 if crisp",
-              "focus": "Brace. Push floor away. Glutes finish. Control the lower."
+              "focus": "Brace. Push floor away. Glutes finish. Soft lower."
             },
             {
               "name": "Pull-up prep",
-              "detail": "2 × 3–5 scap pull-ups or slow negatives if full pull-up not ready",
-              "focus": "Honest assessment — clean work only in Strength A."
+              "detail": "1–2 easy sets of 3–4 purple-band or scap work",
+              "focus": "Same purple band as 7 Sep is fine. Clean only."
             }
           ]
         },
@@ -64,19 +66,19 @@
               "name": "Trap Bar Deadlift",
               "target": "4 × 5",
               "sets": 4,
-              "prescription": "55–65 kg (earn 65 only if sets 1–2 are identical and easy)",
+              "prescription": "60–65 kg (open 60; 62.5–65 only if sets 1–2 are identical and back feels free)",
               "rpe": "RPE 6–7",
               "rest": "90–120 sec",
               "focus": "Every rep identical. Leave 2–3 in the tank.",
-              "note": "15 Aug peaked 70 then settled 60. Do not open at 70. Kept from Day 1 — highest-value hinge."
+              "note": "7 Sep: 60 across @6.5. Small nudge only if the warm-up left the back freer."
             },
             {
               "pair": "A2",
               "name": "Cable Pallof Press",
               "target": "3 × 8–10 each side",
               "sets": 3,
-              "prescription": "Moderate",
-              "rpe": "RPE 7",
+              "prescription": "10–12 kg (last time 10 @ RPE 8 — hold or tiny bump if lock solid)",
+              "rpe": "RPE 7–8",
               "rest": "60 sec",
               "focus": "Resist rotation. Exhale on press. Ribs stacked over pelvis."
             }
@@ -89,24 +91,24 @@
             {
               "pair": "B1",
               "name": "Pull-up or Assisted Pull-up",
-              "target": "3 × 3–6 clean reps",
+              "target": "3 × 5–8 clean reps",
               "sets": 3,
-              "prescription": "BW, band-assist, or foot-assist as needed",
-              "rpe": "RPE 7",
+              "prescription": "Purple band (or same assist as 7 Sep). Aim clean 5–8 — stop before form breaks",
+              "rpe": "RPE 7–8",
               "rest": "90–120 sec",
-              "focus": "Full hang to chin clear. No kipping. Stop before form breaks.",
-              "note": "From Day 2 — missing vertical pull was the main gap in the first redesign. Note assist method. Lat pulldown 3×8 moderate only if no pull-up setup."
+              "focus": "Full hang to chin clear. No kipping.",
+              "note": "7 Sep: purple band 6/6/6 felt good. Match or beat total clean reps. Note band colour."
             },
             {
               "pair": "B2",
               "name": "Incline Dumbbell Bench Press",
               "target": "3 × 8–10",
               "sets": 3,
-              "prescription": "15–20 kg each hand (start 15–17.5)",
+              "prescription": "17.5–20 kg each hand (start 17.5; 20 only if set 1 is easy)",
               "rpe": "RPE 7",
               "rest": "75–90 sec",
               "focus": "Full control. Soft landing. No bounce.",
-              "note": "Push balance vs the pull-up. Kept light after layoff."
+              "note": "7 Sep locked 17.5×10. Small optional bump."
             }
           ]
         },
@@ -119,22 +121,22 @@
               "name": "Barbell or Dumbbell Hip Thrust",
               "target": "3 × 8–10",
               "sets": 3,
-              "prescription": "Moderate — start light and earn load (e.g. 40–60 kg BB or heavy DBs)",
-              "rpe": "RPE 7",
+              "prescription": "Load it — BB 40–60 kg or DBs ~20+ kg each. 15 kg last time was too light if glutes only hit RPE 7",
+              "rpe": "RPE 7–8",
               "rest": "90 sec",
               "focus": "Chin tucked. Ribs down. Full glute squeeze at top. No lumbar overextend.",
-              "note": "From Day 3 — direct glute work. Structural priority. Not optional filler."
+              "note": "7 Sep: 15 kg, glutes felt good but underloaded. Structural priority — earn real tension."
             },
             {
               "pair": "C2",
               "name": "Reverse Lunge or Goblet Squat",
               "target": "3 × 6–8 each side (lunge) or 3 × 8–10 (goblet)",
               "sets": 3,
-              "prescription": "Lunge: BW–light DBs (6–12 kg) if warm-up check clean. Goblet: 16–22 kg if not.",
+              "prescription": "Prefer reverse lunge if check was clean: BW–12 kg DBs. Else goblet 16–20 kg",
               "rpe": "RPE 6–7",
               "rest": "75 sec",
-              "focus": "Lunge: front shin vertical, controlled knee to floor. Goblet: depth with knees tracking toes.",
-              "note": "From Day 2 single-leg intent. Prefer reverse lunge if check was clean. Name variation in notes. No BSS."
+              "focus": "Lunge: front shin vertical, controlled knee to floor. Goblet: depth, knees track toes.",
+              "note": "7 Sep used goblet 15. Try reverse lunge if warm-up check is clean. Name variation in notes. No BSS."
             }
           ]
         },
@@ -147,7 +149,8 @@
               "name": "Farmer Carry",
               "target": "3 × 30–40 m",
               "sets": 3,
-              "prescription": "20–26 kg each hand",
+              "prescription": "22–26 kg each hand (last time 20 — small bump if grip and posture allow)",
+              "rpe": "RPE 7",
               "rest": "60 sec",
               "focus": "Walk tall. Soft ribs. Grip finishes the set, not form collapse."
             }
@@ -156,7 +159,7 @@
         {
           "type": "conditioning",
           "title": "Conditioning",
-          "note": "Optional capacity touch. Skip if flat — MoveU still happens.",
+          "note": "Optional capacity touch. Skip if flat or short on time — MoveU still happens.",
           "items": [
             {
               "name": "Bike",
@@ -168,7 +171,7 @@
         {
           "type": "log",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight.",
+          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
           "exercises": [
             {
               "pair": "M1",
@@ -220,32 +223,35 @@
         }
       ],
       "questions": [
-        "Pull-ups — what assist (if any) and best clean set?",
-        "Hip thrusts — glutes, or more hamstring/back?",
-        "Reverse lunge or goblet — any joint noise?",
-        "Back under trap bar vs 15 Aug — better, same, or tighter?"
+        "Back today vs 7 Sep — freer after the longer warm-up, same, or still stiff?",
+        "Pull-ups — band and best clean set?",
+        "Hip thrust load used — glutes owning it?",
+        "Reverse lunge or goblet — which, and any joint noise?"
       ]
     },
     {
-      "day": "Tuesday",
-      "dayLabel": "Tue · Single-Day Reboot",
-      "title": "Full-Body Blend",
+      "day": "Monday",
+      "dayLabel": "Mon · Once This Week (backup)",
+      "title": "Full-Body Foundation",
       "duration": "~60 minutes",
       "intensity": "RPE 6–7",
-      "goal": "Same single-day blend if you train Tuesday instead of Monday. Hinge + vertical pull + push + glute + single-leg option.",
-      "success": "Trap bar clean. Honest pull-up work logged. Glutes actually worked. Single-leg or goblet done without drama. Leave 2–3 in the tank.",
-      "note": "Identical to Monday — app day-match backup only. Run once. Not a second day. No BSS. MoveU L2 W3.",
+      "goal": "Same once-this-week full body if you train Monday instead of Sunday. Hinge, pull, push, glute, squat pattern, carry.",
+      "success": "Trap bar clean. Pull-ups honest. Hip thrust loaded. Leave 2–3 in the tank.",
+      "note": "Identical to Sunday — app day-match backup only. Run once. Not a second day. No BSS. MoveU L2 W3.",
       "blocks": [
         {
           "type": "reference",
           "title": "Warm-up",
-          "duration": "10 minutes",
+          "duration": "12 minutes",
+          "note": "Extra mobility because back felt stiff/creaky on 7 Sep. Do not rush this.",
           "items": [
-            { "name": "Bike", "detail": "5 minutes easy" },
-            { "name": "Cat-Cows", "detail": "× 10" },
-            { "name": "Book Openers", "detail": "× 8 each side" },
+            { "name": "Bike", "detail": "4–5 minutes easy" },
+            { "name": "Cat-Cows", "detail": "× 10 slow" },
+            { "name": "Book Openers", "detail": "× 8 each side", "focus": "Open the stiff upper back." },
+            { "name": "Thread the Needle", "detail": "× 6 each side" },
             { "name": "World's Greatest Stretch", "detail": "× 5 each side" },
-            { "name": "Hip Flexor Stretch", "detail": "45 sec each side" },
+            { "name": "Hip Flexor Stretch", "detail": "45–60 sec each side", "focus": "Glute gently on, ribs quiet." },
+            { "name": "90/90 Hip Switches", "detail": "× 6 each side easy" },
             { "name": "Glute Bridges", "detail": "× 12 slow", "focus": "Full squeeze. Ribs down. Prep for hip thrust." },
             { "name": "Dead Bugs", "detail": "× 8 each side" },
             { "name": "Band Pull-Aparts", "detail": "× 15" },
@@ -261,18 +267,17 @@
         {
           "type": "reference",
           "title": "Skill — Hinge + Pull Prep",
-          "duration": "6–8 minutes",
-          "note": "Two patterns after time off: trap bar groove + honest pull assessment.",
+          "duration": "5–7 minutes",
           "items": [
             {
               "name": "Trap Bar build-up",
               "detail": "20 kg × 5, 40 kg × 5, 50–55 kg × 3 if crisp",
-              "focus": "Brace. Push floor away. Glutes finish. Control the lower."
+              "focus": "Brace. Push floor away. Glutes finish. Soft lower."
             },
             {
               "name": "Pull-up prep",
-              "detail": "2 × 3–5 scap pull-ups or slow negatives if full pull-up not ready",
-              "focus": "Honest assessment — clean work only in Strength A."
+              "detail": "1–2 easy sets of 3–4 purple-band or scap work",
+              "focus": "Same purple band as 7 Sep is fine. Clean only."
             }
           ]
         },
@@ -285,19 +290,19 @@
               "name": "Trap Bar Deadlift",
               "target": "4 × 5",
               "sets": 4,
-              "prescription": "55–65 kg (earn 65 only if sets 1–2 are identical and easy)",
+              "prescription": "60–65 kg (open 60; 62.5–65 only if sets 1–2 are identical and back feels free)",
               "rpe": "RPE 6–7",
               "rest": "90–120 sec",
               "focus": "Every rep identical. Leave 2–3 in the tank.",
-              "note": "15 Aug peaked 70 then settled 60. Do not open at 70. Kept from Day 1 — highest-value hinge."
+              "note": "7 Sep: 60 across @6.5. Small nudge only if the warm-up left the back freer."
             },
             {
               "pair": "A2",
               "name": "Cable Pallof Press",
               "target": "3 × 8–10 each side",
               "sets": 3,
-              "prescription": "Moderate",
-              "rpe": "RPE 7",
+              "prescription": "10–12 kg (last time 10 @ RPE 8 — hold or tiny bump if lock solid)",
+              "rpe": "RPE 7–8",
               "rest": "60 sec",
               "focus": "Resist rotation. Exhale on press. Ribs stacked over pelvis."
             }
@@ -310,24 +315,24 @@
             {
               "pair": "B1",
               "name": "Pull-up or Assisted Pull-up",
-              "target": "3 × 3–6 clean reps",
+              "target": "3 × 5–8 clean reps",
               "sets": 3,
-              "prescription": "BW, band-assist, or foot-assist as needed",
-              "rpe": "RPE 7",
+              "prescription": "Purple band (or same assist as 7 Sep). Aim clean 5–8 — stop before form breaks",
+              "rpe": "RPE 7–8",
               "rest": "90–120 sec",
-              "focus": "Full hang to chin clear. No kipping. Stop before form breaks.",
-              "note": "From Day 2 — missing vertical pull was the main gap in the first redesign. Note assist method. Lat pulldown 3×8 moderate only if no pull-up setup."
+              "focus": "Full hang to chin clear. No kipping.",
+              "note": "7 Sep: purple band 6/6/6 felt good. Match or beat total clean reps. Note band colour."
             },
             {
               "pair": "B2",
               "name": "Incline Dumbbell Bench Press",
               "target": "3 × 8–10",
               "sets": 3,
-              "prescription": "15–20 kg each hand (start 15–17.5)",
+              "prescription": "17.5–20 kg each hand (start 17.5; 20 only if set 1 is easy)",
               "rpe": "RPE 7",
               "rest": "75–90 sec",
               "focus": "Full control. Soft landing. No bounce.",
-              "note": "Push balance vs the pull-up. Kept light after layoff."
+              "note": "7 Sep locked 17.5×10. Small optional bump."
             }
           ]
         },
@@ -340,22 +345,22 @@
               "name": "Barbell or Dumbbell Hip Thrust",
               "target": "3 × 8–10",
               "sets": 3,
-              "prescription": "Moderate — start light and earn load (e.g. 40–60 kg BB or heavy DBs)",
-              "rpe": "RPE 7",
+              "prescription": "Load it — BB 40–60 kg or DBs ~20+ kg each. 15 kg last time was too light if glutes only hit RPE 7",
+              "rpe": "RPE 7–8",
               "rest": "90 sec",
               "focus": "Chin tucked. Ribs down. Full glute squeeze at top. No lumbar overextend.",
-              "note": "From Day 3 — direct glute work. Structural priority. Not optional filler."
+              "note": "7 Sep: 15 kg, glutes felt good but underloaded. Structural priority — earn real tension."
             },
             {
               "pair": "C2",
               "name": "Reverse Lunge or Goblet Squat",
               "target": "3 × 6–8 each side (lunge) or 3 × 8–10 (goblet)",
               "sets": 3,
-              "prescription": "Lunge: BW–light DBs (6–12 kg) if warm-up check clean. Goblet: 16–22 kg if not.",
+              "prescription": "Prefer reverse lunge if check was clean: BW–12 kg DBs. Else goblet 16–20 kg",
               "rpe": "RPE 6–7",
               "rest": "75 sec",
-              "focus": "Lunge: front shin vertical, controlled knee to floor. Goblet: depth with knees tracking toes.",
-              "note": "From Day 2 single-leg intent. Prefer reverse lunge if check was clean. Name variation in notes. No BSS."
+              "focus": "Lunge: front shin vertical, controlled knee to floor. Goblet: depth, knees track toes.",
+              "note": "7 Sep used goblet 15. Try reverse lunge if warm-up check is clean. Name variation in notes. No BSS."
             }
           ]
         },
@@ -368,7 +373,8 @@
               "name": "Farmer Carry",
               "target": "3 × 30–40 m",
               "sets": 3,
-              "prescription": "20–26 kg each hand",
+              "prescription": "22–26 kg each hand (last time 20 — small bump if grip and posture allow)",
+              "rpe": "RPE 7",
               "rest": "60 sec",
               "focus": "Walk tall. Soft ribs. Grip finishes the set, not form collapse."
             }
@@ -377,7 +383,7 @@
         {
           "type": "conditioning",
           "title": "Conditioning",
-          "note": "Optional capacity touch. Skip if flat — MoveU still happens.",
+          "note": "Optional capacity touch. Skip if flat or short on time — MoveU still happens.",
           "items": [
             {
               "name": "Bike",
@@ -389,7 +395,7 @@
         {
           "type": "log",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight.",
+          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
           "exercises": [
             {
               "pair": "M1",
@@ -441,10 +447,10 @@
         }
       ],
       "questions": [
-        "Pull-ups — what assist (if any) and best clean set?",
-        "Hip thrusts — glutes, or more hamstring/back?",
-        "Reverse lunge or goblet — any joint noise?",
-        "Back under trap bar vs 15 Aug — better, same, or tighter?"
+        "Back today vs 7 Sep — freer after the longer warm-up, same, or still stiff?",
+        "Pull-ups — band and best clean set?",
+        "Hip thrust load used — glutes owning it?",
+        "Reverse lunge or goblet — which, and any joint noise?"
       ]
     }
   ]
