@@ -41,6 +41,11 @@ no entry here.
 
 ---
 
+### 2026-10-01-conditioning-input-width
+**Want:** Fix the conditioning section layout so the Work / Rest / Effort input boxes stop stretching the whole screen width on phone. Fields should stay compact and usable without horizontal overflow.
+**Why:** On the live training page, the conditioning work and effort boxes are really wide and throw the whole screen width — breaks mid-session logging on mobile.
+**Priority:** urgent
+
 ### 2026-08-10-remove-awkward-box
 **Want:** Remove the "anything awkward or technically difficult" free-text box from the session form.
 **Why:** Charl finds it pointless mid/post session and is not using it usefully. Prefer session-specific `questions` and exercise notes for real issues.
