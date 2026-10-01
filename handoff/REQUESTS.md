@@ -41,6 +41,11 @@ no entry here.
 
 ---
 
+### EMERGENCY 2026-10-01
+**What:** Edited `index.html` conditioning CSS (`.cond-grid`) so Work/Rest/Effort inputs use `minmax(0,1fr)`, `width:100%`, `min-width:0`, and card `overflow-x:hidden`.
+**Why:** Charl blocked on live mobile layout — conditioning fields stretched whole screen width. Request `2026-10-01-conditioning-input-width` was filed urgent but not yet handled by Claude Code. Emergency per handoff rules so training page is usable.
+**Request slug:** `2026-10-01-conditioning-input-width`
+
 ### 2026-10-01-conditioning-input-width
 **Want:** Fix the conditioning section layout so the Work / Rest / Effort input boxes stop stretching the whole screen width on phone. Fields should stay compact and usable without horizontal overflow.
 **Why:** On the live training page, the conditioning work and effort boxes are really wide and throw the whole screen width — breaks mid-session logging on mobile.
