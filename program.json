@@ -2,8 +2,8 @@
   "schema": 2,
   "block": "Foundation Season",
   "week": 6,
-  "updated": "2026-10-01T02:10:57Z",
-  "note": "Fresh 4-day consistency block Thu–Sun — not a rebuild of missed week 5. Loads from 7 Sep hard data; leave tank. No BSS. MoveU L2 W3. Train off the site even if Arnold is offline.",
+  "updated": "2026-10-01T02:38:10Z",
+  "note": "Fresh 4-day consistency block Thu–Sun — not a rebuild of missed week 5. Loads from 7 Sep hard data; leave tank. No BSS. MoveU L2 W3 as simple cool-down list (no log). Train off the site even if Arnold is offline.",
   "sessions": [
     {
       "day": "Thursday",
@@ -184,54 +184,33 @@
           "note": "Optional. Skip if flat — MoveU still happens."
         },
         {
-          "type": "log",
+          "type": "reference",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
-          "exercises": [
+          "note": "No logging needed. Run the week-3 block once after the main session. Consistency > novelty.",
+          "items": [
             {
-              "pair": "M1",
               "name": "Deep Tissue: All Hip",
-              "target": "1 round follow-along",
-              "sets": 1,
-              "load": false,
-              "prescription": "No weight — ~2–3 min video/follow-along",
-              "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Optional if time is tight — rotations + stretch are priority."
+              "detail": "1 round follow-along (~2–3 min)",
+              "focus": "Slow pressure. Breathe. Optional if short on time."
             },
             {
-              "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "detail": "2 × 8–10 each side",
+              "focus": "Pelvis stacked. Controlled rotation — no lumbar flop."
             },
             {
-              "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "detail": "2 × 8–10 each side",
+              "focus": "Glute drives the kickback. Ribs quiet."
             },
             {
-              "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 × 8–10",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "detail": "2 × 8–10",
+              "focus": "Move from hips, not spine. Low back stays calm."
             },
             {
-              "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 × 45–60 sec each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "No weight — stretch hold",
+              "detail": "2 × 45–60 sec each side",
               "focus": "Breathe into the outside hip. No forcing."
             }
           ]
@@ -418,54 +397,33 @@
           "note": "Keep short. Skip if legs are cooked."
         },
         {
-          "type": "log",
+          "type": "reference",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
-          "exercises": [
+          "note": "No logging needed. Run the week-3 block once after the main session. Consistency > novelty.",
+          "items": [
             {
-              "pair": "M1",
               "name": "Deep Tissue: All Hip",
-              "target": "1 round follow-along",
-              "sets": 1,
-              "load": false,
-              "prescription": "No weight — ~2–3 min video/follow-along",
-              "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Optional if time is tight — rotations + stretch are priority."
+              "detail": "1 round follow-along (~2–3 min)",
+              "focus": "Slow pressure. Breathe. Optional if short on time."
             },
             {
-              "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "detail": "2 × 8–10 each side",
+              "focus": "Pelvis stacked. Controlled rotation — no lumbar flop."
             },
             {
-              "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "detail": "2 × 8–10 each side",
+              "focus": "Glute drives the kickback. Ribs quiet."
             },
             {
-              "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 × 8–10",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "detail": "2 × 8–10",
+              "focus": "Move from hips, not spine. Low back stays calm."
             },
             {
-              "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 × 45–60 sec each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "No weight — stretch hold",
+              "detail": "2 × 45–60 sec each side",
               "focus": "Breathe into the outside hip. No forcing."
             }
           ]
@@ -644,54 +602,33 @@
           "note": "Main capacity touch of the block. Still honest, not heroic."
         },
         {
-          "type": "log",
+          "type": "reference",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
-          "exercises": [
+          "note": "No logging needed. Run the week-3 block once after the main session. Consistency > novelty.",
+          "items": [
             {
-              "pair": "M1",
               "name": "Deep Tissue: All Hip",
-              "target": "1 round follow-along",
-              "sets": 1,
-              "load": false,
-              "prescription": "No weight — ~2–3 min video/follow-along",
-              "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Optional if time is tight — rotations + stretch are priority."
+              "detail": "1 round follow-along (~2–3 min)",
+              "focus": "Slow pressure. Breathe. Optional if short on time."
             },
             {
-              "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "detail": "2 × 8–10 each side",
+              "focus": "Pelvis stacked. Controlled rotation — no lumbar flop."
             },
             {
-              "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "detail": "2 × 8–10 each side",
+              "focus": "Glute drives the kickback. Ribs quiet."
             },
             {
-              "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 × 8–10",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "detail": "2 × 8–10",
+              "focus": "Move from hips, not spine. Low back stays calm."
             },
             {
-              "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 × 45–60 sec each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "No weight — stretch hold",
+              "detail": "2 × 45–60 sec each side",
               "focus": "Breathe into the outside hip. No forcing."
             }
           ]
@@ -887,54 +824,33 @@
           "note": "Optional finisher only if you still have bounce."
         },
         {
-          "type": "log",
+          "type": "reference",
           "title": "MoveU Cool-down — Lordosis L2 W3",
-          "note": "Still L2 W3. Consistency > novelty. No weight. Priority after the main work.",
-          "exercises": [
+          "note": "No logging needed. Run the week-3 block once after the main session. Consistency > novelty.",
+          "items": [
             {
-              "pair": "M1",
               "name": "Deep Tissue: All Hip",
-              "target": "1 round follow-along",
-              "sets": 1,
-              "load": false,
-              "prescription": "No weight — ~2–3 min video/follow-along",
-              "focus": "Slow pressure. Breathe. Don't force into pain.",
-              "note": "Optional if time is tight — rotations + stretch are priority."
+              "detail": "1 round follow-along (~2–3 min)",
+              "focus": "Slow pressure. Breathe. Optional if short on time."
             },
             {
-              "pair": "M2",
               "name": "Side Lying Hip Lift Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Controlled rotation. Pelvis stacked. No lumbar flop."
+              "detail": "2 × 8–10 each side",
+              "focus": "Pelvis stacked. Controlled rotation — no lumbar flop."
             },
             {
-              "pair": "M3",
               "name": "Kickback Rotations",
-              "target": "2 × 8–10 each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Glute drives the kickback. Ribs quiet. Smooth rotation."
+              "detail": "2 × 8–10 each side",
+              "focus": "Glute drives the kickback. Ribs quiet."
             },
             {
-              "pair": "M4",
               "name": "Double Leg Hip Rotations",
-              "target": "2 × 8–10",
-              "sets": 2,
-              "load": false,
-              "prescription": "Bodyweight only",
-              "focus": "Low back stays calm. Move from hips, not spine."
+              "detail": "2 × 8–10",
+              "focus": "Move from hips, not spine. Low back stays calm."
             },
             {
-              "pair": "M5",
               "name": "TFL / Glute Med Stretch",
-              "target": "2 × 45–60 sec each side",
-              "sets": 2,
-              "load": false,
-              "prescription": "No weight — stretch hold",
+              "detail": "2 × 45–60 sec each side",
               "focus": "Breathe into the outside hip. No forcing."
             }
           ]
