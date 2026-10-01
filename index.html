@@ -31,7 +31,7 @@ h1{font-size:1.45rem; font-weight:650; margin:0; letter-spacing:-.02em; text-wra
 .progress{font-size:.85rem; color:var(--muted); font-variant-numeric:tabular-nums}
 .progress b{color:var(--text); font-weight:600}
 
-.card{background:var(--card); border:1px solid var(--line-soft); border-radius:12px; padding:16px}
+.card{background:var(--card); border:1px solid var(--line-soft); border-radius:12px; padding:16px; overflow-x:hidden}
 h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); margin:0; font-weight:600}
 .h2row{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:12px}
 .h2row .dur{font-size:.72rem; color:var(--muted); font-family:var(--mono); white-space:nowrap}
@@ -99,13 +99,38 @@ h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.09em; color:var(-
   border:1px solid var(--line); border-radius:8px; font-size:16px; font-family:var(--mono);
   font-variant-numeric:tabular-nums; text-align:center;
 }
-.cond-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px}
-.cond-grid label{display:flex; flex-direction:column; gap:5px; font-size:.78rem; color:var(--muted)}
-.cond-grid input{
-  min-height:44px; padding:8px 10px; background:var(--field); color:var(--text);
-  border:1px solid var(--line); border-radius:8px; font-size:16px; font-family:var(--mono);
-  font-variant-numeric:tabular-nums;
-}
+.cond-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:10px;
+    margin-top:12px;
+    width:100%;
+    max-width:100%;
+  }
+  .cond-grid label{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    font-size:.78rem;
+    color:var(--muted);
+    min-width:0;
+    max-width:100%;
+  }
+  .cond-grid input{
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    box-sizing:border-box;
+    min-height:44px;
+    padding:8px 10px;
+    background:var(--field);
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:16px;
+    font-family:var(--mono);
+    font-variant-numeric:tabular-nums;
+  }
 .prescribed{font-size:.75rem; color:var(--muted); margin:10px 0 0}
 .date-row{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:8px}
 .date-row label{display:flex; align-items:center; gap:8px; font-size:.8rem; color:var(--muted)}
